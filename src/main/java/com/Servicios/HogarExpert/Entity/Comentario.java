@@ -1,10 +1,11 @@
 
-package com.Servicios.HogarExpert.Model;
+package com.Servicios.HogarExpert.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,11 @@ public class Comentario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_comentario;
+    
+    @OneToOne
+    private Proveedor proveedor;
+    @OneToOne
+    private Trabajo trabajo;
  
     private String mensaje;
     private Integer calificacion;

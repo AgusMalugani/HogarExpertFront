@@ -4,11 +4,15 @@
  */
 package com.Servicios.HogarExpert.Repository;
 
-import com.Servicios.HogarExpert.Entity.Usuario;
+import com.Servicios.HogarExpert.Entity.Comentario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+/**
+ *
+ * @author Usuario
+ */
 @Repository
-public interface IUsuarioRepositorio extends JpaRepository<Usuario,Long> {
+public interface IComentarioRepositorio extends JpaRepository<Comentario,Long> {
     
 }
