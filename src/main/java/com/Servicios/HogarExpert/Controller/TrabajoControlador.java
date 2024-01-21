@@ -4,9 +4,9 @@
  */
 package com.Servicios.HogarExpert.Controller;
 
-import com.Servicios.HogarExpert.Entity.Proveedor;
+import com.Servicios.HogarExpert.Entity.Trabajo;
 import com.Servicios.HogarExpert.Exception.MiException;
-import com.Servicios.HogarExpert.Service.IProveedorServicio;
+import com.Servicios.HogarExpert.Service.ITrabajoServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,31 +23,29 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Usuario
  */
 @RestController
-@RequestMapping("/proveedor")
-public class ProveedorControlador {
+@RequestMapping("/trabajo")
+public class TrabajoControlador {
     @Autowired
-    IProveedorServicio provServ;
-    
-    
+    private ITrabajoServicio trabajoServi;
     
     @PostMapping("/crear")
-    public String crearProveedor(@RequestBody Proveedor prov) {
+    public String crearTrabajo(@RequestBody Trabajo t) {
         
         try {
-            provServ.save(prov);
-            return "proveedor creado";
+            trabajoServi.save(t);
+            return "trabajo creado";
         } catch (MiException ex) {
          return " error " + ex.getMessage();
         }
         
     }
     
-    @GetMapping("/detalle/{id}")
-    public Proveedor verProveedor(@PathVariable Long id){
+    @GetMapping("/detalle/{num_trabajo}")
+    public Trabajo verTrabajo(@PathVariable Long num_trabajo){
         try {
-            Proveedor p = provServ.findById(id);
+            Trabajo t = trabajoServi.findById(num_trabajo);
             
-            return p;
+            return t;
         } catch (MiException ex) {
             System.out.println(ex.getMessage());
             return null;
@@ -57,19 +55,19 @@ public class ProveedorControlador {
         }
     
     @GetMapping("/lista")
-    public List<Proveedor>listaProveedores(){
+    public List<Trabajo>listaTrabajos(){
         
-        return provServ.findAll();
+        return trabajoServi.findAll();
     }
     
     
 
-    @PutMapping("/modificar/{id}")
-    public String modificarProveedor(@PathVariable Long id, @RequestBody Proveedor prov) throws MiException{
+    @PutMapping("/modificar/{num_trabajo}")
+    public String modificarTrabajo(@PathVariable Long num_trabajo, @RequestBody Trabajo t) throws MiException{
         try{
-         provServ.update(id, prov);
+         trabajoServi.update(num_trabajo, t);
          
-        return "exito, proveedor modificado";
+        return "exito trabajo modificado";
         }catch(MiException ex){
             
         return "error " + ex.getMessage();
@@ -77,18 +75,17 @@ public class ProveedorControlador {
         
     }
     
-    @DeleteMapping("/eliminar/{id}")
-    public String eliminarProveedor(@PathVariable Long id){
+    @DeleteMapping("/eliminar/{num_trabajo}")
+    public String eliminarTrabajo(@PathVariable Long num_trabajo){
         try {
-            provServ.delete(id);
-            return " proveedor eliminado";
+            trabajoServi.delete(num_trabajo);
+            return " trabajo eliminado";
         } catch (MiException ex) {
         return "error " + ex.getMessage();
         }
         
         
     }
-    
     
     
 }

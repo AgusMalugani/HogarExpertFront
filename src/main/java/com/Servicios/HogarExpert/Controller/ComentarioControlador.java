@@ -4,10 +4,9 @@
  */
 package com.Servicios.HogarExpert.Controller;
 
-import com.Servicios.HogarExpert.Entity.Proveedor;
+import com.Servicios.HogarExpert.Entity.Comentario;
 import com.Servicios.HogarExpert.Exception.MiException;
-import com.Servicios.HogarExpert.Service.IProveedorServicio;
-import java.util.List;
+import com.Servicios.HogarExpert.Service.IComentarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,32 +21,31 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Usuario
  */
-@RestController
-@RequestMapping("/proveedor")
-public class ProveedorControlador {
-    @Autowired
-    IProveedorServicio provServ;
-    
-    
-    
-    @PostMapping("/crear")
-    public String crearProveedor(@RequestBody Proveedor prov) {
+ @RestController
+ @RequestMapping("/comentario")
+public class ComentarioControlador {
+     @Autowired
+     IComentarioServicio comServ;
+     
+     
+      @PostMapping("/crear")
+    public String crearComentario(@RequestBody Comentario com) {
         
         try {
-            provServ.save(prov);
-            return "proveedor creado";
+            comServ.save(com);
+            return "comentario creado";
         } catch (MiException ex) {
          return " error " + ex.getMessage();
         }
         
     }
     
-    @GetMapping("/detalle/{id}")
-    public Proveedor verProveedor(@PathVariable Long id){
+    @GetMapping("/detalle/{id_comentario}")
+    public Comentario verComentario(@PathVariable Long id_comentario){
         try {
-            Proveedor p = provServ.findById(id);
+            Comentario c = comServ.findById(id_comentario);
             
-            return p;
+            return c;
         } catch (MiException ex) {
             System.out.println(ex.getMessage());
             return null;
@@ -56,20 +54,16 @@ public class ProveedorControlador {
      
         }
     
-    @GetMapping("/lista")
-    public List<Proveedor>listaProveedores(){
-        
-        return provServ.findAll();
-    }
+  
     
     
 
-    @PutMapping("/modificar/{id}")
-    public String modificarProveedor(@PathVariable Long id, @RequestBody Proveedor prov) throws MiException{
+    @PutMapping("/modificar/{id_comentario}")
+    public String modificarComentario(@PathVariable Long id_comentario, @RequestBody Comentario com) throws MiException{
         try{
-         provServ.update(id, prov);
+         comServ.update(id_comentario, com);
          
-        return "exito, proveedor modificado";
+        return "exito comentario modificado";
         }catch(MiException ex){
             
         return "error " + ex.getMessage();
@@ -77,18 +71,15 @@ public class ProveedorControlador {
         
     }
     
-    @DeleteMapping("/eliminar/{id}")
-    public String eliminarProveedor(@PathVariable Long id){
+    @DeleteMapping("/eliminar/{id_comentario}")
+    public String eliminarComentario(@PathVariable Long id_comentario){
         try {
-            provServ.delete(id);
-            return " proveedor eliminado";
+            comServ.delete(id_comentario);
+            return " comentario eliminado";
         } catch (MiException ex) {
         return "error " + ex.getMessage();
         }
         
         
     }
-    
-    
-    
 }

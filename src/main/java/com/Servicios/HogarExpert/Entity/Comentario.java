@@ -21,6 +21,8 @@ public class Comentario {
     private Proveedor proveedor;
     @OneToOne
     private Trabajo trabajo;
+    @OneToOne
+    private Usuario usuario;
  
     private String mensaje;
     private Integer calificacion;
@@ -28,11 +30,16 @@ public class Comentario {
     public Comentario() {
     }
 
-    public Comentario(Long id_comentario, String mensaje, Integer calificacion) {
+    public Comentario(Long id_comentario, Proveedor proveedor, Trabajo trabajo, Usuario usuario, String mensaje, Integer calificacion) {
         this.id_comentario = id_comentario;
+        this.proveedor = proveedor;
+        this.trabajo = trabajo;
+        this.usuario = usuario;
         this.mensaje = mensaje;
         this.calificacion = calificacion;
     }
+
+   
     
     
     

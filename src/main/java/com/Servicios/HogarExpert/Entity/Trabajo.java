@@ -28,19 +28,23 @@ public class Trabajo {
     @OneToOne
     private Proveedor proveedor;
     
+    private Integer horasTrabajo;
     private double total; 
     private boolean estado;
 
     public Trabajo() {
     }
 
-    public Trabajo(Long num_trabajo, Usuario usuario, Proveedor proveedor, double total, boolean estado) {
+    public Trabajo(Long num_trabajo, Usuario usuario, Proveedor proveedor, Integer horasTrabajo, double total, boolean estado) {
         this.num_trabajo = num_trabajo;
         this.usuario = usuario;
         this.proveedor = proveedor;
+        this.horasTrabajo = horasTrabajo;
         this.total = total;
         this.estado = estado;
     }
+
+  
 
   
     
