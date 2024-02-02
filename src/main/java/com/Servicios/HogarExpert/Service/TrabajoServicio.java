@@ -35,6 +35,22 @@ public class TrabajoServicio implements ITrabajoServicio {
     @Override
     public void save(Trabajo t) throws MiException {
     this.validar(t);
+    
+      Long usuarioId = t.getUsuario().getId();
+    Long proveedorId = t.getProveedor().getId();
+    
+        System.out.println(usuarioId);
+        System.out.println(proveedorId);
+    
+     if (usuarioId == null || proveedorId == null) {
+        throw new MiException("UsuarioId o ProveedorId es null");
+    }
+     
+    Usuario u = usuarioRepo.findById(usuarioId).orElse(null);
+    Proveedor p = proveedorRepo.findById(proveedorId).orElse(null);
+    
+    t.setUsuario(u);
+    t.setProveedor(p);
     trabajoRepo.save(t);
     }
     
@@ -45,11 +61,14 @@ public class TrabajoServicio implements ITrabajoServicio {
             if (respuesta == null || respuesta.isEmpty() ) {
                 throw new MiException("No hay trabajos con esa id");
             }
+            if(respuesta.isPresent()){
             Trabajo t = respuesta.get();
             
 
-            usuarioRepo.deleteById(t.getNum_trabajo());
-  }
+            trabajoRepo.deleteById(t.getNum_trabajo());
+      
+            }
+            }
 
     @Override
     public List<Trabajo> findAll() {

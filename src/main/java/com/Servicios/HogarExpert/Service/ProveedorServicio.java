@@ -34,13 +34,12 @@ public class ProveedorServicio implements IProveedorServicio {
         for (Proveedor aux : listaProv) {
             if (aux.getMatricula().equals(p.getMatricula())) {
                 throw new MiException("Ya existe un usuario con la matricula ingresada");
+                
             }
-           
+         }
             proveedorRepo.save(p);
+         }
 
-        }
-    
-    }
     @Transactional
     @Override
     public void delete(Long id) throws MiException {
@@ -130,10 +129,10 @@ public class ProveedorServicio implements IProveedorServicio {
         if(prov.getNombreEmpresa()== null || prov.getNombreEmpresa().isEmpty()){
             throw new MiException("Debe ingresar el nombre de la empresa");
         }
-       if(prov.getServicio() == null){
+       if(prov.getServicio() == null ){
            throw new MiException("Debe ingresar el servicio que brinda");
        }
-        
+       
     
     }
     

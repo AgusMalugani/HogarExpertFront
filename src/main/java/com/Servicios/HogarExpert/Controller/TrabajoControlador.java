@@ -9,6 +9,7 @@ import com.Servicios.HogarExpert.Exception.MiException;
 import com.Servicios.HogarExpert.Service.ITrabajoServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,18 +25,21 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/trabajo")
+@CrossOrigin("*")
 public class TrabajoControlador {
     @Autowired
     private ITrabajoServicio trabajoServi;
     
     @PostMapping("/crear")
-    public String crearTrabajo(@RequestBody Trabajo t) {
+    public void crearTrabajo(@RequestBody Trabajo t) {
         
         try {
+            System.out.println(t.getProveedor());
+            System.out.println(t.getUsuario());
             trabajoServi.save(t);
-            return "trabajo creado";
+            System.out.println("trabajo creado");
         } catch (MiException ex) {
-         return " error " + ex.getMessage();
+            System.out.println(ex.getMessage());
         }
         
     }
@@ -44,6 +48,7 @@ public class TrabajoControlador {
     public Trabajo verTrabajo(@PathVariable Long num_trabajo){
         try {
             Trabajo t = trabajoServi.findById(num_trabajo);
+            System.out.println("trabajo encontrado");
             
             return t;
         } catch (MiException ex) {
@@ -76,12 +81,12 @@ public class TrabajoControlador {
     }
     
     @DeleteMapping("/eliminar/{num_trabajo}")
-    public String eliminarTrabajo(@PathVariable Long num_trabajo){
+    public void eliminarTrabajo(@PathVariable Long num_trabajo){
         try {
             trabajoServi.delete(num_trabajo);
-            return " trabajo eliminado";
+            System.out.println( " trabajo eliminado");
         } catch (MiException ex) {
-        return "error " + ex.getMessage();
+            System.out.println(ex.getMessage());
         }
         
         

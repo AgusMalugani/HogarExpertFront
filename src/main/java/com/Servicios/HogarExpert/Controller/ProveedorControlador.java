@@ -9,6 +9,7 @@ import com.Servicios.HogarExpert.Exception.MiException;
 import com.Servicios.HogarExpert.Service.IProveedorServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/proveedor")
+@CrossOrigin("*")
 public class ProveedorControlador {
     @Autowired
     IProveedorServicio provServ;
@@ -31,13 +33,13 @@ public class ProveedorControlador {
     
     
     @PostMapping("/crear")
-    public String crearProveedor(@RequestBody Proveedor prov) {
+    public void crearProveedor(@RequestBody Proveedor prov) {
         
         try {
             provServ.save(prov);
-            return "proveedor creado";
+            System.out.println("proveedor creado");
         } catch (MiException ex) {
-         return " error " + ex.getMessage();
+            System.out.println(ex.getMessage());
         }
         
     }
@@ -65,25 +67,25 @@ public class ProveedorControlador {
     
 
     @PutMapping("/modificar/{id}")
-    public String modificarProveedor(@PathVariable Long id, @RequestBody Proveedor prov) throws MiException{
+    public void modificarProveedor(@PathVariable Long id, @RequestBody Proveedor prov) throws MiException{
         try{
          provServ.update(id, prov);
          
-        return "exito, proveedor modificado";
+            System.out.println("exito, proveedor modificado");
         }catch(MiException ex){
             
-        return "error " + ex.getMessage();
+            System.out.println(ex.getMessage());
         }
         
     }
     
     @DeleteMapping("/eliminar/{id}")
-    public String eliminarProveedor(@PathVariable Long id){
+    public void eliminarProveedor(@PathVariable Long id){
         try {
             provServ.delete(id);
-            return " proveedor eliminado";
+            System.out.println(" proveedor eliminado");
         } catch (MiException ex) {
-        return "error " + ex.getMessage();
+            System.out.println(ex.getMessage());
         }
         
         

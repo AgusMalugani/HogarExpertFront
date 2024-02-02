@@ -10,6 +10,7 @@ export default function Header() {
     <nav className='navbar'>
         <Link to='/'> Como funciona </Link>
         <Link to='/'> Acceder </Link>
+        <Link to="/crear">Registro  </Link>
         <Link to='/'> Buscas empleo ? </Link>
       
     </nav>

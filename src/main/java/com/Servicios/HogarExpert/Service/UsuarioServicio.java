@@ -37,9 +37,9 @@ public class UsuarioServicio implements IUsuarioServicio {
                 throw new MiException("Ya existe un usuario con ese DNI");
             }
            
-            usuarioRepo.save(u);
 
         }
+         usuarioRepo.save(u);
     }
 
         @Transactional
@@ -100,7 +100,7 @@ public class UsuarioServicio implements IUsuarioServicio {
                 
                 
                 usuarioRepo.save(u);
-                System.out.println("usuario modificado");
+             
 
             }
 

@@ -8,9 +8,9 @@ import com.Servicios.HogarExpert.Exception.MiException;
 import com.Servicios.HogarExpert.Entity.Usuario;
 import com.Servicios.HogarExpert.Service.IUsuarioServicio;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController()
 @RequestMapping("/usuario")
+@CrossOrigin("*")
 
 public class UsuarioControlador {
     
@@ -30,13 +31,13 @@ public class UsuarioControlador {
     private IUsuarioServicio usuarioServi;
     
     @PostMapping("/crear")
-    public String crearUsuario(@RequestBody Usuario usuario) {
+    public void crearUsuario(@RequestBody Usuario usuario) {
         
         try {
             usuarioServi.save(usuario);
-            return "usuario creado";
+            System.out.println( "usuario creado");
         } catch (MiException ex) {
-         return " error " + ex.getMessage();
+            System.out.println(ex.getMessage());
         }
         
     }
@@ -64,25 +65,25 @@ public class UsuarioControlador {
     
 
     @PutMapping("/modificar/{id}")
-    public String modificarUsuario(@PathVariable Long id, @RequestBody Usuario usuario) throws MiException{
+    public void modificarUsuario(@PathVariable Long id, @RequestBody Usuario usuario) throws MiException{
         try{
          usuarioServi.update(id, usuario);
          
-        return "exito usuario modificado";
+            System.out.println( "exito usuario modificado");
         }catch(MiException ex){
             
-        return "error " + ex.getMessage();
+            System.out.println(ex.getMessage());
         }
         
     }
     
     @DeleteMapping("/eliminar/{id}")
-    public String eliminarUsuario(@PathVariable Long id){
+    public void eliminarUsuario(@PathVariable Long id){
         try {
             usuarioServi.delete(id);
-            return " usuario eliminado";
+            System.out.println("usuario eliminado");
         } catch (MiException ex) {
-        return "error " + ex.getMessage();
+            System.out.println(ex.getMessage());
         }
         
         
