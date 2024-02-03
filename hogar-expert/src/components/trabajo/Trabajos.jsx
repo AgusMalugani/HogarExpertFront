@@ -22,6 +22,7 @@ export default function Trabajos() {
   }
   
     return (
+      <div>
     <table>
       <thead>
         <tr>
@@ -37,7 +38,9 @@ export default function Trabajos() {
       <tbody>
         {trabajos.length > 0 && trabajos.map(elemento => <Trabajo key={elemento.num_trabajo} trabajo={elemento} eliminarTrabajo ={eliminarTrabajo} /> ) }
       </tbody>
-      <button onClick={goBack}>Volver</button>
+      
     </table>
+    <button onClick={goBack}>Volver</button>
+    </div>
   )
 }

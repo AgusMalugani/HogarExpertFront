@@ -32,7 +32,7 @@ export async function deleteTrabajo(num_trabajo){
 export async function updateTrabajo(num_trabajo,trabajo){
 const response = await fetch(`${API_URL}/modificar/${num_trabajo}`,{
 method : "PUT",
-headers : {"Contect-type" : "application/json"},
+headers : {"Content-type" : "application/json"},
 body : JSON.stringify(trabajo)
 }
 )

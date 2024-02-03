@@ -8,8 +8,8 @@ export default function DetalleTrabajo() {
     const idTrabajo = Number(num_trabajo);
 
     const [trabajo, setTrabajo] = useState({})
-    useEffect(async () => {
-        await verTrabajo(idTrabajo).then(data => setTrabajo(data))
+    useEffect(() => {
+         verTrabajo(idTrabajo).then(data => setTrabajo(data))
     }, [idTrabajo])
 
     function goBack() {
@@ -17,6 +17,7 @@ export default function DetalleTrabajo() {
     }
 
     return (
+        <div>
         <table>
             <thead>
                 <tr>
@@ -33,12 +34,14 @@ export default function DetalleTrabajo() {
                     <td>{trabajo.num_trabajo}</td>
                     <td>{trabajo.horasTrabajo}</td>
                     <td>{trabajo.total}</td>
-                    <td>{trabajo.usuario.id}</td>
-                    <td>{trabajo.proveedor.id}</td>
+                    <td>{trabajo.usuario?.id}</td>
+                    <td>{trabajo.proveedor?.id}</td>
                     <td> {trabajo.estado === false && <p>baja</p> || trabajo.estado === true && <p>alta</p>}</td>
                 </tr>
             </tbody>
-            <button onClick={goBack}>Volver</button>
+            
         </table>
+        <button onClick={goBack}>Volver</button>
+        </div>
     )
 }

@@ -19,7 +19,7 @@ export default function Trabajo({trabajo, eliminarTrabajo}) {
         <td> {trabajo.estado === false && <p>baja</p> || trabajo.estado === true && <p>alta</p>}</td>
         <td> <button onClick={ ()=>eliminarTrabajo(trabajo)} className='boton' > ❌ </button> </td>
         <td><button  className='boton'> <Link to = {`/trabajo/detalle/${trabajo.num_trabajo}`}> VER </Link></button></td>
-        <td><button className='boton'>MODIFICAR</button></td>
+        <td><button className='boton'> <Link to={`/trabajo/modificar/${trabajo.num_trabajo}`} > MODIFICAR</Link></button></td>
     </tr>
     
   )

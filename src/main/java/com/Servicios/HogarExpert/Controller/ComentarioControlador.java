@@ -8,6 +8,7 @@ import com.Servicios.HogarExpert.Entity.Comentario;
 import com.Servicios.HogarExpert.Exception.MiException;
 import com.Servicios.HogarExpert.Service.IComentarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,19 +24,20 @@ import org.springframework.web.bind.annotation.RestController;
  */
  @RestController
  @RequestMapping("/comentario")
+ @CrossOrigin("*")
 public class ComentarioControlador {
      @Autowired
      IComentarioServicio comServ;
      
      
       @PostMapping("/crear")
-    public String crearComentario(@RequestBody Comentario com) {
+    public void crearComentario(@RequestBody Comentario com) {
         
         try {
             comServ.save(com);
-            return "comentario creado";
+            System.out.println("comentario creado");
         } catch (MiException ex) {
-         return " error " + ex.getMessage();
+            System.out.println(ex.getMessage());
         }
         
     }
@@ -59,25 +61,25 @@ public class ComentarioControlador {
     
 
     @PutMapping("/modificar/{id_comentario}")
-    public String modificarComentario(@PathVariable Long id_comentario, @RequestBody Comentario com) throws MiException{
+    public void modificarComentario(@PathVariable Long id_comentario, @RequestBody Comentario com) throws MiException{
         try{
          comServ.update(id_comentario, com);
          
-        return "exito comentario modificado";
+            System.out.println("exito comentario modificado");
         }catch(MiException ex){
             
-        return "error " + ex.getMessage();
+            System.out.println(ex.getMessage());
         }
         
     }
     
     @DeleteMapping("/eliminar/{id_comentario}")
-    public String eliminarComentario(@PathVariable Long id_comentario){
+    public void eliminarComentario(@PathVariable Long id_comentario){
         try {
             comServ.delete(id_comentario);
-            return " comentario eliminado";
+            System.out.println( "comentario eliminado");
         } catch (MiException ex) {
-        return "error " + ex.getMessage();
+            System.out.println(ex.getMessage());
         }
         
         

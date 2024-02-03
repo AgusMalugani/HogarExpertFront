@@ -68,14 +68,14 @@ public class TrabajoControlador {
     
 
     @PutMapping("/modificar/{num_trabajo}")
-    public String modificarTrabajo(@PathVariable Long num_trabajo, @RequestBody Trabajo t) throws MiException{
+    public void modificarTrabajo(@PathVariable Long num_trabajo, @RequestBody Trabajo t) throws MiException{
         try{
          trabajoServi.update(num_trabajo, t);
          
-        return "exito trabajo modificado";
+            System.out.println("exito trabajo modificado");
         }catch(MiException ex){
             
-        return "error " + ex.getMessage();
+            System.out.println(ex.getMessage());
         }
         
     }
