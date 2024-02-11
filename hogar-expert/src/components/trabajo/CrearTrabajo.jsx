@@ -70,7 +70,6 @@ const [proveedor, setProveedor] = useState("");
             proveedor: proveedor1,
             horasTrabajo
         };
-        console.log(newTrabajo)
         await saveTrabajo(newTrabajo);
         navigate("/")
 

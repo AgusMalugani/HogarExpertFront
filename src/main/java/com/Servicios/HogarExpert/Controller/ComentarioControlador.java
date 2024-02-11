@@ -7,6 +7,7 @@ package com.Servicios.HogarExpert.Controller;
 import com.Servicios.HogarExpert.Entity.Comentario;
 import com.Servicios.HogarExpert.Exception.MiException;
 import com.Servicios.HogarExpert.Service.IComentarioServicio;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -57,7 +58,17 @@ public class ComentarioControlador {
         }
     
   
-    
+    @GetMapping("/lista")
+    public List<Comentario> listaComentario(){
+        try{
+        return comServ.findAll();
+       
+        } catch(Exception ex){
+            
+            System.out.println(ex.getMessage());
+        return null;
+        }
+         }
     
 
     @PutMapping("/modificar/{id_comentario}")

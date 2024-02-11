@@ -10,6 +10,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,11 +29,13 @@ public class Usuario {
     private String password;
     @Enumerated
     private Rol rol;
+    @OneToOne
+    private Imagen imagen;
 
     public Usuario() {
     }
 
-    public Usuario(Long id, String nombre, String apellido, Integer dni, String celular, String domicilio, String email, String password, Rol rol) {
+    public Usuario(Long id, String nombre, String apellido, Integer dni, String celular, String domicilio, String email, String password, Rol rol, Imagen imagen) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -42,7 +45,10 @@ public class Usuario {
         this.email = email;
         this.password = password;
         this.rol = rol;
+        this.imagen = imagen;
     }
+
+    
     
     
     

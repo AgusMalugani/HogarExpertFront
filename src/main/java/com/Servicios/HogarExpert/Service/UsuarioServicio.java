@@ -4,6 +4,7 @@
  */
 package com.Servicios.HogarExpert.Service;
 
+import com.Servicios.HogarExpert.Entity.Imagen;
 import com.Servicios.HogarExpert.Enum.Rol;
 import com.Servicios.HogarExpert.Exception.MiException;
 import com.Servicios.HogarExpert.Entity.Usuario;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -23,10 +25,12 @@ public class UsuarioServicio implements IUsuarioServicio {
 
     @Autowired
     IUsuarioRepositorio usuarioRepo;
+    @Autowired
+    IImagenServicio imgServ;
 
     @Transactional
     @Override
-    public void save(Usuario usuario) throws MiException {
+    public void save(Usuario usuario, MultipartFile archivo) throws MiException {
 
         this.validar(usuario);
         List<Usuario> listaUsuario = this.findAll();
@@ -36,9 +40,11 @@ public class UsuarioServicio implements IUsuarioServicio {
             if (aux.getDni().equals(u.getDni())) {
                 throw new MiException("Ya existe un usuario con ese DNI");
             }
-           
-
         }
+       Imagen img = imgServ.guardarImagen(archivo);
+       System.out.println("salio de servicio de img");
+        
+        u.setImagen(img);
          usuarioRepo.save(u);
     }
 

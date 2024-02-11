@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { perfilUsuario } from '../../servicios/UsuarioServicios'
 
 import { useParams } from 'react-router-dom'
+import { traerImagenUsuario } from '../../servicios/ImagenServicio';
 
 export default function Perfil() {
    const {id}=useParams();
@@ -16,6 +17,14 @@ export default function Perfil() {
     }, [idLong]);
 
 
+    const[imagen,setImagen]= useState();
+
+    useEffect(()=>{
+        traerImagenUsuario(usuario.id).then(data=> {setImagen(data)} )
+    },[usuario.id])
+  
+
+
     function goBack() {
       window.history.back();
     }
@@ -23,6 +32,10 @@ export default function Perfil() {
   return (
     
     <div className='perfil'>
+      <h1>img</h1>
+      <img src={usuario.imagen} alt="goku" />
+      <br />
+
        
         <h3  className='titulo'>id</h3> <p className='valor'>{usuario.id}</p>
         <br />

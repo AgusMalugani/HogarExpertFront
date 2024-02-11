@@ -22,6 +22,7 @@ function goBack() {
     <table>
         <thead>
             <tr>
+                <th>imagen</th>
         <th>id</th>
         <th>nombre</th>
         <th>apellido</th>

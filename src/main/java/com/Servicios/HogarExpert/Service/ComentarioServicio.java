@@ -63,7 +63,8 @@ public class ComentarioServicio implements IComentarioServicio {
 
     @Override
     public List<Comentario> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+   
+    return comRepo.findAll();
     }
 
     @Override

@@ -15,6 +15,13 @@ export default function Inicio() {
         <button className='boton'> <Link to={`/trabajo/crear`}> CREAR TRABAJO </Link>  </button>
         <br />
         <button className='boton'> <Link to={`/trabajo/lista`}> LISTA TRABAJO </Link>  </button>
+        <br />
+        <button className='boton' > <Link to={`/comentario/lista`}> LISTA COMENTARIO </Link> </button>
+        <br />
+        
+        <button className='boton' > <Link to={`/comentario/crear`}> CREAR COMENTARIO </Link> </button>
+  
     </div>
+
   )
 }

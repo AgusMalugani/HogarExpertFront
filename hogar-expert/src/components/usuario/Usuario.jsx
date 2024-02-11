@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import CrearTrabajo from '../trabajo/CrearTrabajo'
+import { traerImagenUsuario } from '../../servicios/ImagenServicio';
 
 export default function Usuario({usuario, eliminarUsuario}) {
 
 
-
+ 
   return (
     
       <tr>
-        <td>{usuario.id}</td>
+         <td>{usuario.id}</td>
         <td>{usuario.nombre}</td>
         <td>{usuario.apellido}</td>
         <td>{usuario.dni}</td>

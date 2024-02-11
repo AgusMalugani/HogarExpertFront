@@ -16,6 +16,8 @@ import CrearTrabajo from './components/trabajo/CrearTrabajo';
 import Trabajos from './components/trabajo/Trabajos';
 import ModificarTrabajo from './components/trabajo/ModificarTrabajo';
 import DetalleTrabajo from './components/trabajo/DetalleTrabajo';
+import Comentarios from './components/comentario/Comentarios';
+import GuardarComentario from './components/comentario/GuardarComentario';
 
 
 function App() {
@@ -44,6 +46,10 @@ function App() {
     <Route path='/trabajo/lista' element={<Trabajos/>}/>
     <Route path='/trabajo/detalle/:num_trabajo' element = { <DetalleTrabajo/>} />
     <Route path='/trabajo/modificar/:num_trabajo' element={ <ModificarTrabajo/>}/>
+
+
+    <Route path='/comentario/lista' element={<Comentarios/>} />
+    <Route path='/comentario/crear' element= {<GuardarComentario/>} />
      </Routes>
 
      <Footer/>

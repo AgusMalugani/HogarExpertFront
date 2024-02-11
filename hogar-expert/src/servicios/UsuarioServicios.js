@@ -5,7 +5,7 @@ const response = await fetch(API_URL+"/lista")
 const data = await response.json()
 return data;
 }
-
+/*
 export async function saveUsuario(usuario){
     const response = await fetch(`${API_URL}/crear`,{
         method:"POST",
@@ -15,7 +15,21 @@ export async function saveUsuario(usuario){
         body: JSON.stringify(usuario)
 
     })
+}*/
+export async function saveUsuario(formData){
+    const response = await fetch(`${API_URL}/crear`,{
+        method:"POST",
+       
+        body: JSON.stringify(formData)
+
+    })
 }
+
+
+
+
+
+
 
 export async function deleteUsuarios(id){
     await fetch(`${API_URL}/eliminar/${id}`,{
