@@ -1,25 +1,289 @@
-.header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid red ;
-}
-.icon{
-    width: 50px;
-    height: 50px;
+Header .container {
+    background-image: url(https://zolvers.com/img/home_new/home.webp);
+    padding-bottom: 2em;
+
 }
 
-.perfil{
+
+Header .escritoHeader {
+    padding-top: 2em;
+    padding-bottom: 2em;
+    font-size: x-large;
+    color: chartreuse;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.perfil {
     display: inline-block;
 }
-h3.titulo{
-display: inline;
-}
-p.valor{
+
+h3.titulo {
     display: inline;
 }
-button{
+
+p.valor {
+    display: inline;
+}
+
+button {
     background-color: aliceblue;
     color: black;
 
 }
+
+#primer-article {
+    background-color: rgb(243, 241, 241);
+
+}
+
+#titulo-servicios {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+#contenedor-servicios img {
+    width: 10em;
+    height: 8em;
+}
+
+#contenedor-servicios {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+
+}
+
+#contenedor-servicios p {
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+
+#boton-prestacion-servicio {
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+
+}
+
+#boton-prestacion-servicio button {
+    background-color: burlywood;
+    color: white;
+    height: 3em;
+}
+
+#contenedor-seguridad-confianza {
+    background-image: url(https://zolvers.com/img/home_new/seguridad-y-confianza.webp);
+    height: 35em;
+    width: 100%;
+
+}
+
+#seguridad-confianza {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5em;
+    margin-left: 7em;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+#seguridad-confianza h3 {
+    margin-bottom: 25px;
+    color: rgb(27, 165, 119);
+    font-weight: 700;
+}
+
+#seguridad-confianza p {
+    margin-bottom: 20px;
+}
+
+#seguridad-confianza button {
+    margin-top: 50px;
+    height: 3em;
+    width: 20em;
+    border-color: rgb(115, 241, 115);
+    color: rgb(69, 167, 69);
+    background-color: transparent;
+}
+
+#carrusel-comentarios {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2em;
+}
+
+#carrusel-comentarios h3 {
+    margin-bottom: 1em;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+#garantia-satisfaccion {
+    margin-top: 4em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(55, 207, 157);
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 13px;
+}
+
+#garantia-satisfaccion h4 {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-size: 22px;
+}
+
+
+
+
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+  }
+  
+  .title {
+    font-size: 28px;
+    color: royalblue;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+  }
+  
+  .title::before,.title::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 0px;
+    background-color: royalblue;
+  }
+  
+  .title::before {
+    width: 18px;
+    height: 18px;
+    background-color: royalblue;
+  }
+  
+  .title::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+  }
+  
+  .message, .signin {
+    color: rgba(88, 87, 87, 0.822);
+    font-size: 14px;
+  }
+  
+  .signin {
+    text-align: center;
+  }
+  
+  .signin a {
+    color: royalblue;
+  }
+  
+  .signin a:hover {
+    text-decoration: underline royalblue;
+  }
+  
+  .flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+  }
+  
+  .form label {
+    position: relative;
+  }
+  
+  .form label .input {
+    width: 100%;
+    padding: 10px 10px 20px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+  }
+  
+  .form label .input + span {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    color: grey;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+  }
+  
+  .form label .input:placeholder-shown + span {
+    top: 15px;
+    font-size: 0.9em;
+  }
+  
+  .form label .input:focus + span,.form label .input:valid + span {
+    top: 30px;
+    font-size: 0.7em;
+    font-weight: 600;
+  }
+  
+  .form label .input:valid + span {
+    color: green;
+  }
+  
+  .submit {
+    border: none;
+    outline: none;
+    background-color: royalblue;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    transform: .3s ease;
+  }
+  
+  .submit:hover {
+    background-color: rgb(56, 90, 194);
+  }
+  
+  @keyframes pulse {
+    from {
+      transform: scale(0.9);
+      opacity: 1;
+    }
+  
+    to {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+
+  .formulario-registro{
+    display: flex;
+    justify-content: center;
+  
+  }

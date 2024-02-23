@@ -11,6 +11,7 @@ export default function GuardarProveedor() {
     const [email,setEmail]=useState("")
     const [costoXHora,setCostoXHora]=useState(0)
     
+    
     const navigate = useNavigate();
     const [error,setError]=useState(false);
 
@@ -21,8 +22,9 @@ export default function GuardarProveedor() {
         return
       }
       setError(false);
-      
+     
         const newProveedor={
+          
             nombreEmpresa,
             matricula,
             servicio,
@@ -42,6 +44,71 @@ export default function GuardarProveedor() {
 
 
   return (
+<div className='formulario-registro'>
+
+
+
+<form className="form" onSubmit={crearProveedor}>
+    <p className="title">Registro </p>
+    <p className="message">Registrese ahora y obtenga acceso a nuestra app como proveedor de servicio. </p>
+        <div className="flex">
+        <label>
+            <input value={nombreEmpresa} onChange={evento=> setNombreEmpresa(evento.target.value)} placeholder="NOMBRE" type="text" className="input"/>
+            <span>Nombre Empresa</span>
+        </label>
+
+        <label>
+            <input value={matricula} onChange={evento=>setMatricula(evento.target.value)} placeholder="MATRICULA" type="text" className="input"/>
+            <span>Matricula</span>
+        </label>
+    </div>  
+            
+    <label>
+        <input value={email} onChange={evento=>setEmail(evento.target.value)} placeholder="EMAIL" type="email" className="input"/>
+        <span>Email</span>
+    </label> 
+        
+    {/* 
+    <label>
+        <input value={} onChange={evento=>setMatricula(evento.target.value)} placeholder="" type="password" className="input"/>
+        <span>Password</span>
+    </label>
+    */}
+    <label>
+        <input value={celular} onChange={evento=>setCelular(evento.target.value)}placeholder="CELULAR" type="number" className="input"/>
+        <span>Ingrese su celular</span>
+    </label>
+
+    <label>Ingrese el servicio que brindara: </label> 
+       <select className='input' name="servicio" value={servicio} onChange={ (evento)=>setServicio(evento.target.value) }>
+        <option value="3">INGRESE EL SERVICIO</option>
+        <option value="0">PLOMERO</option>
+        <option value="1">GASISTA</option>
+        <option value="2">ELECTRICISTA</option>
+       </select>
+
+       <label>
+        <input value={costoXHora} onChange={evento=>setCostoXHora(evento.target.value)}placeholder="COSTO POR HORA" type="number" className="input"/>
+        <span>Costo por hora </span>
+    </label>
+
+    <button className="submit">Submit</button> 
+    <br />
+      <button className='boton' onClick={goBack}>Volver</button>
+    <p class="signin">Ya tienes una cuenta? <a href="#">inicia sesion</a> </p>
+
+
+</form>
+
+
+
+
+
+
+{/*
+
+
+
     <form onSubmit={crearProveedor}>
        <label>Ingrese el nombre de la empresa: </label> 
        <input value={nombreEmpresa} onChange={ (evento)=>setNombreEmpresa(evento.target.value) } type="text" name='nombreEmpresa' placeholder='nombreEmpresa' />
@@ -80,5 +147,9 @@ export default function GuardarProveedor() {
       <button className='boton' onClick={goBack}>Volver</button>
 
     </form>
+    */}
+
+</div>
+
   )
 }

@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface IUsuarioServicio {
     
-    public void save(Usuario usuario, MultipartFile archivo) throws MiException;
+    public Usuario save(Usuario usuario, MultipartFile archivo) throws MiException;
     public void delete(Long id) throws MiException;
     public List<Usuario>findAll() ;
     public Usuario findById(Long id) throws MiException;

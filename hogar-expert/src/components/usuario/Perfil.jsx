@@ -20,8 +20,13 @@ export default function Perfil() {
     const[imagen,setImagen]= useState();
 
     useEffect(()=>{
-        traerImagenUsuario(usuario.id).then(data=> {setImagen(data)} )
+        traerImagenUsuario(usuario.id).then(data=> { const imagenUrl = URL.createObjectURL(data) 
+
+        setImagen(imagenUrl);
+      })
+       
     },[usuario.id])
+    console.log(imagen)
   
 
 
@@ -32,8 +37,8 @@ export default function Perfil() {
   return (
     
     <div className='perfil'>
-      <h1>img</h1>
-      <img src={usuario.imagen} alt="goku" />
+      <h1>imagen</h1>
+      <img src={imagen} width="100px" alt="goku" />
       <br />
 
        

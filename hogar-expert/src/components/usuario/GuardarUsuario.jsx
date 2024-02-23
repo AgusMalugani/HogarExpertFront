@@ -7,15 +7,15 @@ export default function GuardarUsuario() {
     nombre: '',
     apellido: '',
     celular: '',
-    dni: '',
+    dni: 0,
     email: '',
     password: '',
     domicilio: '',
-    imagen: null,
+    archivo: null,
   });
 
   const handleChange = (e) => {
-    if (e.target.name === 'imagen') {
+    if (e.target.name === 'archivo') {
       setUserData({
         ...userData,
         [e.target.name]: e.target.files[0],
@@ -30,7 +30,7 @@ export default function GuardarUsuario() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log(userData)
     // Aquí puedes realizar acciones adicionales antes de enviar el formulario al backend
 
     // Enviar el formulario al backend
@@ -44,8 +44,8 @@ export default function GuardarUsuario() {
     for (const key in userData) {
       formData.append(key, userData[key]);
     }
-await saveUsuario(formData);
-    
+await saveUsuario(formData)
+
   };
 
   return (
@@ -67,7 +67,7 @@ await saveUsuario(formData);
       <br />
       <label>
         DNI:
-        <input type="text" name="dni" value={userData.dni} onChange={handleChange} />
+        <input type="number" name="dni" value={userData.dni} onChange={handleChange} />
       </label>
       <br />
       <label>
@@ -87,7 +87,7 @@ await saveUsuario(formData);
       <br />
       <label>
         Imagen:
-        <input type="file" name="imagen" onChange={handleChange} />
+        <input type="file" name="archivo" onChange={handleChange} />
       </label>
       <br />
       <button type="submit">Enviar</button>

@@ -1,19 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import logoHogar from '../img/logoHogar.png'
+import Navbar from './Navbar';
 
 export default function Header() {
   return (
-    <header className='header'>
-        <Link to={"/"} className='icon'> <img src={logoHogar} alt=""/> </Link>
-
-    <nav className='navbar'>
-        <Link to='/'> Como funciona </Link>
-        <Link to='/'> Acceder </Link>
-        <Link to="/crear">Registro  </Link>
-        <Link to='/'> Buscas empleo ? </Link>
+    <header >
       
-    </nav>
+      <div className='container' >
+      <Navbar/>
+    <div className='escritoHeader' > 
+      <p> ENCONTRA LA AYUDA PARA TU HOGAR </p>
+
+
+      <button >
+        <Link to={`/proveedor/lista`} >BUSCAR PROFESIONAL</Link>
+      </button>
+      
+
+    </div>
+   
+        </div> 
+    
     </header>
   )
 }

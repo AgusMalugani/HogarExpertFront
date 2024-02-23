@@ -1,3 +1,5 @@
+import { json } from "react-router-dom";
+
 const API_URL = "http://localhost:8080/usuario";
 
 export async function obtenerUsuarios(){
@@ -19,10 +21,9 @@ export async function saveUsuario(usuario){
 export async function saveUsuario(formData){
     const response = await fetch(`${API_URL}/crear`,{
         method:"POST",
-       
-        body: JSON.stringify(formData)
-
+        body: formData
     })
+    return response.json();
 }
 
 

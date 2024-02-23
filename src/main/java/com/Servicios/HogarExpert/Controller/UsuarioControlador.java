@@ -10,6 +10,9 @@ import com.Servicios.HogarExpert.Service.IUsuarioServicio;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,14 +37,17 @@ public class UsuarioControlador {
     private IUsuarioServicio usuarioServi;
     
     @PostMapping("/crear")
-    public void crearUsuario(@ModelAttribute Usuario usuario, @RequestParam(required = true) MultipartFile imagen) {
+    public ResponseEntity<Usuario> crearUsuario(@ModelAttribute Usuario usuario, @RequestParam("archivo") MultipartFile archivo) {
          try {
-            usuarioServi.save(usuario,imagen);
+            Usuario u = usuarioServi.save(usuario,archivo);
             System.out.println( "usuario creado");
+            return ResponseEntity.status(HttpStatus.OK).body(u) ;
+        
         } catch (MiException ex) {
             System.out.println(ex.getMessage());
-        }
-        
+           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null) ;
+         }
+         
     } 
     /*public void crearUsuario(@RequestBody Usuario usuario) {
         

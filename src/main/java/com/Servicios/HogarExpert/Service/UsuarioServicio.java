@@ -30,7 +30,7 @@ public class UsuarioServicio implements IUsuarioServicio {
 
     @Transactional
     @Override
-    public void save(Usuario usuario, MultipartFile archivo) throws MiException {
+    public Usuario save(Usuario usuario, MultipartFile archivo) throws MiException {
 
         this.validar(usuario);
         List<Usuario> listaUsuario = this.findAll();
@@ -42,10 +42,10 @@ public class UsuarioServicio implements IUsuarioServicio {
             }
         }
        Imagen img = imgServ.guardarImagen(archivo);
-       System.out.println("salio de servicio de img");
         
         u.setImagen(img);
          usuarioRepo.save(u);
+         return u;
     }
 
         @Transactional

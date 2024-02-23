@@ -26,25 +26,25 @@ public class ImagenServicio implements IImagenServicio {
     @Transactional
     @Override
     public Imagen guardarImagen(MultipartFile archivo) {
-        System.out.println("antes del if");
          
-             
+         if(archivo != null){    
          try {
-             System.out.println("entro a archivo");
          Imagen img = new Imagen();
       
         img.setMime(archivo.getContentType());
         img.setNombre(archivo.getName());
         img.setContenido(archivo.getBytes());
-        ir.save(img);
-         return img;
+        return ir.save(img);
+    
         } catch (IOException ex) {
              System.out.println(ex.getMessage());
              System.out.println("error");
              return null;
              
         }
-  
+         }
+    return null;
+             
     }
     
     

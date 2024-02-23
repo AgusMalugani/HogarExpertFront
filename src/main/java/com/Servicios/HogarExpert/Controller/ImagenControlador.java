@@ -38,10 +38,10 @@ public class ImagenControlador {
     IImagenServicio is;
     
     @PostMapping("/crear")
-    public String cargarImagen( MultipartFile goku){
-        is.guardarImagen(goku);
+    public ResponseEntity<String> cargarImagen( @RequestParam("archivo") MultipartFile archivo){
+        is.guardarImagen(archivo);
         System.out.println("*****");
-        return "se creo";
+        return  ResponseEntity.status(HttpStatus.OK).body("Se guardo la imagen");
     }
     
     
@@ -52,7 +52,6 @@ public class ImagenControlador {
         byte[] imagen = u.getImagen().getContenido();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_JPEG);
-        System.out.println("entro al controlador img");
         
         
         
