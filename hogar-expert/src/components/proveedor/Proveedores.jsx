@@ -20,26 +20,36 @@ function goBack() {
 }
 
   return (
-    <table>
-      <thead>
-        <tr>
-            <th>ID</th>
-            <th>NOMRE EMPRESA</th>
-            <th>MATRICULA</th>
-            <th>SERVICIO</th>
-            <th>CELULAR</th>
-            <th>EMAIL</th>
-            <th>COSTO POR HORA</th>
-            <th>ACCIONES</th>
-        </tr>
-      </thead>
-      <tbody>
-        {proveedores.length > 0 && proveedores.map(elemento => <Proveedor proveedor = {elemento} eliminarProveedor={eliminarProveedor} />)}
+    <div className='tbody-usuario-proveedor' >
 
-      </tbody>
-      <br />
-      <button className='boton' onClick={goBack}>Volver</button>
-
-    </table>
-  )
-}
+    {proveedores.length > 0 && proveedores.map(elemento => <Proveedor key={elemento.id} proveedor = {elemento} eliminarProveedor={eliminarProveedor} />)}
+    </div>
+      
+   
+  
+   )
+  
+   {/* 
+   <table className='lista-proveedores'>
+   <thead >
+   <tr id='lista-columnas' > 
+   <th>ID</th>
+   <th>NOMRE EMPRESA</th>
+   <th>MATRICULA</th>
+   <th>SERVICIO</th>
+   <th>CELULAR</th>
+   <th>EMAIL</th>
+   <th>COSTO POR HORA</th>
+   <th>ACCIONES</th>
+   </tr>
+   </thead>
+   <tbody >
+   {proveedores.length > 0 && proveedores.map(elemento => <Proveedor proveedor = {elemento} eliminarProveedor={eliminarProveedor} />)}
+   
+   </tbody>
+   <br />
+   <button className='boton' onClick={goBack}>Volver</button>
+   
+   </table>
+  */}
+  }

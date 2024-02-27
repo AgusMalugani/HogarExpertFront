@@ -4,6 +4,7 @@
  */
 package com.Servicios.HogarExpert.Service;
 
+import com.Servicios.HogarExpert.Entity.Imagen;
 import com.Servicios.HogarExpert.Entity.Proveedor;
 import com.Servicios.HogarExpert.Exception.MiException;
 import com.Servicios.HogarExpert.Repository.IProveedorRepositorio;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -22,10 +24,12 @@ public class ProveedorServicio implements IProveedorServicio {
 
     @Autowired
     private IProveedorRepositorio proveedorRepo;
+    @Autowired
+    private IImagenServicio imgs;
     
     @Transactional
     @Override
-    public void save(Proveedor prov) throws MiException {
+    public Proveedor save(Proveedor prov,MultipartFile archivo) throws MiException {
            this.validar(prov);
     
             List<Proveedor> listaProv = this.findAll();
@@ -37,7 +41,13 @@ public class ProveedorServicio implements IProveedorServicio {
                 
             }
          }
+        Imagen i = imgs.guardarImagen(archivo);
+        p.setImagen(i);
+        
+       
+        
             proveedorRepo.save(p);
+            return p;
          }
 
     @Transactional

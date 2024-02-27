@@ -9,40 +9,40 @@ export default function CarruselComentarios() {
 
     <h3>LO QUE DICEN NUESTROS CLIENTES</h3>
 
-    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="card">
-            <div class="card-body">
-              <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
-              <p class="card-text"><small class="text-muted">- Usuario 1</small></p>
+    <div id="carouselExample" className="carousel slide" data-bs-ride="carousel">
+      <div className="carousel-inner">
+        <div className="carousel-item active">
+          <div className="card">
+            <div className="card-body">
+              <p className="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
+              <p className="card-text"><small className="text-muted">- Usuario 1</small></p>
             </div>
           </div>
         </div>
-        <div class="carousel-item">
-          <div class="card">
-            <div class="card-body">
-              <p class="card-text">"Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."</p>
-              <p class="card-text"><small class="text-muted">- Usuario 2</small></p>
+        <div className="carousel-item">
+          <div className="card">
+            <div className="card-body">
+              <p className="card-text">"Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."</p>
+              <p className="card-text"><small className="text-muted">- Usuario 2</small></p>
             </div>
           </div>
         </div>
-        <div class="carousel-item">
-          <div class="card">
-            <div class="card-body">
-              <p class="card-text">"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
-              <p class="card-text"><small class="text-muted">- Usuario 3</small></p>
+        <div className="carousel-item">
+          <div className="card">
+            <div className="card-body">
+              <p className="card-text">"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+              <p className="card-text"><small className="text-muted">- Usuario 3</small></p>
             </div>
           </div>
         </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Anterior</span>
+      <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span className="visually-hidden">Anterior</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Siguiente</span>
+      <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+        <span className="visually-hidden">Siguiente</span>
       </button>
     </div>
 

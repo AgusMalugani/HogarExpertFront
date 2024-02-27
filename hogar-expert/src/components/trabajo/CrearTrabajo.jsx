@@ -79,8 +79,61 @@ const [proveedor, setProveedor] = useState("");
         window.history.back()
     }
     return (
+<div className="formulario-registro">
 
-        <form onSubmit={CargarTrabajo} >
+
+<form onSubmit={CargarTrabajo} >
+        <p className="title">Cargar nuevo trabajo </p>
+        
+          <div className="form-trabajo"> 
+          <label htmlFor="proveedor">Seleccione el usuario 
+          <select className='input-trabajo'  name="usuario" value={usuario} onChange={(e) => setUsuario(e.target.value)}>
+                <option value="">Seleccione un usuario</option>
+                {usuarios.map((user) => (
+                    <option key={user.id} value={user.id}>
+                        {user.nombre}
+                    </option>
+                ))}
+            </select>
+            </label>
+            
+
+            <label htmlFor="proveedor">Seleccione el proveedor 
+            <select className='input-trabajo' name="proveedor" value={proveedor} onChange={(e) => setProveedor(e.target.value)}>
+                <option value="">Seleccione un proveedor</option>
+
+                {proveedores.map((proveedor) => (
+                    <option key={proveedor.id} value={proveedor.id}>
+                        {proveedor.nombreEmpresa}
+                    </option>
+                ))}
+            </select>
+            </label>
+            
+
+            <label>
+             Ingrese las horas de trabajo 
+             
+           <input className='input-trabajo' type="number" name='horasTrabajo' value={horasTrabajo} onChange={(e) => setHorasTrabajo(e.target.value)} />
+           </label>
+        
+
+             
+
+              <button className="boton">Crear trabajo</button>
+        <br />
+        <button className="boton" onClick={goBack}>
+          Volver
+        </button>
+        </div>
+        </form>
+
+       </div>
+                
+    )
+
+{/*
+ <form onSubmit={CargarTrabajo} >
 
             <label htmlFor="usuario">Seleccione el usuario</label>
             <select name="usuario" value={usuario} onChange={(e) => setUsuario(e.target.value)}>
@@ -111,6 +164,7 @@ const [proveedor, setProveedor] = useState("");
 
         <button onClick={goBack} >volver</button>
         </form>
-    )
+                */}
+
 }
 

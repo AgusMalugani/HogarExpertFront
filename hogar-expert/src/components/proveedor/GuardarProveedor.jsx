@@ -4,39 +4,55 @@ import { useNavigate } from 'react-router-dom';
 
 export default function GuardarProveedor() {
 
-    const [nombreEmpresa,setNombreEmpresa]=useState("");
-    const [matricula,setMatricula]=useState("");
-    const [servicio,setServicio]=useState("");
-    const [celular,setCelular]=useState("")
-    const [email,setEmail]=useState("")
-    const [costoXHora,setCostoXHora]=useState(0)
     
+  const navigate = useNavigate();
+
+  const [userData,setUserData] = useState({
+    nombreEmpresa: "",
+    matricula: "",
+    servicio: "",
+    celular: "",
+    email: "",
+    password: "",
+    costoXHora: 0,
+    archivo: null,
+  });
+
+  const handleChange = (e) => {
+    if (e.target.name === "archivo") {
+      setUserData({
+        ...userData,
+        [e.target.name]: e.target.files[0]
+      });
     
-    const navigate = useNavigate();
-    const [error,setError]=useState(false);
-
-    async function crearProveedor(evento){
-      evento.preventDefault();
-      if(nombreEmpresa === ""|| matricula==="" || (servicio!=="0" & servicio!=="1" & servicio!=="2") || celular===""||email===""|| costoXHora <0 ){
-        setError(true);
-        return
-      }
-      setError(false);
-     
-        const newProveedor={
-          
-            nombreEmpresa,
-            matricula,
-            servicio,
-            celular,
-            email,
-            costoXHora
-        }
-
-        await saveProveedor(newProveedor);
-        navigate("/");
-
+    }else {
+      setUserData({
+        ...userData,
+        [e.target.name]: e.target.value
+      });
     }
+  };
+    
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log(userData.archivo);
+  
+      sendDataToBackend();
+    };
+  
+    const sendDataToBackend = async () => {
+      const formData = new FormData();
+  
+      // Anexar cada propiedad del objeto de usuario al FormData
+      for (const key in userData) {
+        formData.append(key, userData[key]);
+        console.log(key, userData[key])
+      }
+      await saveProveedor(formData);
+    
+  
+    };
 
     function goBack() {
       window.history.back();
@@ -48,54 +64,60 @@ export default function GuardarProveedor() {
 
 
 
-<form className="form" onSubmit={crearProveedor}>
+<form className="form" onSubmit={handleSubmit} encType="multipart/form-data"
+        method="post">
     <p className="title">Registro </p>
     <p className="message">Registrese ahora y obtenga acceso a nuestra app como proveedor de servicio. </p>
         <div className="flex">
         <label>
-            <input value={nombreEmpresa} onChange={evento=> setNombreEmpresa(evento.target.value)} placeholder="NOMBRE" type="text" className="input"/>
+            <input name='nombreEmpresa' value={userData.nombreEmpresa} onChange={(handleChange)} placeholder="NOMBRE" type="text" className="input"/>
             <span>Nombre Empresa</span>
         </label>
 
         <label>
-            <input value={matricula} onChange={evento=>setMatricula(evento.target.value)} placeholder="MATRICULA" type="text" className="input"/>
+            <input name='matricula' value={userData.matricula} onChange={(handleChange)} placeholder="MATRICULA" type="text" className="input"/>
             <span>Matricula</span>
         </label>
     </div>  
             
     <label>
-        <input value={email} onChange={evento=>setEmail(evento.target.value)} placeholder="EMAIL" type="email" className="input"/>
+        <input name='email'  value={userData.email} onChange={(handleChange)} placeholder="EMAIL" type="email" className="input"/>
         <span>Email</span>
     </label> 
         
-    {/* 
+    
     <label>
-        <input value={} onChange={evento=>setMatricula(evento.target.value)} placeholder="" type="password" className="input"/>
+        <input name='password' value={userData.password} onChange={(handleChange)} placeholder="" type="password" className="input"/>
         <span>Password</span>
     </label>
-    */}
+    
     <label>
-        <input value={celular} onChange={evento=>setCelular(evento.target.value)}placeholder="CELULAR" type="number" className="input"/>
+        <input name='celular' value={userData.celular} onChange={(handleChange)}placeholder="CELULAR" type="number" className="input"/>
         <span>Ingrese su celular</span>
     </label>
 
     <label>Ingrese el servicio que brindara: </label> 
-       <select className='input' name="servicio" value={servicio} onChange={ (evento)=>setServicio(evento.target.value) }>
+       <select className='input' name="servicio" value={userData.servicio} onChange={handleChange}>
         <option value="3">INGRESE EL SERVICIO</option>
-        <option value="0">PLOMERO</option>
-        <option value="1">GASISTA</option>
-        <option value="2">ELECTRICISTA</option>
+        <option value="PLOMERO">PLOMERO</option>
+        <option value="GASISTA">GASISTA</option>
+        <option value="ELECTRICISTA">ELECTRICISTA</option>
        </select>
 
        <label>
-        <input value={costoXHora} onChange={evento=>setCostoXHora(evento.target.value)}placeholder="COSTO POR HORA" type="number" className="input"/>
+        <input name='costoXHora' value={userData.costoXHora} onChange={(handleChange)}placeholder="COSTO POR HORA" type="number" className="input"/>
         <span>Costo por hora </span>
+    </label>
+
+    <label>
+        <input name="archivo" onChange={(handleChange)} type="file" className="input"/>
+        <span>archivo </span>
     </label>
 
     <button className="submit">Submit</button> 
     <br />
       <button className='boton' onClick={goBack}>Volver</button>
-    <p class="signin">Ya tienes una cuenta? <a href="#">inicia sesion</a> </p>
+    <p className="signin">Ya tienes una cuenta? <a href="#">inicia sesion</a> </p>
 
 
 </form>

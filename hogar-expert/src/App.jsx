@@ -18,6 +18,7 @@ import ModificarTrabajo from './components/trabajo/ModificarTrabajo';
 import DetalleTrabajo from './components/trabajo/DetalleTrabajo';
 import Comentarios from './components/comentario/Comentarios';
 import GuardarComentario from './components/comentario/GuardarComentario';
+import Login from './components/login';
 
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
     <Header/>
 
     <Routes>
+    <Route path='/login' element={<Login/>} />
+
+
     <Route path='/' element={<Inicio/>} />
     <Route path='/usuario/lista' element={<Usuarios/>} />
     <Route path='/usuario/perfil/:id' element ={<Perfil/>} />

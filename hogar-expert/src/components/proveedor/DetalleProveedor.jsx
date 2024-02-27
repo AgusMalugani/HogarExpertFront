@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { detalleProveedor } from '../../servicios/ProveedorServicios';
+import { traerImagenProveedor } from '../../servicios/ImagenServicio';
 
 export default function DetalleProveedor() {
   const { id } = useParams();
@@ -13,33 +14,56 @@ export default function DetalleProveedor() {
   }
     , [idLong])
 
+    const[imagen,setImagen]=useState();
+useEffect( ()=>{
+  traerImagenProveedor(proveedor.id).then(data=> {const imagenUrl = URL.createObjectURL(data)
+
+    setImagen(imagenUrl);
+  })
+},[proveedor.id] );
+
+
+
     function goBack(){
       window.history.back();
     }
 
   return (
-    <div className='perfil' >
-      <h3 className='titulo'>Ingrese el nombre de la empresa: </h3>
-      <p className='valor'>{proveedor.nombreEmpresa}</p>
-      <br />
+    <div className='perfil-usuario-proveedor' >
+      <div className='detalle-img'>
+      <img src={imagen} alt= {proveedor.nombreEmpresa} />
+      </div>
+      
+      <div className='detalle-perfil'>
+      <span className='perfil-titulo'>nombre de la empresa: </span>
+      <p className='perfil-valor'>{proveedor.nombreEmpresa}</p>
+      </div>
+      
+      <div className='detalle-perfil'>
+      <span className='perfil-titulo'>matricula: </span>
+      <p className='perfil-valor'>{proveedor.matricula}</p>
+      </div>
+      
+      <div className='detalle-perfil'>
+      <span className='perfil-titulo'>servicio que brinda:  </span>
+      <p className='perfil-valor'>{proveedor.servicio}</p>
+      </div>
+      
+      <div className='detalle-perfil'>
+      <span className='perfil-titulo'>celular: </span>
+      <p className='perfil-valor'>{proveedor.email}</p>
+      </div>
 
-      <h3 className='titulo'>matricula: </h3>
-      <p className='valor'>{proveedor.matricula}</p>
-      <br />
+     <div className='detalle-perfil'>
+      <span className='perfil-titulo'> email: </span>
+      <p className='perfil-valor'>{proveedor.email}</p>
+      </div> 
 
-      <h3 className='titulo'>servicio que brinda:  </h3>
-      <p className='valor'>{proveedor.servicio}</p>
-      <br />
-
-      <h3 className='titulo'>celular: </h3>
-      <p className='valor'>{proveedor.email}</p>
-      <br />
-      <h3 className='titulo'> email: </h3>
-      <p className='valor'>{proveedor.email}</p>
-      <br />
-      <h3 className='titulo'>costo por hora de su servicio: $</h3>
-      <p  className='valor'>{proveedor.costoXHora}</p>
-      <br />
+      <div className='detalle-perfil'>
+      <span className='perfil-titulo'>costo por hora de su servicio: $</span>
+      <p  className='perfil-valor'>{proveedor.costoXHora}</p>
+      </div>      
+     
 
       <button className='boton' onClick={goBack}> Volver </button>
     </div>

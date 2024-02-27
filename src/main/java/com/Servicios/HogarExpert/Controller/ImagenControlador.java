@@ -4,9 +4,11 @@
  */
 package com.Servicios.HogarExpert.Controller;
 
+import com.Servicios.HogarExpert.Entity.Proveedor;
 import com.Servicios.HogarExpert.Entity.Usuario;
 import com.Servicios.HogarExpert.Exception.MiException;
 import com.Servicios.HogarExpert.Service.IImagenServicio;
+import com.Servicios.HogarExpert.Service.IProveedorServicio;
 import com.Servicios.HogarExpert.Service.IUsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -36,6 +38,8 @@ public class ImagenControlador {
     IUsuarioServicio us;
     @Autowired
     IImagenServicio is;
+    @Autowired
+    IProveedorServicio ps;
     
     @PostMapping("/crear")
     public ResponseEntity<String> cargarImagen( @RequestParam("archivo") MultipartFile archivo){
@@ -59,5 +63,22 @@ public class ImagenControlador {
         
         
     }
+    
+    @GetMapping("/detalle/{id}")
+    public ResponseEntity<byte[]> imagenProveedor (@PathVariable Long id) throws MiException{
+        Proveedor p = ps.findById(id);
+        
+        byte[] imagen = p.getImagen().getContenido();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_JPEG);
+        
+        
+        
+        return new ResponseEntity<>(imagen,headers,HttpStatus.OK);
+        
+        
+    }
+    
+    
     
 }

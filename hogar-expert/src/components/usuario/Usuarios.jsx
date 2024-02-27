@@ -19,7 +19,21 @@ function goBack() {
   }
 
     return (
-    <table>
+   
+      
+        
+        <div className='tbody-usuario-proveedor'>
+           {usuarios.length>0 && usuarios.map(elemento => <Usuario key={elemento.id} eliminarUsuario={eliminarUsuario} usuario ={elemento} />)}
+
+        </div>
+   
+     
+   
+   
+  )
+
+{/*
+<table>
         <thead>
             <tr>
                 <th>imagen</th>
@@ -41,5 +55,6 @@ function goBack() {
         </tbody>
         <button className='boton' onClick={goBack}>Volver</button>
     </table>
-  )
+    */}
+
 }

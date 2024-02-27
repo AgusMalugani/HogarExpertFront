@@ -1,3 +1,5 @@
+import { json } from "react-router-dom";
+
     const API_URL = "http://localhost:8080/proveedor";
 
 export async function listaProveedores(){
@@ -6,15 +8,19 @@ export async function listaProveedores(){
     return data;
 }
 
-export async function saveProveedor(proveedor){
+export async function saveProveedor(formData){
     const response = await fetch(`${API_URL}/crear`,{
         method : "POST",
-        headers: {
-             "Content-type" : "application/json" },
-        body : JSON.stringify(proveedor)
+        body: formData
 
     })
+
+    const data = await response.json();
+    return data;
 }
+
+
+
 
 export async function deleteProveedor(id){
 const response = await fetch(`${API_URL}/eliminar/${id}`,

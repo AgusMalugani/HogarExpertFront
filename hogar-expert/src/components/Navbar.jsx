@@ -38,9 +38,11 @@ const Navbar = () => {
     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div className="navbar-nav">
       <Link  className="nav-link" to='/'> Como funciona </Link>
-      <Link className="nav-link" to='/'> Acceder </Link>  
-      <Link className="nav-link" to="/crear">Registro  </Link>
-      <Link className="nav-link" to='/'> Buscas empleo ? </Link>
+      <Link className="nav-link" to='/login'> Acceder </Link>  
+      <Link className="nav-link" to={`/usuario/crear`}>Registro  </Link>  
+      <Link className="nav-link" to='/trabajo/crear'> Crear Trabajo </Link>
+      <Link className="nav-link" to={`/usuario/lista`}>lista usuarios  </Link>  
+      
        </div>
     </div>
   </div>
