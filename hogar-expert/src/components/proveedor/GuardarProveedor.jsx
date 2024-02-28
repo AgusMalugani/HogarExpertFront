@@ -61,8 +61,21 @@ export default function GuardarProveedor() {
 
   return (
 <div className='formulario-registro'>
+<div>
+  	
+<h4>Elige los trabajos ideales para ti</h4>
+<p>Regístrate como zolver y consigue nuevos trabajos</p>
 
+	
+<h4>Elige tu Zona, días y horarios</h4>
+<p>lige los trabajos que se adecúan a tus necesidades</p>
 
+	
+<h4>Tu perfil 100% GRATIS</h4>
+<p>Puede crear tu perfil GRATIS y ver los trabajos que puedes elegir.</p>
+</div>
+
+<div>
 
 <form className="form" onSubmit={handleSubmit} encType="multipart/form-data"
         method="post">
@@ -122,6 +135,7 @@ export default function GuardarProveedor() {
 
 </form>
 
+          </div>
 
 
 

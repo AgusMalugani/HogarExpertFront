@@ -29,6 +29,8 @@ useEffect( ()=>{
     }
 
   return (
+    <div>
+
     <div className='perfil-usuario-proveedor' >
       <div className='detalle-img'>
       <img src={imagen} alt= {proveedor.nombreEmpresa} />
@@ -64,8 +66,18 @@ useEffect( ()=>{
       <p  className='perfil-valor'>{proveedor.costoXHora}</p>
       </div>      
      
+      </div>
 
-      <button className='boton' onClick={goBack}> Volver </button>
+      <div >
+      <button className='detalle-perfil-botones'>CONTRATAR</button>
+
+      </div>
+
+      <div className='detalle-perfil-calificaciones-comentarios'>
+        <h3>CALIFICACIONES</h3>
+        <p>⭐⭐⭐⭐⭐ "Excelente muy buen servicio" - Gabriela Suarez de Palermo 20/09/2023"</p>
+      </div>
+    
     </div>
   )
 }
