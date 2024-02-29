@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function ServiciosBrindados() {
   return (
@@ -6,23 +7,24 @@ export default function ServiciosBrindados() {
       <h2 id="titulo-servicios">Servicios brindados</h2>
       <div id="contenedor-servicios">
 
-        <button>
+         <Link to={`/proveedor/lista/PLOMERO`}>
           <img
             src="https://cdn.shopify.com/s/files/1/0509/5050/4615/files/Plomero-Banco-de-fotos-e-imagenes-de-stock-iStock_2_480x480.png?v=1665331532"
             alt="imagen-plomero"
-          />
+            />
           <p>plomero</p>
-        </button>
+        
+            </Link>
 
-        <button>
+            <Link to={`/proveedor/lista/GASISTA`}>
                     <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrLKtzZlwxfYsREkrHmzFi8mz0T7FIGzlz8VLUXF8FpbzRShWQBwmT10EJafVsALwgwJY&usqp=CAU"
               alt="imagen-gasista"
             />
             <p>gasista</p>
-        </button>
+        </Link>
 
-        <button>
+        <Link to={`/proveedor/lista/ELECTRICISTA`}>
           
             <img
               src="https://image.jimcdn.com/app/cms/image/transf/dimension=4000x3000:format=png/path/sb00e8250327cd0a1/image/iff11108ffbfc0a0d/version/1642677810/funciones-de-un-electricista.png"
@@ -30,7 +32,7 @@ export default function ServiciosBrindados() {
             />
             <p>electricista</p>
           
-        </button>
+        </Link>
 
       </div>
     </div>

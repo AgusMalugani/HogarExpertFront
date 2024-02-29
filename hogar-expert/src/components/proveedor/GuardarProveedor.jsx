@@ -50,6 +50,7 @@ export default function GuardarProveedor() {
         console.log(key, userData[key])
       }
       await saveProveedor(formData);
+      navigate("/")
     
   
     };
@@ -60,26 +61,30 @@ export default function GuardarProveedor() {
 
 
   return (
-<div className='formulario-registro'>
-<div>
+    <>
+    <div id='cabecera-formulario' >
+    <h2>Encuentra tu nuevo cliente aqui</h2>
+    <h4>Carga tu perfil GRATIS y empieza a generar trabajo</h4>
+  </div>
+
+    <div className='formulario'>
+   
+<div className='escritura-formulario' >
   	
 <h4>Elige los trabajos ideales para ti</h4>
-<p>Regístrate como zolver y consigue nuevos trabajos</p>
-
-	
-<h4>Elige tu Zona, días y horarios</h4>
-<p>lige los trabajos que se adecúan a tus necesidades</p>
-
+<p>✅Regístrate como zolver y consigue nuevos trabajos</p>
 	
 <h4>Tu perfil 100% GRATIS</h4>
-<p>Puede crear tu perfil GRATIS y ver los trabajos que puedes elegir.</p>
+<p>✅Puede crear tu perfil GRATIS y ver los trabajos que puedes elegir.</p>
 </div>
 
 <div>
 
+<div className='formulario-registro'>
+
 <form className="form" onSubmit={handleSubmit} encType="multipart/form-data"
         method="post">
-    <p className="title">Registro </p>
+    
     <p className="message">Registrese ahora y obtenga acceso a nuestra app como proveedor de servicio. </p>
         <div className="flex">
         <label>
@@ -100,8 +105,12 @@ export default function GuardarProveedor() {
         
     
     <label>
-        <input name='password' value={userData.password} onChange={(handleChange)} placeholder="" type="password" className="input"/>
+        <input name='password' value={userData.password} onChange={(handleChange)} placeholder="PASSWORD" type="password" className="input"/>
         <span>Password</span>
+    </label>
+    <label>
+        <input name='RepetirPassword'  placeholder="REPITA PASSWORD" type="password" className="input"/>
+        <span> Repita Password</span>
     </label>
     
     <label>
@@ -123,7 +132,7 @@ export default function GuardarProveedor() {
     </label>
 
     <label>
-        <input name="archivo" onChange={(handleChange)} type="file" className="input"/>
+        <input name="archivo" onChange={(handleChange)} type="file" />
         <span>archivo </span>
     </label>
 
@@ -136,56 +145,28 @@ export default function GuardarProveedor() {
 </form>
 
           </div>
-
-
-
-
-
-{/*
-
-
-
-    <form onSubmit={crearProveedor}>
-       <label>Ingrese el nombre de la empresa: </label> 
-       <input value={nombreEmpresa} onChange={ (evento)=>setNombreEmpresa(evento.target.value) } type="text" name='nombreEmpresa' placeholder='nombreEmpresa' />
-       <br />
-       
-       <label>Ingrese su matricula: </label> 
-       <input value={matricula} onChange={ (evento)=>setMatricula(evento.target.value) } type="text" name='matricula' placeholder='matricula' />
-       <br />
-       
-       <label>Ingrese el servicio que brindara: </label> 
-       <select name="servicio" value={servicio} onChange={ (evento)=>setServicio(evento.target.value) }>
-        <option value="3">INGRESE EL SERVICIO</option>
-        <option value="0">PLOMERO</option>
-        <option value="1">GASISTA</option>
-        <option value="2">ELECTRICISTA</option>
-       </select>
-       <br />
-       
-       <label>Ingrese su celular: </label> 
-       <input value={celular} onChange={ (evento)=>setCelular(evento.target.value) } type="text" name='celular' placeholder='celular' />
-       <br />
-       <label>Ingrese su email: </label> 
-       <input  value={email} onChange={ (evento)=>setEmail(evento.target.value) } type="email" name='email' placeholder='email' />
-       <br />
-       <label>Ingrese el costo por hora de su servicio: $</label> 
-       <input value={costoXHora} onChange={ (evento)=>setCostoXHora(evento.target.value) }  type="number" name='costoXHora' placeholder='costo por hora' />
-       
-       <br />
-
-    <button>Crear</button>
-
-    
-    {error === true && <p> hubo un error al cargar los datos. </p>}
-
-    <br />
-      <button className='boton' onClick={goBack}>Volver</button>
-
-    </form>
-    */}
-
+      </div>
 </div>
+<div>
+  <span id='como-funciona-registro'>¿Como funciona?</span>
+</div>
+<div className='como-funciona-registro-elementos'>
+  
+  <div className='como-funciona-registro-elementos'>
+    <img src="https://zolvers.com/img/comunidad/icono-ingresa.png" width={"50px"} alt="" />
+    <p>Accede gratis a la comunidad</p>
+  </div>
+  
+  <div className='como-funciona-registro-elementos'>
+    <img src="https://zolvers.com/img/comunidad/icono-beneficio.png" width={"50px"} alt="" />
+    <p> Elige los beneficios a los que quieres acceder </p>
+    </div>
+  
+  <div className='como-funciona-registro-elementos'>
+    <img src="https://zolvers.com/img/comunidad/icono-completa-perfil.png" width={"50px"} alt="" />
+    <p> Completa tu perfil y nosotros nos encargamos del resto </p></div>
+</div>
+</>
 
   )
 }

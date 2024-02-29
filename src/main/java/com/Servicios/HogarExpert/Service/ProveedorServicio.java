@@ -6,6 +6,7 @@ package com.Servicios.HogarExpert.Service;
 
 import com.Servicios.HogarExpert.Entity.Imagen;
 import com.Servicios.HogarExpert.Entity.Proveedor;
+import com.Servicios.HogarExpert.Enum.Servicio;
 import com.Servicios.HogarExpert.Exception.MiException;
 import com.Servicios.HogarExpert.Repository.IProveedorRepositorio;
 import jakarta.transaction.Transactional;
@@ -144,6 +145,11 @@ public class ProveedorServicio implements IProveedorServicio {
        }
        
     
+    }
+
+    @Override
+    public List<Proveedor> findByServicio(Servicio servicio) {
+   return proveedorRepo.buscarPorServicio(servicio);
     }
     
 }

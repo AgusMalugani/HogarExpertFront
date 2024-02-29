@@ -19,9 +19,6 @@ export async function saveProveedor(formData){
     return data;
 }
 
-
-
-
 export async function deleteProveedor(id){
 const response = await fetch(`${API_URL}/eliminar/${id}`,
 {
@@ -46,3 +43,8 @@ export async function updateProveedor(id,proveedor){
 }
 
 
+export async function listaProveedoresPorServicio(servicio){
+    const response = await fetch(`${API_URL}/lista/${servicio}`);
+    const data = await response.json()
+    return data;
+}

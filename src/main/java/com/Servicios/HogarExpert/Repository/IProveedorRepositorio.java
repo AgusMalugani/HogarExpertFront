@@ -5,7 +5,11 @@
 package com.Servicios.HogarExpert.Repository;
 
 import com.Servicios.HogarExpert.Entity.Proveedor;
+import com.Servicios.HogarExpert.Enum.Servicio;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,5 +18,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface IProveedorRepositorio extends JpaRepository<Proveedor,Long> {
+    
+    @Query("SELECT p FROM Proveedor p WHERE p.servicio = :servicio")
+    public List<Proveedor> buscarPorServicio(@Param("servicio")Servicio servicio); 
+    
     
 }

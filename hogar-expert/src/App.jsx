@@ -19,6 +19,7 @@ import DetalleTrabajo from './components/trabajo/DetalleTrabajo';
 import Comentarios from './components/comentario/Comentarios';
 import GuardarComentario from './components/comentario/GuardarComentario';
 import Login from './components/login';
+import ListaProveedoresPorServicios from './components/proveedor/ListaProveedoresPorServicios';
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
 
 
     <Route path='/proveedor/lista' element={<Proveedores/>} />
+    <Route path='/proveedor/lista/:servicio' element={<ListaProveedoresPorServicios/>} />
     <Route path='/proveedor/crear' element = {<GuardarProveedor/>}/>
     <Route path='/proveedor/detalle/:id' element = {<DetalleProveedor />}/>
     <Route path='/proveedor/modificar/:id' element = { <ModificarProveedor/>} />

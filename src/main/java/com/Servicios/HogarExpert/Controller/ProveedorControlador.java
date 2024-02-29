@@ -5,12 +5,12 @@
 package com.Servicios.HogarExpert.Controller;
 
 import com.Servicios.HogarExpert.Entity.Proveedor;
+import com.Servicios.HogarExpert.Enum.Servicio;
 import com.Servicios.HogarExpert.Exception.MiException;
 import com.Servicios.HogarExpert.Service.IProveedorServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -99,6 +99,18 @@ public class ProveedorControlador {
         
         
     }
+    
+    @GetMapping("/lista/{servicio}")
+    public List<Proveedor> listaProveedorServicio(@PathVariable Servicio servicio){
+        try{
+           
+            return provServ.findByServicio(servicio); 
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        return null;
+        }
+    }
+    
     
     
     
