@@ -18,8 +18,10 @@ import ModificarTrabajo from './components/trabajo/ModificarTrabajo';
 import DetalleTrabajo from './components/trabajo/DetalleTrabajo';
 import Comentarios from './components/comentario/Comentarios';
 import GuardarComentario from './components/comentario/GuardarComentario';
-import Login from './components/login';
+
 import ListaProveedoresPorServicios from './components/proveedor/ListaProveedoresPorServicios';
+import Dashboard from './components/Dashboard';
+import Login from './components/Login';
 
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
 
     <Routes>
     <Route path='/login' element={<Login/>} />
+    <Route path='/dashboard' element={<Dashboard/>} />
 
 
     <Route path='/' element={<Inicio/>} />

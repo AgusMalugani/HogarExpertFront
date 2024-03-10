@@ -1,4 +1,4 @@
-/*
+        /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -13,6 +13,7 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -144,10 +145,12 @@ public class UsuarioServicio implements IUsuarioServicio {
                 throw new MiException("El password debe contener almenos 8 caracteres");
             }
             
-            if(usuario.getRol() == null ){
-                usuario.setRol(Rol.USER);
-            }
+          
             
         }
+        
+        
+      
+        
 
     }

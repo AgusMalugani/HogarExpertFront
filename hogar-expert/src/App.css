@@ -1,38 +1,85 @@
-Header .container {
-    background-image: url(https://zolvers.com/img/home_new/home.webp);
-    padding-bottom: 2em;
 
+
+header {
+  width: 100%;
+  background-image: url(https://zolvers.com/img/home_new/home.webp);
+  background-size: 100% 100%; /* Ajusta según tus necesidades */
+  background-repeat: no-repeat ;
+  height: 17em;
+}
+header img{
+  width: 100px;
 }
 
-
-Header .escritoHeader {
-    padding-top: 2em;
-    padding-bottom: 2em;
-    font-size: x-large;
-    color: chartreuse;
+.escritoHeader {
+    font-size: 38px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: aliceblue;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    
+}
+.link-button {
+  border: none;
+  padding: 5px 12px;
+  border-radius: 10px;
+  background-color: aliceblue;
+  color:#4CAF50;
+  text-decoration: none; /* Asegúrate de que los enlaces no tengan subrayado */
+  cursor: pointer;
+ font-size: 25px;
 }
 
-.perfil {
-    display: inline-block;
+/* Estilos para el enlace dentro del botón */
+.link-button a {
+  color: inherit;
+  text-decoration: none;
 }
 
-h3.titulo {
-    display: inline;
+/* Enfocar el botón */
+.link-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5);
 }
 
-p.valor {
-    display: inline;
+.link-button:hover {
+background-color:#4CAF50;
+color: aliceblue;
 }
 
-button {
-    background-color: aliceblue;
-    color: black;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
+  margin: 0 auto;
 }
+
+.logo a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+}
+
+.nav-list li {
+  margin-right: 20px;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+
+
 
 #primer-article {
     background-color: rgb(243, 241, 241);
@@ -43,26 +90,60 @@ button {
     display: flex;
     justify-content: center;
     margin-top: 15px;
+    margin-bottom: 1em;
+    font-weight: 400;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #contenedor-servicios img {
-    width: 10em;
-    height: 8em;
+    width: 8em;
+    height: 5em;
+    border: 1px solid black;
+    border-radius: 10px;
+ 
 }
 
 #contenedor-servicios {
     display: flex;
-    justify-content: space-around;
-    align-content: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-left: 10em;
+    width: 69em;
+    
+
+  
 
 }
 
 #contenedor-servicios p {
     display: flex;
     justify-content: center;
-    font-size: 2em;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 15px;
+   font-family: Arial, Helvetica, sans-serif;
+   
+}
 
+
+.link-button-servicio {
+  color:#7fb380;
+text-decoration: none; 
+ font-size: 20px;
+
+}
+
+
+.link-button-servicio a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.contenedor-link-button-servicio{
+margin-left: 10px;
+
+}
+
+.contenedor-link-button-servicio:hover{
+background-color: #B2BAC8;
 }
 
 #boton-prestacion-servicio {
@@ -75,9 +156,22 @@ button {
 
 #boton-prestacion-servicio button {
     background-color: burlywood;
-    color: white;
+    color: aliceblue;
+    font-weight: 700;
     height: 3em;
+    border-radius: 10px;
+
 }
+#boton-prestacion-servicio button a{
+    color: inherit;
+    text-decoration: none;
+}
+#boton-prestacion-servicio button:hover{
+  background-color:rgb(214, 160, 89) ;
+}
+
+
+
 
 #contenedor-seguridad-confianza {
     background-image: url(https://zolvers.com/img/home_new/seguridad-y-confianza.webp);
@@ -112,7 +206,19 @@ button {
     border-color: rgb(115, 241, 115);
     color: rgb(69, 167, 69);
     background-color: transparent;
+    
 }
+#seguridad-confianza button a {
+color: inherit;
+    text-decoration: none;
+}
+
+#seguridad-confianza button:hover {
+  background-color:#4CAF50;
+  color: aliceblue;
+  }
+
+
 
 #carrusel-comentarios {
     display: flex;
@@ -551,7 +657,6 @@ align-items: center;
 margin-right: 1em;
 margin-top: 1em;
 }
-
 
 
 

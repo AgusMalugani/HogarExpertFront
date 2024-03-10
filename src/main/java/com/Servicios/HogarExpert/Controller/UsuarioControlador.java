@@ -7,12 +7,21 @@ package com.Servicios.HogarExpert.Controller;
 import com.Servicios.HogarExpert.Exception.MiException;
 import com.Servicios.HogarExpert.Entity.Usuario;
 import com.Servicios.HogarExpert.Service.IUsuarioServicio;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.core.session.SessionInformation;
+//import org.springframework.security.core.session.SessionRegistry;
+//import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +45,10 @@ public class UsuarioControlador {
     @Autowired
     private IUsuarioServicio usuarioServi;
     
+   // @Autowired
+   // private SessionRegistry sessionRegistry;
+    
+    /*
     @PostMapping("/crear")
     public ResponseEntity<Usuario> crearUsuario(@ModelAttribute Usuario usuario, @RequestParam("archivo") MultipartFile archivo) {
          try {
@@ -49,17 +62,41 @@ public class UsuarioControlador {
          }
          
     } 
-    /*public void crearUsuario(@RequestBody Usuario usuario) {
-        
+    */
+    
+ 
+    
+       @PostMapping("/crear")
+    public ResponseEntity<Usuario> crearUsuario(@ModelAttribute Usuario usuario, @RequestParam("archivo") MultipartFile archivo) {
         try {
-            usuarioServi.save(usuario);
-            System.out.println( "usuario creado");
+            Usuario u = Usuario.builder()
+                    .id(usuario.getId())
+                    .nombre(usuario.getNombre())
+                    .apellido(usuario.getApellido())
+                    .username(usuario.getUsername())
+                    .celular(usuario.getCelular())
+                    .dni(usuario.getDni())
+                    .domicilio(usuario.getDomicilio())
+                    .email(usuario.getEmail())
+                    .password( new BCryptPasswordEncoder().encode(usuario.getPassword()) )
+                    .roles(usuario.getRoles())
+                    
+                    .build();         
+                usuarioServi.save(u,archivo);
+ 
+            System.out.println("usuario creado");
+                return ResponseEntity.status(HttpStatus.OK).body(u) ;
+       
+            
         } catch (MiException ex) {
-            System.out.println(ex.getMessage());
-        }
+          System.out.println(ex.getMessage());
+           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null) ;
+         }
+            
+            
         
-    }
-*/
+         
+    } 
     
     @GetMapping("/perfil/{id}")
     public Usuario verUsuario(@PathVariable Long id){
@@ -107,6 +144,34 @@ public class UsuarioControlador {
         
         
     }
+    /*
+    @GetMapping("/session")
+    public ResponseEntity<?> getDetailsSession() {
+        
+        String sessionId ="";
+        User userObject = null ;
+        
+       List<Object> sessions = sessionRegistry.getAllPrincipals(); // nos guarda una lista de sessiones
+       
+        for (Object session : sessions) {
+            if(session instanceof User){
+                userObject = (User) session;
+            }
+            
+            List<SessionInformation>sessionInformations = sessionRegistry.getAllSessions(session,false);
+            for (SessionInformation sessionInformation : sessionInformations) {
+                sessionId= sessionInformation.getSessionId();
+                
+            }
+            
+        }
+        Map<String,Object>response = new HashMap<>();
+        response.put("response", "hello word");
+        response.put("sessionId",sessionId);
+        response.put("sessionUser", userObject);
+        
+            return ResponseEntity.ok(response);
     
-    
+    }
+    */
 }

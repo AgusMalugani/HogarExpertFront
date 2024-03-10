@@ -9,6 +9,6 @@ package com.Servicios.HogarExpert.Enum;
  * @author Usuario
  */
 public enum Rol {
-    USER,ADMIN,PROVEEDOR
+    USER,ADMIN,PROVEEDOR,INVITADO
     
 }

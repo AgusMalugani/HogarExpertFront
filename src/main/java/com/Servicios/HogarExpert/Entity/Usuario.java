@@ -11,11 +11,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import java.util.Set;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity 
 @Setter @Getter
+@Builder
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,29 +28,35 @@ public class Usuario {
     private Integer dni;
     private String celular;
     private String domicilio;
+    private String username;
     private String email;
     private String password;
-    @Enumerated
-    private Rol rol;
+    //@Enumerated
+    //private Rol rol;
+    
+      private Set<String> roles;
     @OneToOne
     private Imagen imagen;
 
     public Usuario() {
     }
 
-    public Usuario(Long id, String nombre, String apellido, Integer dni, String celular, String domicilio, String email, String password, Rol rol, Imagen imagen) {
+    public Usuario(Long id, String nombre, String apellido, Integer dni, String celular, String domicilio, String username, String email, String password, Set<String> roles, Imagen imagen) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.celular = celular;
         this.domicilio = domicilio;
+        this.username = username;
         this.email = email;
         this.password = password;
-        this.rol = rol;
+        this.roles = roles;
         this.imagen = imagen;
     }
 
+  
+  
     
     
     
