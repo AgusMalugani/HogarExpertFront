@@ -29,7 +29,7 @@ public class WebSecurityConfig {
     http
         .csrf().disable() // (2)
         .authorizeHttpRequests((authorize) -> authorize
-            .requestMatchers("/publico/**").permitAll()
+            .requestMatchers("/login","/usuario/crear").permitAll()
             .requestMatchers("/admin/**").hasRole("ADMIN")
             .anyRequest().authenticated()
         )
@@ -38,11 +38,11 @@ public class WebSecurityConfig {
         .sessionManagement((session) -> session
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         );
-    ;
-    /*
+    
+    
     http
         .formLogin(withDefaults()); // (1)
-    http
+   /* http
         .httpBasic(withDefaults()); // (1)
      */
     return http.build();
@@ -55,35 +55,14 @@ public class WebSecurityConfig {
     we don't need CSRF protection
   */
 
-  // Autenticacion con UserDetailsService
-  /*
-  @Bean
-  UserDetailsServiceImpl userDetailsService() {
-    return new UserDetailsServiceImpl();
-  }
-  */
+  
 
   @Bean
   PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
 
-  /* Autenticacion en Memoria
-  @Bean
-  public UserDetailsService users() {
-    UserDetails user = User.builder()
-        .username("user")
-        .password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
-        .roles("USER")
-        .build();
-    UserDetails admin = User.builder()
-        .username("admin")
-        .password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
-        .roles("USER", "ADMIN")
-        .build();
-    return new InMemoryUserDetailsManager(user, admin);
-  }
-  */
+
 
   @Bean
   AuthenticationManager authenticationManager(AuthenticationConfiguration

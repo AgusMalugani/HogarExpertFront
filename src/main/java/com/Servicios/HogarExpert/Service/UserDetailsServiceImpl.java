@@ -32,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
     return User
         .withUsername(username)
-        .password(new BCryptPasswordEncoder().encode(usuario.getPassword()))
+        .password(usuario.getPassword())
         .roles(usuario.getRoles().toArray(new String[0]))
         .build();
   }

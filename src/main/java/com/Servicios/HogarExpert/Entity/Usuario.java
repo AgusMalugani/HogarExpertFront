@@ -33,6 +33,11 @@ public class Usuario {
     private String password;
     //@Enumerated
     //private Rol rol;
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", celular=" + celular + ", domicilio=" + domicilio + ", username=" + username + ", email=" + email + ", password=" + password + ", roles=" + roles + ", imagen=" + imagen + '}';
+    }
     
       private Set<String> roles;
     @OneToOne

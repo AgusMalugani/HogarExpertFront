@@ -33,7 +33,7 @@ public class UsuarioServicio implements IUsuarioServicio {
     @Override
     public Usuario save(Usuario usuario, MultipartFile archivo) throws MiException {
 
-        this.validar(usuario);
+       // this.validar(usuario);
         List<Usuario> listaUsuario = this.findAll();
          Usuario u = usuario;
          
