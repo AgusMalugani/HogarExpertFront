@@ -1,26 +1,38 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { detalleProveedor } from '../../servicios/ProveedorServicios';
 import { traerImagenProveedor } from '../../servicios/ImagenServicio';
+import { useUser } from '../sesion/UserContext';
 
 export default function DetalleProveedor() {
   const { id } = useParams();
-  const idLong = Number(id);
-
+ // const idLong = Number(id);
+  
+  const { user: currentUser } = useUser();
   const [proveedor, setProveedor] = useState({});
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    detalleProveedor(idLong).then(data => setProveedor(data))
+    if(id){
+ detalleProveedor(id,token).then(data => setProveedor(data))
+    } else if(currentUser){
+      setProveedor(currentUser);
+    }
   }
-    , [idLong])
+    , [id,currentUser])
+
 
     const[imagen,setImagen]=useState();
 useEffect( ()=>{
-  traerImagenProveedor(proveedor.id).then(data=> {const imagenUrl = URL.createObjectURL(data)
+  if(proveedor && proveedor.id){
 
-    setImagen(imagenUrl);
-  })
-},[proveedor.id] );
+    traerImagenProveedor(proveedor.id)
+    .then(data=> {const imagenUrl = URL.createObjectURL(data)
+      
+      setImagen(imagenUrl);
+    })
+  }
+  },[proveedor] );
 
 
 
@@ -31,9 +43,10 @@ useEffect( ()=>{
   return (
     <div>
 
+
     <div className='perfil-usuario-proveedor' >
       <div className='detalle-img'>
-      <img src={imagen} alt= {proveedor.nombreEmpresa} />
+      <img src={imagen} alt= {proveedor.username} />
       </div>
       
       <div className='detalle-perfil'>
@@ -53,13 +66,17 @@ useEffect( ()=>{
       
       <div className='detalle-perfil'>
       <span className='perfil-titulo'>celular: </span>
-      <p className='perfil-valor'>{proveedor.email}</p>
+      <p className='perfil-valor'>{proveedor.celular}</p>
       </div>
 
      <div className='detalle-perfil'>
       <span className='perfil-titulo'> email: </span>
       <p className='perfil-valor'>{proveedor.email}</p>
       </div> 
+      <div className='detalle-perfil'>
+      <span className='perfil-titulo'>username: </span>
+      <p className='perfil-valor'>{proveedor.username}</p>
+      </div>
 
       <div className='detalle-perfil'>
       <span className='perfil-titulo'>costo por hora de su servicio: $</span>
@@ -69,7 +86,7 @@ useEffect( ()=>{
       </div>
 
       <div >
-      <button className='detalle-perfil-botones'>CONTRATAR</button>
+      <button className='detalle-perfil-botones'> <Link to={`/trabajo/crear/${proveedor.id}`}> CONTRATAR </Link></button>
 
       </div>
 

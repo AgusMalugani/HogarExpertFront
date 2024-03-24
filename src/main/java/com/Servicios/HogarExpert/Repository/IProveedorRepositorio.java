@@ -22,5 +22,7 @@ public interface IProveedorRepositorio extends JpaRepository<Proveedor,Long> {
     @Query("SELECT p FROM Proveedor p WHERE p.servicio = :servicio")
     public List<Proveedor> buscarPorServicio(@Param("servicio")Servicio servicio); 
     
+    public Proveedor findByUsername(String username);
+    
     
 }

@@ -1,18 +1,21 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
-export default function Dashboard() {
-    useEffect(() => {
-        // Verifica la existencia del token
-        const token = localStorage.getItem('token');
-        if (!token) {
-          // Redirige a la página de inicio de sesión si no hay token
-          history.push('/login');
-        }
-      }, []);
+import { UsuarioLog } from '../servicios/LoginServicio';
+import { useNavigate } from 'react-router-dom';
+
+export default function Dashboard({setIsAuthenticated}) {
+  
+
+  
+
 
   return (
     <div>
     <h1>Dashboard</h1>
+    
+      
+
+    
     {/* Contenido del dashboard */}
   </div>
   )

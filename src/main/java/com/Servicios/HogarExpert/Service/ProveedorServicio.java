@@ -10,9 +10,12 @@ import com.Servicios.HogarExpert.Enum.Servicio;
 import com.Servicios.HogarExpert.Exception.MiException;
 import com.Servicios.HogarExpert.Repository.IProveedorRepositorio;
 import jakarta.transaction.Transactional;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,6 +38,7 @@ public class ProveedorServicio implements IProveedorServicio {
     
             List<Proveedor> listaProv = this.findAll();
          Proveedor p = prov;
+          p.setPassword(new BCryptPasswordEncoder().encode(p.getPassword()));
          
         for (Proveedor aux : listaProv) {
             if (aux.getMatricula().equals(p.getMatricula())) {
@@ -45,6 +49,9 @@ public class ProveedorServicio implements IProveedorServicio {
         Imagen i = imgs.guardarImagen(archivo);
         p.setImagen(i);
         
+        Set<String> rol = new HashSet<>();
+            rol.add("PROVEEDOR");
+            p.setRoles(rol);
        
         
             proveedorRepo.save(p);

@@ -11,7 +11,7 @@ export default function Trabajo({trabajo, eliminarTrabajo}) {
   return (
     
     <tr>
-        <td>{trabajo.num_trabajo}</td>
+        <td>{trabajo.id}</td>
         <td>{trabajo.horasTrabajo}</td>
         <td>{trabajo.total}</td>
         <td>{trabajo.usuario.id}</td>

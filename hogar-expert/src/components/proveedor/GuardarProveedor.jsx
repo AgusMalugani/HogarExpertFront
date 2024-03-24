@@ -15,6 +15,8 @@ export default function GuardarProveedor() {
     email: "",
     password: "",
     costoXHora: 0,
+    username :"",
+    roles:null,
     archivo: null,
   });
 
@@ -101,6 +103,10 @@ export default function GuardarProveedor() {
     <label>
         <input name='email'  value={userData.email} onChange={(handleChange)} placeholder="EMAIL" type="email" className="input"/>
         <span>Email</span>
+    </label> 
+    <label>
+        <input name='username'  value={userData.username} onChange={(handleChange)} placeholder="username" type="text" className="input"/>
+        <span>Username</span>
     </label> 
         
     

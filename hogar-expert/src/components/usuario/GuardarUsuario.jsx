@@ -13,6 +13,8 @@ export default function GuardarUsuario() {
     email: "",
     password: "",
     domicilio: "",
+    username:"",
+    roles:null,
     archivo: null,
   });
 
@@ -56,176 +58,293 @@ export default function GuardarUsuario() {
   }
 
   return (
-    <div className="formulario-registro">
+    <>
+    <div id='cabecera-formulario' >
+    <h2>Encuentra la solucion a tu problema de la mano de profesionales</h2>
+    <h4>Carga tu perfil GRATIS </h4>
+  </div>
 
-      <form
-        className="form"
-        onSubmit={handleSubmit}
-        encType="multipart/form-data"
-        method="post"
-        >
-        <p className="title">Registro </p>
-        <p className="message">
-          Registrese ahora y obtenga acceso a nuestra app{" "}
-        </p>
+    <div className='formulario'>
+   
+<div className='escritura-formulario' >
+  	
+<h4>Elige los trabajos ideales para ti</h4>
+<p>✅Regístrate y contrata nuestros profesionales </p>
+	
+<h4>Tu perfil 100% GRATIS</h4>
+<p>✅Puede crear tu perfil GRATIS y ver los servicios que puedes tomar.</p>
+</div>
 
-          <div className="flex"> 
+<div>
 
-      
-          <label>
-            <input
-              type="text"
-              name="nombre"
-              value={userData.nombre}
-              onChange={handleChange}
-              placeholder="nombre"
-              className="input"
-              />
-            <span>nombre</span>
-          </label>
+<div className='formulario-registro'>
 
-          <label>
-            <input
-              type="text"
-              name="apellido"
-              value={userData.apellido}
-              onChange={handleChange}
-              placeholder="apellido"
-              className="input"
-              />
-            <span>apellido</span>
-          </label>
-        
-              </div>
-
-        <label>
-          <input
-            type="text"
-            name="celular"
-            value={userData.celular}
-            onChange={handleChange}
-            placeholder="celular"
+<form className="form" onSubmit={handleSubmit} encType="multipart/form-data"
+        method="post">
+    
+    <p className="message">Registrese ahora y obtenga acceso a nuestra app. </p>
+    <div className="flex"> 
+   
+   
+   <label>
+   <input
+   type="text"
+   name="nombre"
+   value={userData.nombre}
+   onChange={handleChange}
+   placeholder="NOMBRE"
+   className="input"
+   />
+   <span>nombre</span>
+   </label>
+   
+   <label>
+   <input
+   type="text"
+   name="apellido"
+   value={userData.apellido}
+   onChange={handleChange}
+   placeholder="APELLIDO"
+   className="input"
+   />
+   <span>apellido</span>
+   </label>
+   
+   </div>
+   
+   <label>
+   <input
+   type="text"
+   name="celular"
+   value={userData.celular}
+   onChange={handleChange}
+   placeholder="CELULAR"
             className="input"
-          />
-          <span>celular</span>
-        </label>
-
-        <label>
-          <input
+            />
+            <span>celular</span>
+            </label>
+            
+            <label>
+            <input
             type="number"
             name="dni"
             value={userData.dni}
             onChange={handleChange}
             placeholder="DNI"
             className="input"
-          />
-          <span>DNI</span>
-        </label>
-
-        <label>
-          <input
+            />
+            <span>DNI</span>
+            </label>
+            
+            <label>
+            <input
             type="email"
             name="email"
             value={userData.email}
             onChange={handleChange}
             placeholder="EMAIL"
             className="input"
-          />
-          <span>Email</span>
-        </label>
-
-        <label>
+            />
+            <span>Email</span>
+            </label>
+            
+            <label>
           <input
+            type="text"
+            name="username"
+            value={userData.username}
+            onChange={handleChange}
+            placeholder="USERNAME"
+            className="input"
+            />
+            <span>username</span>
+            </label>
+            
+            <label>
+            <input
             type="password"
             name="password"
             value={userData.password}
             onChange={handleChange}
             placeholder="PASSWORD"
             className="input"
-          />
-          <span>Password </span>
-        </label>
-
-        <label>
-          <input
+            />
+            <span>Password</span>
+            </label>
+            
+            <label>
+            <input
             type="text"
             name="domicilio"
             value={userData.domicilio}
             onChange={handleChange}
             placeholder="DOMICILIO"
             className="input"
-          />
-          <span>Domicilio </span>
-        </label>
-
-        <label>
-          <input
+            />
+            <span>Domicilio </span>
+            </label>
+            
+            <label>
+            <input
             type="file"
             name="archivo"
-            onChange={handleChange}
-            
+            onChange={handleChange}           
             className="input"
-          />
-        </label>
-
-        <button className="submit">Submit</button>
-        <br />
-        <button className="boton" onClick={goBack}>
-          Volver
+            />
+            </label>
+            
+            <button className="submit">Submit</button>
+            <br />
+            <button className="boton" onClick={goBack}>
+            Volver
         </button>
         <p className="signin">
-          Ya tienes una cuenta? <a href="#">inicia sesion</a>{" "}
+        Ya tienes una cuenta? <a href="#">inicia sesion</a>{" "}
         </p>
-      </form>
-    </div>
-  );
+        </form>
+        </div>
 
-  
-    /*}
-    <form onSubmit={handleSubmit} encType="multipart/form-data" method='post' >
-      <label>
-        Nombre:
-        <input type="text" name="nombre" value={userData.nombre} onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Apellido:
-        <input type="text" name="apellido" value={userData.apellido} onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Celular:
-        <input type="text" name="celular" value={userData.celular} onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        DNI:
-        <input type="number" name="dni" value={userData.dni} onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Email:
-        <input type="text" name="email" value={userData.email} onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input type="password" name="password" value={userData.password} onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Domicilio:
-        <input type="text" name="domicilio" value={userData.domicilio} onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Imagen:
-        <input type="file" name="archivo" onChange={handleChange} />
-      </label>
-      <br />
-      <button type="submit">Enviar</button>
-    </form>
-    
-  */
-  
-}
+      </div>
+</div>
+
+</>
+   
+        );
+        
+        
+      }
+      {/*
+   <div className="formulario-registro">
+   
+   <form
+   className="form"
+   onSubmit={handleSubmit}
+   encType="multipart/form-data"
+   method="post"
+   >
+   <p className="title">Registro </p>
+   <p className="message">
+   Registrese ahora y obtenga acceso a nuestra app{" "}
+   </p>
+   
+   <div className="flex"> 
+   
+   
+   <label>
+   <input
+   type="text"
+   name="nombre"
+   value={userData.nombre}
+   onChange={handleChange}
+   placeholder="NOMBRE"
+   className="input"
+   />
+   <span>nombre</span>
+   </label>
+   
+   <label>
+   <input
+   type="text"
+   name="apellido"
+   value={userData.apellido}
+   onChange={handleChange}
+   placeholder="APELLIDO"
+   className="input"
+   />
+   <span>apellido</span>
+   </label>
+   
+   </div>
+   
+   <label>
+   <input
+   type="text"
+   name="celular"
+   value={userData.celular}
+   onChange={handleChange}
+   placeholder="CELULAR"
+            className="input"
+            />
+            <span>celular</span>
+            </label>
+            
+            <label>
+            <input
+            type="number"
+            name="dni"
+            value={userData.dni}
+            onChange={handleChange}
+            placeholder="DNI"
+            className="input"
+            />
+            <span>DNI</span>
+            </label>
+            
+            <label>
+            <input
+            type="email"
+            name="email"
+            value={userData.email}
+            onChange={handleChange}
+            placeholder="EMAIL"
+            className="input"
+            />
+            <span>Email</span>
+            </label>
+            
+            <label>
+          <input
+            type="text"
+            name="username"
+            value={userData.username}
+            onChange={handleChange}
+            placeholder="USERNAME"
+            className="input"
+            />
+            <span>username</span>
+            </label>
+            
+            <label>
+            <input
+            type="password"
+            name="password"
+            value={userData.password}
+            onChange={handleChange}
+            placeholder="PASSWORD"
+            className="input"
+            />
+            <span>Password</span>
+            </label>
+            
+            <label>
+            <input
+            type="text"
+            name="domicilio"
+            value={userData.domicilio}
+            onChange={handleChange}
+            placeholder="DOMICILIO"
+            className="input"
+            />
+            <span>Domicilio </span>
+            </label>
+            
+            <label>
+            <input
+            type="file"
+            name="archivo"
+            onChange={handleChange}           
+            className="input"
+            />
+            </label>
+            
+            <button className="submit">Submit</button>
+            <br />
+            <button className="boton" onClick={goBack}>
+            Volver
+        </button>
+        <p className="signin">
+        Ya tienes una cuenta? <a href="#">inicia sesion</a>{" "}
+        </p>
+        </form>
+        </div>
+      */}

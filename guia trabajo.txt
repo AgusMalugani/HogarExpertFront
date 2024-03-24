@@ -1,0 +1,32 @@
+
+CONSIGNA (R: REALIZADO, H: HACER, I: INCOMPLETO)
+
+TRABAJO: AL ENTRAR AL DETALLE DEL PROV, AL CLICKEAR CONTRATAR, SE ME CARGARIA AUTOMATICAMENTE EL ID DEL USUARIO LOGUEADO, Y EL ID DEL PROVEEDOR QUE HICE CLICK, **R**
+
+- NOTA DEL TRABAJO.(1)
+
+EL PROVEEDOR, RECIBE LA NOTA  DE TRABAJO Y AGREGA LA CANTIDAD DE HORAS QUE LE LLEVARIA DICHO TRABAJO. (2)
+
+EL USUARIO, RECIBE ESE TRABAJO DETALLADO CON EL COSTO, Y PUEDE ACEPTARLO O RECHAZARLO. (3)
+
+EN EL PERFIL DEL USUARIO, DEBERIA TENER UNA OPCION QUE SEA TRABAJOS... DENTRO DE TRABAJOS, TENGO QUE VER LOS TRABAJOS QUE ESTA EN PROCESO, OTRA SESION PARA TRABAJOS TERMINADOS(4)
+
+
+
+BACKEND
+(1) Debo modificar la entidad, y ponerle un String que sea para agregar la nota del trabajo. y modificar el controlador**R**
+
+(2) El proveedor q recibe la nota de trabajo, debera MODIFICARLA! y agregarle el costo total.**R**
+
+(3) El usuario, vuelve a recibir la nota de trabajo y MODIFICA el estado del trabajo. Si lo acepta, cambia a EN PROCESO. si lo rechaza, se eliminara. El usuario, una vez que termine el trabajo, debera entrar al detalle del trabajo y apretar en un boton que diga, trabajo finalizado. Y el estado del trabajo, cambiara a TERMINADO.
+
+(4)Deberia hacer una consulta a la bd, con los trabajos del ID USUARIO x, donde el estado sea = terminado  o = en proceso. Despues muestro cada lista en un articulo de el front.
+
+
+FRONTEND:
+(1) CREACION DE TRABAJO **R**
+(2) ARMAR MOSTRAR LISTA DE TRABAJOS EN BARRA MI PERFIL
+(3)MODIFICAR LOS DATOS DESDE EL PROVEEDOR.
+(4)ACEPTACION DEL TRABAJO DESDE EL USUARIO.
+(5)DIVISION DE TRABAJOS -ACTIVOS -TERMINADOS -EN PROCESO
+ 

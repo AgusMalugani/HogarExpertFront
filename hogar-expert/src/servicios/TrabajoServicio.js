@@ -1,11 +1,11 @@
 const API_URL="http://localhost:8080/trabajo";
 
- export async function saveTrabajo(trabajo){
+ export async function saveTrabajo(trabajoDatos){
     const response = await fetch( `${API_URL}/crear`,
     {
         method: "POST",
         headers : {"Content-type" : "application/json"},
-        body : JSON.stringify(trabajo)
+        body : JSON.stringify(trabajoDatos)
 
 
     })
@@ -14,8 +14,8 @@ const API_URL="http://localhost:8080/trabajo";
 
 
 
-export async function listaTrabajo(){
- const response = await fetch(`${API_URL}/lista`)
+export async function listaTrabajo(id){
+ const response = await fetch(`${API_URL}/listaPorProveedor/${id}`)
  const data = response.json();       
 return data;
 }

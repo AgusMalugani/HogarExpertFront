@@ -5,8 +5,10 @@
 package com.Servicios.HogarExpert.Controller;
 
 import com.Servicios.HogarExpert.Entity.AuthenticationReq;
+import com.Servicios.HogarExpert.Entity.Proveedor;
 import com.Servicios.HogarExpert.Entity.TokenInfo;
 import com.Servicios.HogarExpert.Entity.Usuario;
+import com.Servicios.HogarExpert.Repository.IProveedorRepositorio;
 import com.Servicios.HogarExpert.Repository.IUsuarioRepositorio;
 import com.Servicios.HogarExpert.Service.JwtUtilService;
 
@@ -15,9 +17,11 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -38,36 +42,53 @@ public class DemoRest {
   private JwtUtilService jwtUtilService;
   @Autowired
   private IUsuarioRepositorio usuarioRepo;
+  @Autowired
+  private IProveedorRepositorio proveedorRepo;
   
   
   private static final Logger logger = LoggerFactory.getLogger(DemoRest.class);
 
   
-  @GetMapping("/admin")
-  public ResponseEntity<?> getMensajeAdmin() {
+  @GetMapping("/usuarioLog")
+  public ResponseEntity<?> traerUsuario() {
 
     var auth =  SecurityContextHolder.getContext().getAuthentication();
-    logger.info("Datos del Usuario: {}", auth.getPrincipal());
-    logger.info("Datos de los Permisos {}", auth.getAuthorities());
-    logger.info("Esta autenticado {}", auth.isAuthenticated());
-
+ 
     Map<String, String> mensaje = new HashMap<>();
     if(auth.getPrincipal() instanceof UserDetails){
         String username = ((UserDetails)auth.getPrincipal()).getUsername();
+        Usuario usuario = usuarioRepo.findByUsername(username); // obtengo los datos del usuario
         
-        Usuario usuarioLog = usuarioRepo.findByUsername(username);
+              if(usuario != null){
+    logger.info("Datos del Usuario: {}", auth.getPrincipal());
+    logger.info("Datos de los Permisos {}", auth.getAuthorities());
+    logger.info("Esta autenticado {}", auth.isAuthenticated());
+    return ResponseEntity.ok(usuario);
         
-    
-   
-    return ResponseEntity.ok(usuarioLog);
-    }else{
+     
+            }else {
+                Proveedor proveedor = proveedorRepo.findByUsername(username);
+                if (proveedor != null) {
+                    logger.info("Proveedor autenticado: {}", proveedor);
+                    logger.info("Datos de los Permisos: {}", auth.getAuthorities());
+                    logger.info("Está autenticado: true");
+                    return ResponseEntity.ok(proveedor);
+                }
+                
+                
+              }
+    }
+                else{
         mensaje.put("principal", "no es instancia de userdetails" );
     
     return ResponseEntity.ok(mensaje);
     }
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No autorizado");
  
     
-    }
+    
+ }
+  
 
 
 
@@ -89,7 +110,7 @@ try{
     return ResponseEntity.ok(new TokenInfo(jwt));
     
 }
-catch(Exception e){
+catch(AuthenticationException e){
     System.out.println(e.getMessage());
     return ResponseEntity.badRequest().body(null);
 }

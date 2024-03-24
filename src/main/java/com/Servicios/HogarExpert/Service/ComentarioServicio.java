@@ -114,9 +114,9 @@ public class ComentarioServicio implements IComentarioServicio {
         if (com.getProveedor().getId() == null) {
             throw new MiException("Debe ingresar el id del proveedor");
         }
-        if (com.getTrabajo().getNum_trabajo() == null) {
-            throw new MiException("Debe ingresar el numero de trabajo");
-        }
+     //   if (com.getTrabajo().getNum_trabajo() == null) {
+       //     throw new MiException("Debe ingresar el numero de trabajo");
+       // }
         if (com.getUsuario().getId() == null) {
             throw new MiException("Debe ingresar el id del usuario");
         }
@@ -133,10 +133,10 @@ public class ComentarioServicio implements IComentarioServicio {
         if (respuestaUsuario.isEmpty()) {
             throw new MiException("No hay usuarios con esa id");
         }
-        Optional<Trabajo> respuestaTrabajo = trabRepo.findById(com.getTrabajo().getNum_trabajo());
-        if (respuestaTrabajo.isEmpty()) {
-            throw new MiException("No hay trabajos con ese numero");
-        }
+//        Optional<Trabajo> respuestaTrabajo = trabRepo.findById(com.getTrabajo().getNum_trabajo());
+  //      if (respuestaTrabajo.isEmpty()) {
+    //        throw new MiException("No hay trabajos con ese numero");
+     //   }
 
     }
 

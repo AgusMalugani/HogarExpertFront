@@ -17,20 +17,32 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static org.springframework.security.config.Customizer.withDefaults;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 @Configuration
-public class WebSecurityConfig {
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
+public class WebSecurityConfig  {
 
 
+     @Autowired
+    private CorsConfig corsConfig;
+    
   @Autowired
   private JwtRequestFilter jwtRequestFilter;
   @Bean
   SecurityFilterChain web(HttpSecurity http) throws Exception {
     http
-        .csrf().disable() // (2)
+        .csrf().disable()
         .authorizeHttpRequests((authorize) -> authorize
-            .requestMatchers("/login","/usuario/crear").permitAll()
-            .requestMatchers("/admin/**").hasRole("ADMIN")
+           .requestMatchers("/login",
+                   "/imagen/**",
+                   "/usuario/crear",
+                   "/proveedor/crear",
+                   "/proveedor/lista",
+                   "/proveedor/lista/{servicio}",
+                   "/trabajo/**").permitAll()     
             .anyRequest().authenticated()
         )
         .cors(withDefaults())
@@ -40,20 +52,12 @@ public class WebSecurityConfig {
         );
     
     
-    http
-        .formLogin(withDefaults()); // (1)
-   /* http
-        .httpBasic(withDefaults()); // (1)
-     */
+   http
+       .formLogin().disable(); 
+   
     return http.build();
   }
-  /* (1) By default, Spring Security form login/http basic auth are enabled.
-  However, as soon as any servlet-based configuration is provided,
-  form based login or/and http basic auth must be explicitly provided.
-
-  * (2) If our stateless API uses token-based authentication, such as JWT,
-    we don't need CSRF protection
-  */
+ 
 
   
 

@@ -5,6 +5,7 @@ import Proveedor from './Proveedor';
 export default function Proveedores() {
 
     const[proveedores,setProveedores] = useState([]);
+    
     useEffect( ()=>{
        listaProveedores().then(data => {setProveedores(data)});
     },[] )

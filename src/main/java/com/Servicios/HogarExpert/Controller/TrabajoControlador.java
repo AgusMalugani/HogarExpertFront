@@ -5,10 +5,12 @@
 package com.Servicios.HogarExpert.Controller;
 
 import com.Servicios.HogarExpert.Entity.Trabajo;
+import com.Servicios.HogarExpert.Enum.EstadoTrabajo;
 import com.Servicios.HogarExpert.Exception.MiException;
 import com.Servicios.HogarExpert.Service.ITrabajoServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,27 +32,38 @@ public class TrabajoControlador {
     @Autowired
     private ITrabajoServicio trabajoServi;
     
-    @PostMapping("/crear")
-    public void crearTrabajo(@RequestBody Trabajo t) {
-        
+    @PostMapping("/crear") // lo va a crear el usuario.
+    public ResponseEntity<Trabajo> crearTrabajo(@RequestBody Trabajo t) { // aca tengo que recibir, el trabajo con un usuario, proveedor y notaTrabajo
+   
         try {
             System.out.println(t.getProveedor());
             System.out.println(t.getUsuario());
-            trabajoServi.save(t);
+
+            Trabajo trabajo = trabajoServi.save(t);
             System.out.println("trabajo creado");
+            return ResponseEntity.ok(trabajo);
+            
         } catch (MiException ex) {
             System.out.println(ex.getMessage());
+            return ResponseEntity.badRequest().body(null);
         }
         
     }
     
-    @GetMapping("/detalle/{num_trabajo}")
-    public Trabajo verTrabajo(@PathVariable Long num_trabajo){
+    
+    @GetMapping("/listaPorProveedor")
+    public List<Trabajo>listaTrabajos(@PathVariable Long id){ // envio el id del prov
+        
+        return trabajoServi.findAll(id); // retorno la lista de trabajos de ese prov.
+    }
+    
+    @GetMapping("/detalle/{id}") // este es el que vera el prov. y Aca lo va a modificar.
+    public Trabajo verTrabajo(@PathVariable Long id){
         try {
-            Trabajo t = trabajoServi.findById(num_trabajo);
+            Trabajo t = trabajoServi.findById(id);
             System.out.println("trabajo encontrado");
             
-            return t;
+            return t; 
         } catch (MiException ex) {
             System.out.println(ex.getMessage());
             return null;
@@ -59,15 +72,25 @@ public class TrabajoControlador {
      
         }
     
-    @GetMapping("/lista")
-    public List<Trabajo>listaTrabajos(){
+      @PutMapping("/crearTrabajoProveedor")//mando el id del trabajo para poder modificar ese trabajo
+    public ResponseEntity<Trabajo> crearTrabajoProv(@RequestBody Trabajo t) throws MiException{
+        //tengo que usar el trabajo q tenia, y modifico, el tema de los costos.
         
-        return trabajoServi.findAll();
+        try{
+        Trabajo trabajo = trabajoServi.crearTrabajoProv(t);
+         
+            System.out.println("exito trabajo modificado");
+            return ResponseEntity.ok(trabajo);
+        }catch(MiException ex){
+            
+            System.out.println(ex.getMessage());
+            return ResponseEntity.badRequest().body(null);
+        }
+        
     }
     
     
-
-    @PutMapping("/modificar/{num_trabajo}")
+       @PutMapping("/modificar/{num_trabajo}")
     public void modificarTrabajo(@PathVariable Long num_trabajo, @RequestBody Trabajo t) throws MiException{
         try{
          trabajoServi.update(num_trabajo, t);
@@ -79,6 +102,12 @@ public class TrabajoControlador {
         }
         
     }
+    
+    
+    
+    
+
+ 
     
     @DeleteMapping("/eliminar/{num_trabajo}")
     public void eliminarTrabajo(@PathVariable Long num_trabajo){

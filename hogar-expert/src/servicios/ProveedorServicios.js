@@ -2,8 +2,10 @@ import { json } from "react-router-dom";
 
     const API_URL = "http://localhost:8080/proveedor";
 
-export async function listaProveedores(){
-    const response = await fetch(`${API_URL}/lista`);
+export async function listaProveedores(token){
+    const response = await fetch(`${API_URL}/lista`,{
+        headers: {"Authorization" : token}
+    });
     const data = await response.json()
     return data;
 }
@@ -26,8 +28,10 @@ const response = await fetch(`${API_URL}/eliminar/${id}`,
 })
 }
 
-export async function detalleProveedor(id){
-    const response = await fetch(`${API_URL}/detalle/${id}`);
+export async function detalleProveedor(id,token){
+    const response = await fetch(`${API_URL}/detalle/${id}`,{
+        headers: {"Authorization" : token}
+    });
     const data = await response.json()
     return data;
 }

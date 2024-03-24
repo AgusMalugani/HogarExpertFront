@@ -5,7 +5,10 @@
 package com.Servicios.HogarExpert.Repository;
 
 import com.Servicios.HogarExpert.Entity.Trabajo;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,5 +17,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ITrabajoRepositorio extends JpaRepository<Trabajo, Long> {
+    @Query("SELECT t FROM Trabajo t WHERE t.proveedor.id = :id")
+    public List<Trabajo>listaTrabajosPorProveedor(@Param("id") Long id);
     
 }

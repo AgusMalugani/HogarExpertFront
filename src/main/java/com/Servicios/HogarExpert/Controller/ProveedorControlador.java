@@ -12,6 +12,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +41,7 @@ public class ProveedorControlador {
     
     @PostMapping("/crear")
     public ResponseEntity<Proveedor> crearProveedor(@ModelAttribute Proveedor prov, @RequestParam("archivo") MultipartFile archivo) {
-        System.out.println("aaa");
+       
         try {
           Proveedor p =  provServ.save(prov,archivo);
             System.out.println("proveedor creado");
@@ -52,7 +53,7 @@ public class ProveedorControlador {
         }
         
     }
-    
+    @PreAuthorize("hasAnyRole('PROVEEDOR','ADMIN','USER')")
     @GetMapping("/detalle/{id}")
     public Proveedor verProveedor(@PathVariable Long id){
         try {
@@ -67,6 +68,7 @@ public class ProveedorControlador {
      
         }
     
+    
     @GetMapping("/lista")
     public List<Proveedor>listaProveedores(){
         
@@ -75,6 +77,7 @@ public class ProveedorControlador {
     
     
 
+    @PreAuthorize("hasAnyRole('PROVEEDOR','ADMIN')")
     @PutMapping("/modificar/{id}")
     public void modificarProveedor(@PathVariable Long id, @RequestBody Proveedor prov) throws MiException{
         try{
@@ -88,6 +91,8 @@ public class ProveedorControlador {
         
     }
     
+    
+    @PreAuthorize("hasAnyRole('PROVEEDOR','ADMIN')")
     @DeleteMapping("/eliminar/{id}")
     public void eliminarProveedor(@PathVariable Long id){
         try {

@@ -15,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import java.util.List;
+import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,6 +35,10 @@ public class Proveedor {
     private String password;
     private String celular;
     
+    private String username;
+    
+      private Set<String> roles;
+    
     @Enumerated(EnumType.STRING)
     private Servicio servicio;
     
@@ -47,15 +52,23 @@ public class Proveedor {
     public Proveedor() {
     }
 
-    public Proveedor(Long id, String nombreEmpresa, String matricula, String email, String celular, Servicio servicio, double costoXHora, Imagen imagen) {
+    public Proveedor(Long id, String nombreEmpresa, String matricula, String email, String password, String celular, String username, Set<String> roles, Servicio servicio, double costoXHora, Imagen imagen) {
         this.id = id;
         this.nombreEmpresa = nombreEmpresa;
         this.matricula = matricula;
         this.email = email;
+        this.password = password;
         this.celular = celular;
+        this.username = username;
+        this.roles = roles;
         this.servicio = servicio;
         this.costoXHora = costoXHora;
         this.imagen = imagen;
+    }
+
+    @Override
+    public String toString() {
+        return "Proveedor{" + "id=" + id + ", nombreEmpresa=" + nombreEmpresa + ", matricula=" + matricula + ", email=" + email + ", password=" + password + ", celular=" + celular + ", username=" + username + ", roles=" + roles + ", servicio=" + servicio + ", costoXHora=" + costoXHora + ", imagen=" + imagen + '}';
     }
 
    

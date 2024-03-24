@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { deleteTrabajo, listaTrabajo } from '../../servicios/TrabajoServicio'
 import Trabajo from './Trabajo'
+import { useUser } from '../sesion/UserContext'
 
 export default function Trabajos() {
+  const{user} = useUser();
   
     const[trabajos,setTrabajos]=useState([])
     useEffect( ()=>{
-        listaTrabajo().then( data => {setTrabajos(data)} )
+        listaTrabajo(user.id).then( data => {setTrabajos(data)} )
     },[] )
   
     async function eliminarTrabajo(trabajo){
@@ -36,7 +38,7 @@ export default function Trabajos() {
         </tr>
       </thead>
       <tbody>
-        {trabajos.length > 0 && trabajos.map(elemento => <Trabajo key={elemento.num_trabajo} trabajo={elemento} eliminarTrabajo ={eliminarTrabajo} /> ) }
+        {trabajos.length > 0 && trabajos.map(elemento => <Trabajo key={elemento.id} trabajo={elemento} eliminarTrabajo ={eliminarTrabajo} /> ) }
       </tbody>
       
     </table>

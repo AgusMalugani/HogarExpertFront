@@ -2,82 +2,89 @@ import React, { useEffect, useState } from 'react'
 import { saveTrabajo } from '../../servicios/TrabajoServicio'
 import { obtenerUsuarios, perfilUsuario} from '../../servicios/UsuarioServicios';
 import { detalleProveedor, listaProveedores } from '../../servicios/ProveedorServicios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useUser } from '../sesion/UserContext';
 
 
 export default function CrearTrabajo() {
-    const [usuario, setUsuario] = useState("");
-const [proveedor, setProveedor] = useState("");
+const{id}=useParams(); // id proveedor
+const{user}=useUser(); // id usuario logueado
+const token = localStorage.getItem("token");
+
+
+
+   // const [usuario, setUsuario] = useState("");
+//const [proveedor, setProveedor] = useState("");
 
     const [horasTrabajo, setHorasTrabajo] = useState();
     const navigate = useNavigate()
 
-    const [proveedores, setProveedores] = useState([]);
-    useEffect(() => {
-        listaProveedores().then(data => { setProveedores(data) })
-    }, [])
-
-
-    const [usuarios, setUsuarios] = useState([]);
-    useEffect(() => {
-        obtenerUsuarios().then(data => { setUsuarios(data) })
-    }, [])
-
-
-    const [error, setError] = useState(false)
-
     
 
 
-    const idUsuario = usuario;
-    const [usuario1, setUsuario1] = useState({idUsuario});
-
+    const [proveedor, setProveedor] = useState({});
     useEffect(() => {
-        if(usuario){
-        perfilUsuario(usuario).then(data => {setUsuario1(data);});
-        }
-    }, [usuario]);
+        detalleProveedor(id,token).then(data => { setProveedor(data) })
+    }, [])
 
-  
-    const idProv = proveedor;
-    const [proveedor1, setProveedor1] = useState({idProv});
 
+    const [usuario, setUsuario] = useState({});
     useEffect(() => {
-        if(proveedor){
-      detalleProveedor(proveedor).then(data => setProveedor1(data))
-        }
+         setUsuario(user); 
+    }, [user])
+
+
+const[trabajoDatos,setTrabajoDatos]=useState({
+    usuario: {},
+    proveedor:{},
+    horasTrabajo:0,
+    total:0,
+    notaTrabajo:"",
+    estado:"ESPERANDO"
+});
+
+
+    const handleChange = (e)=>{
+
+        if(e.target.name === "usuario"){
+           setTrabajoDatos({
+              ...trabajoDatos,
+            [e.target.name]: e.target.name ? usuario : e.target.value 
+            }
+               )
+            } else if(e.target.name === "proveedor"){
+                setTrabajoDatos({
+                    ...trabajoDatos,
+                    [e.target.name]: e.target.name ? proveedor : e.target.value
+                })
+             } else if(e.target.name === "notaTrabajo"){
+                setTrabajoDatos({
+                    ...trabajoDatos,
+                    [e.target.name]:e.target.value
+                })
+             }
+
+       
     }
-      , [proveedor])
-  
 
+   
 
-    async function CargarTrabajo(evento) {
+      function CargarTrabajo(evento) {
         evento.preventDefault();
 
-
-
-
-
-        if (!usuario || !proveedor || horasTrabajo < 0) {
-            setError(true)
-        }
-        setError(false)
-
-    
         
-        const newTrabajo = {
-            usuario : usuario1,
-            proveedor: proveedor1,
-            horasTrabajo
-        };
-        await saveTrabajo(newTrabajo);
-        navigate("/")
-
-
+        enviarBackEnd()
     }
+    async function enviarBackEnd(){
+        console.log(trabajoDatos)
+        await saveTrabajo(trabajoDatos);
+    }
+   
+
     function goBack(){
         window.history.back()
     }
+
     return (
 <div className="formulario-registro">
 
@@ -86,35 +93,24 @@ const [proveedor, setProveedor] = useState("");
         <p className="title">Cargar nuevo trabajo </p>
         
           <div className="form-trabajo"> 
-          <label htmlFor="proveedor">Seleccione el usuario 
-          <select className='input-trabajo'  name="usuario" value={usuario} onChange={(e) => setUsuario(e.target.value)}>
-                <option value="">Seleccione un usuario</option>
-                {usuarios.map((user) => (
-                    <option key={user.id} value={user.id}>
-                        {user.nombre}
-                    </option>
-                ))}
-            </select>
-            </label>
-            
+          <label htmlFor="usuario"> Seleccione el usuario </label>
+          <select  name="usuario" onChange={handleChange} value={trabajoDatos.usuario.username || ''}>
+          <option value="">seleccione un usuario</option>
+               <option value={usuario.username}>{usuario.username}</option>    
+            </select>  
 
-            <label htmlFor="proveedor">Seleccione el proveedor 
-            <select className='input-trabajo' name="proveedor" value={proveedor} onChange={(e) => setProveedor(e.target.value)}>
-                <option value="">Seleccione un proveedor</option>
-
-                {proveedores.map((proveedor) => (
-                    <option key={proveedor.id} value={proveedor.id}>
-                        {proveedor.nombreEmpresa}
-                    </option>
-                ))}
+            <label htmlFor="proveedor">Seleccione el proveedor</label>
+            <select  name="proveedor" onChange={handleChange} value={trabajoDatos.proveedor.nombreEmpresa || ''}>
+                <option value="">seleccione un proveedor</option>
+               <option value={proveedor.nombreEmpresa}>{proveedor.nombreEmpresa}</option>    
             </select>
-            </label>
-            
+             -{/* <input className='input-trabajo'  placeholder={proveedor.nombreEmpresa}  type='text'/>
+            */}
 
             <label>
-             Ingrese las horas de trabajo 
+             Ingrese una nota del trabajo que debe realizar
              
-           <input className='input-trabajo' type="number" name='horasTrabajo' value={horasTrabajo} onChange={(e) => setHorasTrabajo(e.target.value)} />
+           <input className='input-trabajo' type="text" name='notaTrabajo' value={trabajoDatos.notaTrabajo} onChange={handleChange} />
            </label>
         
 

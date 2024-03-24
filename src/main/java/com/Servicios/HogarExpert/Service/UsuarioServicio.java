@@ -5,15 +5,17 @@
 package com.Servicios.HogarExpert.Service;
 
 import com.Servicios.HogarExpert.Entity.Imagen;
-import com.Servicios.HogarExpert.Enum.Rol;
+
 import com.Servicios.HogarExpert.Exception.MiException;
 import com.Servicios.HogarExpert.Entity.Usuario;
 import com.Servicios.HogarExpert.Repository.IUsuarioRepositorio;
 import jakarta.transaction.Transactional;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -45,6 +47,14 @@ public class UsuarioServicio implements IUsuarioServicio {
        Imagen img = imgServ.guardarImagen(archivo);
         
         u.setImagen(img);
+        
+       // if(u.getRoles() == null || u.getRoles().isEmpty()){
+            Set<String> rol = new HashSet<>();
+            rol.add("USER");
+            u.setRoles(rol);
+        //}
+        
+        
          usuarioRepo.save(u);
          return u;
     }

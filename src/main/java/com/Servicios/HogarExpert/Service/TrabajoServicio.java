@@ -7,6 +7,7 @@ package com.Servicios.HogarExpert.Service;
 import com.Servicios.HogarExpert.Entity.Proveedor;
 import com.Servicios.HogarExpert.Entity.Trabajo;
 import com.Servicios.HogarExpert.Entity.Usuario;
+import com.Servicios.HogarExpert.Enum.EstadoTrabajo;
 import com.Servicios.HogarExpert.Exception.MiException;
 import com.Servicios.HogarExpert.Repository.IProveedorRepositorio;
 import com.Servicios.HogarExpert.Repository.ITrabajoRepositorio;
@@ -33,9 +34,9 @@ public class TrabajoServicio implements ITrabajoServicio {
     
     @Transactional
     @Override
-    public void save(Trabajo t) throws MiException {
-    this.validar(t);
-    
+    public Trabajo save(Trabajo t) throws MiException {
+   // this.validar(t);
+    //traigo nota, usuario,proveedor.
       Long usuarioId = t.getUsuario().getId();
     Long proveedorId = t.getProveedor().getId();
     
@@ -51,9 +52,16 @@ public class TrabajoServicio implements ITrabajoServicio {
     
     t.setUsuario(u);
     t.setProveedor(p);
-    trabajoRepo.save(t);
-    }
     
+    t.setEstado(EstadoTrabajo.ESPERANDO);
+    
+    // total, y horas trabajo estara null 
+    
+    trabajoRepo.save(t);
+    return t;
+    }
+ 
+    /*
     @Transactional
     @Override
     public void delete(Long num_trabajo) throws MiException {
@@ -69,15 +77,15 @@ public class TrabajoServicio implements ITrabajoServicio {
       
             }
             }
-
+*/
     @Override
-    public List<Trabajo> findAll() {
-        return trabajoRepo.findAll();
+    public List<Trabajo> findAll(Long id) {
+        return trabajoRepo.listaTrabajosPorProveedor(id);
     }
 
     @Override
-    public Trabajo findById(Long num_trabajo) throws MiException {
-    Optional<Trabajo> respuesta = trabajoRepo.findById(num_trabajo);
+    public Trabajo findById(Long id) throws MiException {
+    Optional<Trabajo> respuesta = trabajoRepo.findById(id);
             
             
             if (respuesta == null || respuesta.isEmpty()) {
@@ -93,11 +101,23 @@ public class TrabajoServicio implements ITrabajoServicio {
 
         }
     
-    
+ 
     @Transactional
     @Override
-    public void update(Long num_trabajo, Trabajo t) throws MiException {
-    Optional<Trabajo> respuesta = trabajoRepo.findById(num_trabajo);
+    public Trabajo crearTrabajoProv( Trabajo t) throws MiException { // esto me enviara e el prov.
+  
+                trabajoRepo.save(t); // una vez completado. el trabajo, se envia al usuario y espera aceptacion.
+                System.out.println("trabajo completado.");
+
+                return t;
+            }
+
+        
+    
+     @Transactional
+    @Override
+    public void update(Long id, Trabajo t) throws MiException {
+    Optional<Trabajo> respuesta = trabajoRepo.findById(id);
             if (respuesta == null || respuesta.isEmpty()) {
                 throw new MiException("No se encontro trabajo con esa id");
             }
@@ -106,7 +126,7 @@ public class TrabajoServicio implements ITrabajoServicio {
                 this.validar(t);
 
                 Trabajo trabajo = t;
-                trabajo.setNum_trabajo(num_trabajo);
+                trabajo.setId(id);
                 
                 
                 
@@ -146,5 +166,15 @@ public class TrabajoServicio implements ITrabajoServicio {
         
 
     }
+
+    @Override
+    public void delete(Long num_trabajo) throws MiException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+//    @Override
+  //  public void update(Long num_trabajo, Trabajo t) throws MiException {
+    //    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+   // }
 
 }

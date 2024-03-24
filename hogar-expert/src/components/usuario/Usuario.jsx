@@ -7,6 +7,7 @@ export default function Usuario({usuario, eliminarUsuario}) {
 
 
   const[imagen,setImagen]= useState();
+  
 
     useEffect(()=>{
         traerImagenUsuario(usuario.id).then(data=> { const imagenUrl = URL.createObjectURL(data) 

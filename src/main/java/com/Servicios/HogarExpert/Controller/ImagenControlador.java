@@ -15,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,14 +42,8 @@ public class ImagenControlador {
     @Autowired
     IProveedorServicio ps;
     
-    @PostMapping("/crear")
-    public ResponseEntity<String> cargarImagen( @RequestParam("archivo") MultipartFile archivo){
-        is.guardarImagen(archivo);
-        System.out.println("*****");
-        return  ResponseEntity.status(HttpStatus.OK).body("Se guardo la imagen");
-    }
-    
-    
+
+        // es necesario para que solo puedan verlo las personas que esten logueadas
     @GetMapping("/perfil/{id}")
     public ResponseEntity<byte[]> imagenUsuario(@PathVariable Long id) throws MiException{
         Usuario u = us.findById(id);

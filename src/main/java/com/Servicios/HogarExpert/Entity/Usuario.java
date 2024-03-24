@@ -34,11 +34,6 @@ public class Usuario {
     //@Enumerated
     //private Rol rol;
 
-    @Override
-    public String toString() {
-        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", celular=" + celular + ", domicilio=" + domicilio + ", username=" + username + ", email=" + email + ", password=" + password + ", roles=" + roles + ", imagen=" + imagen + '}';
-    }
-    
       private Set<String> roles;
     @OneToOne
     private Imagen imagen;
@@ -60,7 +55,11 @@ public class Usuario {
         this.imagen = imagen;
     }
 
-  
+   @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", celular=" + celular + ", domicilio=" + domicilio + ", username=" + username + ", email=" + email + ", password=" + password + ", roles=" + roles + ", imagen=" + imagen + '}';
+    }
+    
   
     
     

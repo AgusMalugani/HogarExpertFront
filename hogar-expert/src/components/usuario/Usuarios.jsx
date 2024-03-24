@@ -3,13 +3,14 @@ import { deleteUsuarios, obtenerUsuarios } from '../../servicios/UsuarioServicio
 import Usuario from './Usuario';
 
 export default function Usuarios() {
+    const token = localStorage.getItem("token")
     const[usuarios,setUsuarios] =useState([]);
     useEffect( ()=>{ 
-        obtenerUsuarios().then(data =>{setUsuarios(data) })
+        obtenerUsuarios(token).then(data =>{setUsuarios(data) })
     },[] )
 
 async function eliminarUsuario(usuario){
-    await deleteUsuarios(usuario.id)
+    await deleteUsuarios(usuario.id,token)
     const newUsuarios = usuarios.filter(us => us.id !== usuario.id)
     setUsuarios(newUsuarios);
 }
