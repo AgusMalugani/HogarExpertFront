@@ -1,19 +1,34 @@
 import React, { useEffect, useState } from 'react'
-import { deleteTrabajo, listaTrabajo } from '../../servicios/TrabajoServicio'
+import { deleteTrabajo, listaTrabajo, listaTrabajoUsuario } from '../../servicios/TrabajoServicio'
 import Trabajo from './Trabajo'
 import { useUser } from '../sesion/UserContext'
+import { useParams } from 'react-router-dom'
 
 export default function Trabajos() {
+
+  //const{id}=useParams();
   const{user} = useUser();
   
     const[trabajos,setTrabajos]=useState([])
+  if(user && user.roles.includes('PROVEEDOR')){
     useEffect( ()=>{
-        listaTrabajo(user.id).then( data => {setTrabajos(data)} )
-    },[] )
-  
+      listaTrabajo(user.id).then( data => {setTrabajos(data)} )
+  },[] )
+  } else if(user&& user.roles.includes('ADMIN')){
+    useEffect( ()=>{
+      listaTrabajoUsuario(user.id).then( data => {setTrabajos(data)} )
+
+  },[] )
+  }else if(user&& user.roles.includes('USER')){
+    useEffect( ()=>{
+      listaTrabajoUsuario(user.id).then( data => {setTrabajos(data)} )
+
+  },[] )
+  }
+   
     async function eliminarTrabajo(trabajo){
-      await deleteTrabajo(trabajo.num_trabajo)
-      const newTrabajos = trabajos.filter( tr => tr.num_trabajo !== trabajo.num_trabajo)
+      await deleteTrabajo(trabajo.id)
+      const newTrabajos = trabajos.filter( tr => tr.id !== trabajo.id)
       setTrabajos(newTrabajos);
     }
 
@@ -24,25 +39,22 @@ export default function Trabajos() {
   }
   
     return (
-      <div>
-    <table>
-      <thead>
-        <tr>
-        <th>NUM TRABAJO</th>
-        <th>HORAS TRABAJO</th>
-        <th>TOTAL</th>
-        <th>ID USUARIO</th>
-        <th>ID PROVEEDOR</th>
-        <th>ESTADO</th>
-        <th>ACCIONES</th>
-        </tr>
-      </thead>
-      <tbody>
-        {trabajos.length > 0 && trabajos.map(elemento => <Trabajo key={elemento.id} trabajo={elemento} eliminarTrabajo ={eliminarTrabajo} /> ) }
-      </tbody>
-      
-    </table>
-    <button onClick={goBack}>Volver</button>
+      <div >
+        <div className='tbody-usuario-proveedor'>
+        <h2>TRABAJOS ACTIVOS</h2>
+        {trabajos.length > 0 && trabajos.map(  elemento => elemento.estado === "ACTIVO" && <Trabajo key={elemento.id} trabajo={elemento} eliminarTrabajo ={eliminarTrabajo} />  ) }
+        </div>
+   <div className='tbody-usuario-proveedor'>
+        <h2>TRABAJOS ESPERANDO</h2>
+        {trabajos.length > 0 && trabajos.map(  elemento => elemento.estado === "ESPERANDO" && <Trabajo key={elemento.id} trabajo={elemento} eliminarTrabajo ={eliminarTrabajo} />  ) }
+   </div>
+   <div className='tbody-usuario-proveedor'>
+        <h2>TRABAJOS FINALIZADOS</h2>
+        {trabajos.length > 0 && trabajos.map(  elemento => elemento.estado === "FINALIZADO" && <Trabajo key={elemento.id} trabajo={elemento} eliminarTrabajo ={eliminarTrabajo} />  ) }
+   </div>
+    
+    
+  {/*  <button onClick={goBack}>Volver</button> */}
     </div>
   )
 }

@@ -14,11 +14,13 @@ import java.util.List;
  */
 public interface IComentarioServicio {
     
-       public void save(Comentario com) throws MiException;
-    public void delete(Long id_comentario) throws MiException;
+       public Comentario save(Comentario com) throws MiException;
+    public void delete(Long id) throws MiException;
     public List<Comentario>findAll() ;
-    public Comentario findById(Long id_comentario) throws MiException;
-    public void update(Long id_comentario,Comentario com) throws MiException;
+    
+    
+    public List<Comentario> findByIdProveedor(Long id) throws MiException;   
+    public void update(Long id,Comentario com) throws MiException;
     
     public void validar(Comentario com) throws MiException;
     

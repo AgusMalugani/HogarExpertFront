@@ -11,7 +11,11 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,9 +32,9 @@ public class Trabajo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @OneToOne
+    @ManyToOne
     private Usuario usuario;
-    @OneToOne
+    @ManyToOne
     private Proveedor proveedor; 
     
     private Integer horasTrabajo;
@@ -54,6 +58,8 @@ public class Trabajo {
         this.estado = estado;
     }
 
+
+  
 
 
 

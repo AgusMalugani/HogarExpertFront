@@ -9,6 +9,7 @@ import com.Servicios.HogarExpert.Exception.MiException;
 import com.Servicios.HogarExpert.Service.IComentarioServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,12 +44,12 @@ public class ComentarioControlador {
         
     }
     
-    @GetMapping("/detalle/{id_comentario}")
-    public Comentario verComentario(@PathVariable Long id_comentario){
+    @GetMapping("/listaDeProveedor/{id}")
+    public ResponseEntity<List<Comentario>> verComentario(@PathVariable Long id){
         try {
-            Comentario c = comServ.findById(id_comentario);
+            List<Comentario> c = comServ.findByIdProveedor(id);// envio el id del proveedor
             
-            return c;
+            return ResponseEntity.ok(c);
         } catch (MiException ex) {
             System.out.println(ex.getMessage());
             return null;

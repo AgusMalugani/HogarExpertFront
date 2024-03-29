@@ -16,3 +16,10 @@ export async function crearComentario(comentario){
     body: JSON.stringify(comentario)
    } )
 }
+
+export async function listaComentariosPorProveedor(id){
+    const response = await fetch(`${API_URL}/listaDeProveedor/${id}`)
+    const data = await response.json()
+    return data;
+
+}

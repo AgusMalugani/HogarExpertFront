@@ -14,7 +14,6 @@ import DetalleProveedor from './components/proveedor/DetalleProveedor';
 import ModificarProveedor from './components/proveedor/ModificarProveedor';
 import CrearTrabajo from './components/trabajo/CrearTrabajo';
 import Trabajos from './components/trabajo/Trabajos';
-import ModificarTrabajo from './components/trabajo/ModificarTrabajo';
 import DetalleTrabajo from './components/trabajo/DetalleTrabajo';
 import Comentarios from './components/comentario/Comentarios';
 import GuardarComentario from './components/comentario/GuardarComentario';
@@ -66,9 +65,9 @@ function App() {
 
 
     <Route path='/trabajo/crear/:id' element ={<CrearTrabajo />}/>
-    <Route path='/trabajo/lista/:id' element={<Trabajos/>}/>
-    <Route path='/trabajo/detalle/:num_trabajo' element = { <DetalleTrabajo/>} />
-    <Route path='/trabajo/modificar/:num_trabajo' element={ <ModificarTrabajo/>}/>
+    <Route path='/trabajo/lista' element={<Trabajos/>}/>
+    <Route path='/trabajo/detalle/:id' element = { <DetalleTrabajo/>} />
+    
 
 
     <Route path='/comentario/lista' element={<Comentarios/>} />

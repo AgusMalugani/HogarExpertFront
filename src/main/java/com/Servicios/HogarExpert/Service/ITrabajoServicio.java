@@ -17,11 +17,13 @@ public interface ITrabajoServicio {
     
     public void delete(Long id) throws MiException;
     
-    public List<Trabajo>findAll(Long id) ;
+    public List<Trabajo>findAllProv(Long id) ;
+    
+     public List<Trabajo>findAllUsuario(Long id) ;
     
     public Trabajo findById(Long id) throws MiException;
     
-    public void update(Long id,Trabajo t) throws MiException;
+    public Trabajo update(Long id,Trabajo t) throws MiException;
     
      public Trabajo crearTrabajoProv(Trabajo t) throws MiException;
     

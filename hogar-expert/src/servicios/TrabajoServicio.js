@@ -16,9 +16,15 @@ const API_URL="http://localhost:8080/trabajo";
 
 export async function listaTrabajo(id){
  const response = await fetch(`${API_URL}/listaPorProveedor/${id}`)
- const data = response.json();       
+ const data = await response.json();       
 return data;
 }
+
+export async function listaTrabajoUsuario(id){
+    const response = await fetch(`${API_URL}/listaPorUsuario/${id}`)
+    const data = await response.json();       
+   return data;
+   }
 
 
 export async function deleteTrabajo(num_trabajo){
@@ -29,8 +35,8 @@ export async function deleteTrabajo(num_trabajo){
 
 }
 
-export async function updateTrabajo(num_trabajo,trabajo){
-const response = await fetch(`${API_URL}/modificar/${num_trabajo}`,{
+export async function updateTrabajo(id,trabajo){
+const response = await fetch(`${API_URL}/modificar/${id}`,{
 method : "PUT",
 headers : {"Content-type" : "application/json"},
 body : JSON.stringify(trabajo)
@@ -38,8 +44,8 @@ body : JSON.stringify(trabajo)
 )
 }
 
-export async function verTrabajo(num_trabajo){
-const response = await fetch(`${API_URL}/detalle/${num_trabajo}`)
+export async function verTrabajo(id){
+const response = await fetch(`${API_URL}/detalle/${id}`)
 const data = await response.json()
 return data;
 

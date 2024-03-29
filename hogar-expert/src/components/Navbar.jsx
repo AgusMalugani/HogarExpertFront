@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import logoHogar from '../img/logoHogar.png'
 import { useUser } from './sesion/UserContext';
+import Login from './sesion/Login';
 
 
 
@@ -29,9 +30,10 @@ const { user } = useUser();
       setIsAuthenticated(false);
       localStorage.removeItem('token');
       console.log("Token eliminado de localStorage");
-      navigate("/login");
+      navigate("/");
+      alert("session cerrada")
     } else if (selectedOption === 'trabajos'){
-      navigate(`/trabajo/lista/${user.id}`)
+      navigate(`/trabajo/lista`)
 
     }
   };
@@ -51,9 +53,9 @@ const { user } = useUser();
   <div>
     <ul className='nav-list' >
       <li><Link  className="nav-link" to='/'> Como funciona </Link></li>
-     {!isAuthenticated && <li>  <Link className="nav-link" to='/login'> Acceder </Link></li>}
+     {/*!isAuthenticated && <li>  <Link className="nav-link" to='/login'> Acceder </Link></li>*/}
+     {!isAuthenticated && <li> <Login  setIsAuthenticated={setIsAuthenticated} /> </li>}
      {!isAuthenticated && <li> <Link className="nav-link" to={`/usuario/crear`}>Registro  </Link>  </li>}
-     {isAuthenticated && <li><Link className="nav-link" to='/trabajo/crear'> Crear Trabajo </Link></li>}
      {isAuthenticated && <li> <Link className="nav-link" to={`/usuario/lista`}>lista usuarios  </Link>  </li>}
     
      {isAuthenticated && (
@@ -62,9 +64,14 @@ const { user } = useUser();
               Mi Perfil
             </a>
             <ul className="dropdown-menu dropdown-menu-dark">
+             {user && user.roles.includes("ADMIN") && <li><p>ADMIN</p></li> }
+             {user && user.roles.includes("USER") && <li><p>{user.username}</p></li> }
+             {user && user.roles.includes("PROVEEDOR") && <li><p>{user.nombreEmpresa}</p></li> }
               <li > <button onClick={handleSelectOption} value="perfil" > Mi Perfil </button> </li>
-              <li>  <button onClick={handleSelectOption} value="logout">Cerrar Sesion </button> </li>
+              
               <li><button onClick={handleSelectOption} value="trabajos">Lista de Trabajos</button></li>
+
+              <li>  <button onClick={handleSelectOption} value="logout">Cerrar Sesion </button> </li>
               <li>
                 <hr className="dropdown-divider"/>
               </li>

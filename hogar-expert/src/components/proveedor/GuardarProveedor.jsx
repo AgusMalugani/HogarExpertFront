@@ -53,7 +53,7 @@ export default function GuardarProveedor() {
       }
       await saveProveedor(formData);
       navigate("/")
-    
+    alert("Proveedor creado")
   
     };
 
@@ -130,6 +130,13 @@ export default function GuardarProveedor() {
         <option value="PLOMERO">PLOMERO</option>
         <option value="GASISTA">GASISTA</option>
         <option value="ELECTRICISTA">ELECTRICISTA</option>
+        <option value="PINTOR">PINTOR</option>
+        <option value="CERRAJERO">CERRAJERO</option>
+        <option value="CONSTRUCCION">CONSTRUCCION</option>
+        <option value="ALARMA">ALARMA</option>
+        <option value="ELECTRODOMESTICO">ELECTRODOMESTICO</option>
+        <option value="CARPINTERO">CARPINTERO</option>
+        <option value="JARDINERO">JARDINERO</option>
        </select>
 
        <label>

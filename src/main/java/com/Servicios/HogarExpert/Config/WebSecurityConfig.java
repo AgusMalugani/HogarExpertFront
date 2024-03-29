@@ -42,7 +42,8 @@ public class WebSecurityConfig  {
                    "/proveedor/crear",
                    "/proveedor/lista",
                    "/proveedor/lista/{servicio}",
-                   "/trabajo/**").permitAll()     
+                   "/trabajo/**", // DEBO PONER LOS PREAUTORIZE Y EN EL SERVICIO DE FRONT PASAR EL TOKEN
+                   "/comentario/**").permitAll()     
             .anyRequest().authenticated()
         )
         .cors(withDefaults())

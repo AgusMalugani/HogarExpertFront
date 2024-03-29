@@ -79,8 +79,12 @@ public class TrabajoServicio implements ITrabajoServicio {
             }
 */
     @Override
-    public List<Trabajo> findAll(Long id) {
+    public List<Trabajo> findAllProv(Long id) {
         return trabajoRepo.listaTrabajosPorProveedor(id);
+    }
+     @Override
+    public List<Trabajo> findAllUsuario(Long id) {
+        return trabajoRepo.listaTrabajosPorUsuario(id);
     }
 
     @Override
@@ -116,7 +120,7 @@ public class TrabajoServicio implements ITrabajoServicio {
     
      @Transactional
     @Override
-    public void update(Long id, Trabajo t) throws MiException {
+    public Trabajo update(Long id, Trabajo t) throws MiException {
     Optional<Trabajo> respuesta = trabajoRepo.findById(id);
             if (respuesta == null || respuesta.isEmpty()) {
                 throw new MiException("No se encontro trabajo con esa id");
@@ -132,8 +136,10 @@ public class TrabajoServicio implements ITrabajoServicio {
                 
                 trabajoRepo.save(trabajo);
                 System.out.println("trabajo modificado");
+                return trabajo;
 
             }
+            return null;
 
         }
 

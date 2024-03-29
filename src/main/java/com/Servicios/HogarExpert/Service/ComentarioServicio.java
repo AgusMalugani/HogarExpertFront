@@ -34,19 +34,19 @@ public class ComentarioServicio implements IComentarioServicio {
 
     @Transactional
     @Override
-    public void save(Comentario com) throws MiException {
-        this.validar(com);
+    public Comentario save(Comentario com) throws MiException {
+       // this.validar(com);
 
-        comRepo.save(com);
+         return comRepo.save(com);
 
     }
 
     @Override
-    public void delete(Long id_comentario) throws MiException {
-        if (id_comentario == null) {
+    public void delete(Long id) throws MiException {
+        if (id == null) {
             throw new MiException("id vacia");
         }
-        Optional<Comentario> respuesta = comRepo.findById(id_comentario);
+        Optional<Comentario> respuesta = comRepo.findById(id);
 
         if (respuesta.isEmpty()) {
             throw new MiException("No existe un comentario con la id ingresada.");
@@ -55,7 +55,7 @@ public class ComentarioServicio implements IComentarioServicio {
         if (respuesta.isPresent()) {
 
             Comentario c = respuesta.get();
-            comRepo.deleteById(c.getId_comentario());
+            comRepo.deleteById(c.getId());
 
         }
 
@@ -68,27 +68,22 @@ public class ComentarioServicio implements IComentarioServicio {
     }
 
     @Override
-    public Comentario findById(Long id_comentario) throws MiException {
-        Optional<Comentario> respuesta = comRepo.findById(id_comentario);
-
-        if (respuesta == null || respuesta.isEmpty()) {
-            throw new MiException("No se encontro comentarios con el id ingresado");
-        }
-
-        if (respuesta.isPresent()) {
-            Comentario c = respuesta.get();
-            return c;
-        } else {
-            return null;
-        }
-
+    public List<Comentario> findByIdProveedor(Long id) throws MiException {
+       try{
+        List<Comentario> comentariosProveedor= comRepo.findByIdProveedor(id);
+        return comentariosProveedor;
+       }catch(Exception e){
+           System.out.println(e.getMessage());
+           return null;
+       }
+       
     }
 
     @Transactional
     @Override
-    public void update(Long id_comentario, Comentario com) throws MiException {
+    public void update(Long id, Comentario com) throws MiException {
 
-        Optional<Comentario> respuesta = comRepo.findById(id_comentario);
+        Optional<Comentario> respuesta = comRepo.findById(id);
         if (respuesta == null || respuesta.isEmpty()) {
             throw new MiException("No se encontro usuario con esa id");
         }
@@ -97,7 +92,7 @@ public class ComentarioServicio implements IComentarioServicio {
             this.validar(com);
 
             Comentario c = com;
-            c.setId_comentario(id_comentario);
+            c.setId(id);
 
             comRepo.save(c);
             System.out.println("comentario modificado");

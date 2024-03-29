@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,13 +16,12 @@ import lombok.Setter;
 public class Comentario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_comentario;
+    private Long id;
     
-    @OneToOne
+    @ManyToOne
     private Proveedor proveedor;
-    @OneToOne
-    private Trabajo trabajo;
-    @OneToOne
+ 
+    @ManyToOne
     private Usuario usuario;
  
     private String mensaje;
@@ -30,15 +30,15 @@ public class Comentario {
     public Comentario() {
     }
 
-    public Comentario(Long id_comentario, Proveedor proveedor, Trabajo trabajo, Usuario usuario, String mensaje, Integer calificacion) {
-        this.id_comentario = id_comentario;
+    public Comentario(Long id, Proveedor proveedor,  Usuario usuario, String mensaje, Integer calificacion) {
+        this.id = id;
         this.proveedor = proveedor;
-        this.trabajo = trabajo;
         this.usuario = usuario;
         this.mensaje = mensaje;
         this.calificacion = calificacion;
     }
 
+    
    
     
     

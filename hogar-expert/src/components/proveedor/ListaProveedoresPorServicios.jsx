@@ -16,7 +16,7 @@ console.log(proveedores);
   return (
    
     <div className='tbody-usuario-proveedor' >
-      {proveedores.map(elemento => <Proveedor proveedor ={elemento} />)}
+      {proveedores.map(elemento => <Proveedor  key={elemento.id} proveedor ={elemento} />)}
       
       
     </div>

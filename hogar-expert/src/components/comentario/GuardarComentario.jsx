@@ -4,94 +4,117 @@ import { detalleProveedor } from '../../servicios/ProveedorServicios'
 import { perfilUsuario } from '../../servicios/UsuarioServicios'
 import { verTrabajo } from '../../servicios/TrabajoServicio'
 import { useNavigate } from 'react-router-dom'
+import { useUser } from '../sesion/UserContext'
+import { Modal, Button, Form } from 'react-bootstrap';
 
-
-export default function GuardarComentario() {
+export default function GuardarComentario({proveedor,usuario}) {
     const navigate = useNavigate();
+    
 
-const[IDproveedor,setIDProveedor]=useState(0)
-
-const[proveedor,setProveedor]=useState({})
-useEffect( ()=>{
-    if(IDproveedor){
-    detalleProveedor(IDproveedor).then(data=> setProveedor(data)) }
-   },[IDproveedor] )
+    const[showModal,setShowModal]=useState(false);
+    const handleShowModal=()=>setShowModal(true);
+    const handleCloseModal=()=> setShowModal(false);
+  
 
 
+const[comentario,setComentario]=useState({
+    proveedor: proveedor,
+    usuario: usuario,
+    mensaje:"",
+    calificacion:0
+});
 
-  const[IDusuario,setIDUsuario]=useState(0) 
-const[usuario,setUsuario]=useState({})
-useEffect(()=>{
-    if(IDusuario){
+function handleChange(e){
 
-    perfilUsuario(IDusuario).then(data=> setUsuario(data))}
-},[IDusuario])
+    if(e.target.name === "mensaje"){
+        setComentario({
+            ...comentario,
+            [e.target.name]:e.target.value
+        });
 
+    } else if(e.target.name === "calificacion"){
+        setComentario({
+            ...comentario,
+            [e.target.name]:e.target.value
+        });
 
-
-const[IDtrabajo,setIDTrabajo]=useState(0)
-const[trabajo,setTrabajo]=useState({})
-useEffect(()=>{
-    if(IDtrabajo){
- verTrabajo(IDtrabajo).then(data=> setTrabajo(data))}
-},[IDtrabajo])
-
-
-
-const[mensaje,setMensaje]=useState("")
-const[calificacion,setCaliicacion]=useState(0)
-
-
+    }
 
 
+}
+console.log("usuario", usuario)
+console.log("proveedor", proveedor)
+console.log(comentario)
 
-async function cargarComentario(evento){
-evento.preventDefault()
+function cargarComentario(e){
+e.preventDefault();
 
-const newComentario= {
-proveedor : proveedor,
-usuario : usuario,
-trabajo : trabajo,
-mensaje,
-calificacion
+enviarBackEnd();
+
+handleCloseModal();
+alert("calificacion guardada")
+  
+
+}
+function enviarBackEnd(){
+    crearComentario(comentario);
 
 }
 
-await crearComentario(newComentario);
-
-navigate("/")
-}
 
 function goBack(){
     window.history.back()
 }
 
+const[mensajeCom,setMensajeCom]= useState(false);
+function estadoComentario(){
+    setMensajeCom(!mensajeCom)
+}
 
 
   return (
     <div>
-        <form onSubmit={cargarComentario}>
-        <label htmlFor="IDproveedor">Ingrese el id del proveedor</label>
-        <input type="number" name='IDproveedor' value={IDproveedor} onChange={e=>setIDProveedor(e.target.value)} />
-        <br />
+    <button  onClick={handleShowModal}>Añadir Comentario</button>
+        <Modal show={showModal} onHide={handleCloseModal}>
+      <Modal.Header closeButton>
+        <Modal.Title>Calificacion</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+      <form onSubmit={cargarComentario}>
+<label>Ingrese la calificacion</label>
+        <div class="rating">
+  <input type="radio" id="star5" name="calificacion" value="5" onChange={handleChange} />
+  <label for="star5" title="text"></label>
 
+  <input type="radio" id="star4" name="calificacion" value="4" onChange={handleChange} />
+  <label for="star4" title="text"></label>
 
-        <label htmlFor="IDusuario">ingrese el id del usuario</label>
-        <input type="number" name='IDusuario' value={IDusuario} onChange={e=> setIDUsuario(e.target.value)} />
-        <br />
-        <label htmlFor="IDtrabajo">ingrese el id del trabajo</label>
-        <input type="number"  name='IDtrabajo' value={IDtrabajo} onChange={e=> setIDTrabajo(e.target.value)}/>
-        <br />
-        <label htmlFor="mensaje">INGRESE EL MENSAJE</label>
-        <textarea type="text" name='mensaje' value={mensaje} onChange={e=> setMensaje(e.target.value)} />
-        <br />
-        <label htmlFor="calificacion">INGRESE LA CALIFICACION DE 1 A 5</label>
-        <input type="number" name='calificacion' value={calificacion} onChange={e=> setCaliicacion(e.target.value)} />
-        <br />
-        <button className='boton' >CREAR</button>
-        </form>    
-        <br />
-        <button className='boton' onClick={goBack}>volver</button>
+  <input type="radio" id="star3" name="calificacion" value="3" onChange={handleChange} />
+  <label for="star3" title="text"></label>
+
+  <input type="radio" id="star2" name="calificacion" value="2" onChange={handleChange} />
+  <label for="star2" title="text"></label>
+
+  <input checked="" type="radio" id="star1" name="calificacion" value="1" onChange={handleChange} />
+  <label for="star1" title="text"></label>
+</div>
+
+<br /><br /><br />
+     <label htmlFor="mensaje"> Ingrese el comentario</label>
+  <textarea type="text" name='mensaje' value={comentario.mensaje} onChange={handleChange} />
+
+            
+            
+     <br />
+        <button className='boton' >Guardar Calificacion</button>
+        </form>  
+      </Modal.Body>
+      <Modal.Footer>
+        <button  onClick={handleCloseModal}>Cerrar</button>
+      </Modal.Footer>
+    </Modal>         
+
+       
         </div>
   )
 }

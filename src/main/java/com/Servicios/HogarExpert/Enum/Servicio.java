@@ -9,6 +9,7 @@ package com.Servicios.HogarExpert.Enum;
  * @author Usuario
  */
 public enum Servicio {
-    PLOMERO,GASISTA,ELECTRICISTA
+    PLOMERO,GASISTA,ELECTRICISTA,PINTOR,CERRAJERO
+    ,CONSTRUCCION,ALARMA,ELECTRODOMESTICO,CARPINTERO,JARDINERO
     
 }

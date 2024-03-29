@@ -50,6 +50,7 @@ export default function GuardarUsuario() {
     }
     await saveUsuario(formData);
     navigate("/");
+    alert("Usuario Creado")
 
   };
 

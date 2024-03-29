@@ -4,6 +4,7 @@ import ServiciosBrindados from './ServiciosBrindados'
 import SeguridadConfianza from './SeguridadConfianza'
 import CarruselComentarios from './CarruselComentarios'
 import GarantiaSatisfaccion from './GarantiaSatisfaccion'
+import Comentarios from './comentario/Comentarios'
 
 export default function Inicio() {
   return (
@@ -29,7 +30,7 @@ export default function Inicio() {
           </article>
 
           <article>
-           <CarruselComentarios/>
+           <Comentarios/>
           </article>
 
           <article>

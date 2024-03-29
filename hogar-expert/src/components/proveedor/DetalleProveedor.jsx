@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { detalleProveedor } from '../../servicios/ProveedorServicios';
 import { traerImagenProveedor } from '../../servicios/ImagenServicio';
 import { useUser } from '../sesion/UserContext';
+import ListaComentarioProveedor from '../comentario/ListaComentarioProveedor';
 
 export default function DetalleProveedor() {
   const { id } = useParams();
@@ -86,13 +87,12 @@ useEffect( ()=>{
       </div>
 
       <div >
-      <button className='detalle-perfil-botones'> <Link to={`/trabajo/crear/${proveedor.id}`}> CONTRATAR </Link></button>
+      { currentUser.roles.includes('ADMIN') || currentUser.roles.includes('USER') && <button className='detalle-perfil-botones'> <Link to={`/trabajo/crear/${proveedor.id}`}> CONTRATAR </Link></button> }
 
       </div>
 
       <div className='detalle-perfil-calificaciones-comentarios'>
-        <h3>CALIFICACIONES</h3>
-        <p>⭐⭐⭐⭐⭐ "Excelente muy buen servicio" - Gabriela Suarez de Palermo 20/09/2023"</p>
+       {<ListaComentarioProveedor/>}
       </div>
     
     </div>
