@@ -74,15 +74,15 @@ function estadoComentario(){
 
   return (
     <div>
-    <button  onClick={handleShowModal}>Añadir Comentario</button>
+    <button  onClick={handleShowModal} className='btn-comentario' >CALIFICAR</button>
         <Modal show={showModal} onHide={handleCloseModal}>
-      <Modal.Header closeButton>
+      <Modal.Header closeButton className='modal-comentario'>
         <Modal.Title>Calificacion</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-      <form onSubmit={cargarComentario}>
+      <form onSubmit={cargarComentario} className='form-comentario'>
 <label>Ingrese la calificacion</label>
-        <div class="rating">
+        <div className="rating estrellas-comentario">
   <input type="radio" id="star5" name="calificacion" value="5" onChange={handleChange} />
   <label for="star5" title="text"></label>
 
@@ -99,19 +99,19 @@ function estadoComentario(){
   <label for="star1" title="text"></label>
 </div>
 
-<br /><br /><br />
      <label htmlFor="mensaje"> Ingrese el comentario</label>
+    <div className='texto-comentario'>
   <textarea type="text" name='mensaje' value={comentario.mensaje} onChange={handleChange} />
+    </div>
 
             
             
-     <br />
-        <button className='boton' >Guardar Calificacion</button>
+      <div className='btn-calificacion'>
+        <button  >Guardar Calificacion</button>
+      </div>
         </form>  
       </Modal.Body>
-      <Modal.Footer>
-        <button  onClick={handleCloseModal}>Cerrar</button>
-      </Modal.Footer>
+     
     </Modal>         
 
        

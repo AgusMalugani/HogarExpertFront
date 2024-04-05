@@ -15,19 +15,19 @@ const generarEstrellas = (calificacion) => {
     let estrellas = '';
     switch (calificacion) {
       case 1:
-        estrellas = '★☆☆☆☆'; // Una estrella
+        estrellas = '⭐'; // Una estrella
         break;
       case 2:
-        estrellas = '★★☆☆☆'; // Dos estrellas
+        estrellas = '⭐⭐'; // Dos estrellas
         break;
       case 3:
-        estrellas = '★★★☆☆'; // Tres estrellas
+        estrellas = '⭐⭐⭐'; // Tres estrellas
         break;
       case 4:
-        estrellas = '★★★★☆'; // Cuatro estrellas
+        estrellas = '⭐⭐⭐⭐'; // Cuatro estrellas
         break;
       case 5:
-        estrellas = '★★★★★'; // Cinco estrellas
+        estrellas = '⭐⭐⭐⭐⭐'; // Cinco estrellas
         break;
       default:
         estrellas = 'Calificación no válida';
@@ -41,14 +41,14 @@ const generarEstrellas = (calificacion) => {
     <div>
         {comentarios  && comentarios.map(comentario =>  
         <div id="carouselExample" className="carousel slide" data-bs-ride="carousel">
-    <div className="carousel-inner">
-          <div className="card">
-            <div className="card-body">    
-              <p className="card-text">{generarEstrellas(comentario.calificacion)}</p>
-              <p className="card-text">{comentario.mensaje}</p>
-              <p className="card-text"><small className="text-muted">-{comentario.usuario.username} </small></p>
+    <div className="comentarios-proveedores">
+         
+            <div className="comentarios-proveedores-datos">    
+              <p className="">{generarEstrellas(comentario.calificacion)}</p>
+              <p className="">{comentario.mensaje}</p>
+              <p className=""><small className="text-muted">-{comentario.usuario.username} </small></p>
             </div>
-          </div>
+          
         </div>
     </div>
     )}

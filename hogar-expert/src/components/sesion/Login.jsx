@@ -66,27 +66,30 @@ const sendDataToBackEnd = async() =>{
 
 return (
   <div>
-    <button  onClick={handleShowModal}>Iniciar Sesión</button>
+    <button onClick={handleShowModal} className='nav-login' >Iniciar Sesión</button>
 
-    <Modal show={showModal} onHide={handleCloseModal}>
-      <Modal.Header closeButton>
+    <Modal  show={showModal} onHide={handleCloseModal}>
+      <Modal.Header closeButton className="modal-login">
         <Modal.Title>Iniciar Sesión</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="username">Username</label>
-          <input type="text" name='username' onChange={handleChange} value={loginData.username} />
-<br />
+      <Modal.Body className="modal-login-body" >
+        <form onSubmit={handleSubmit} className='login'>
+      <div className='login-input'>
+          <label htmlFor="username" >Username</label>
+          <input type="text" name='username' onChange={handleChange} value={loginData.username} />   
+       </div>
+   <div className='login-input'>
           <label htmlFor="clave">Contraseña</label>
           <input type="password" name='clave' onChange={handleChange} value={loginData.clave} />
-<br />
-          <button  type="submit">Iniciar Sesión</button>
+  </div>
+    <div className='login-button'>
+          <button  type="submit">Acceder</button>
+    </div>
         </form>
       </Modal.Body>
-      <Modal.Footer>
-        <button  onClick={handleCloseModal}>Cerrar</button>
-      </Modal.Footer>
+      
     </Modal>
+    
   </div>
 );
 }

@@ -40,18 +40,20 @@ export default function Trabajos() {
   
     return (
       <div >
-        <div className='tbody-usuario-proveedor'>
-        <h2>TRABAJOS ACTIVOS</h2>
+        <h2 className='lista-trabajos-titulo' >TRABAJOS ACTIVOS</h2>
+   <div className='lista-trabajos'>
         {trabajos.length > 0 && trabajos.map(  elemento => elemento.estado === "ACTIVO" && <Trabajo key={elemento.id} trabajo={elemento} eliminarTrabajo ={eliminarTrabajo} />  ) }
-        </div>
-   <div className='tbody-usuario-proveedor'>
-        <h2>TRABAJOS ESPERANDO</h2>
+  </div>
+        <h2 className='lista-trabajos-titulo'>TRABAJOS ESPERANDO</h2>
+   <div className='lista-trabajos'>
         {trabajos.length > 0 && trabajos.map(  elemento => elemento.estado === "ESPERANDO" && <Trabajo key={elemento.id} trabajo={elemento} eliminarTrabajo ={eliminarTrabajo} />  ) }
    </div>
-   <div className='tbody-usuario-proveedor'>
-        <h2>TRABAJOS FINALIZADOS</h2>
+  
+        <h2 className='lista-trabajos-titulo'>TRABAJOS FINALIZADOS</h2>
+     <div className='lista-trabajos'>
         {trabajos.length > 0 && trabajos.map(  elemento => elemento.estado === "FINALIZADO" && <Trabajo key={elemento.id} trabajo={elemento} eliminarTrabajo ={eliminarTrabajo} />  ) }
-   </div>
+     </div>
+   
     
     
   {/*  <button onClick={goBack}>Volver</button> */}

@@ -46,54 +46,56 @@ useEffect( ()=>{
 
 
     <div className='perfil-usuario-proveedor' >
-      <div className='detalle-img'>
+     
+      <div className='detalle-cabecera'>
+
+      <h4 >{proveedor.nombreEmpresa}</h4>
+      <br />
       <img src={imagen} alt= {proveedor.username} />
-      </div>
+            </div>
       
       <div className='detalle-perfil'>
-      <span className='perfil-titulo'>nombre de la empresa: </span>
+      
+        <h4>DATOS PROVEEDOR</h4>
+        <div className='detalle-perfil-datos'>
+      <span className='perfil-titulo'>Nombre de la empresa: </span>
       <p className='perfil-valor'>{proveedor.nombreEmpresa}</p>
       </div>
-      
-      <div className='detalle-perfil'>
-      <span className='perfil-titulo'>matricula: </span>
+      <div className='detalle-perfil-datos'>
+      <span className='perfil-titulo'>Matricula: </span>
       <p className='perfil-valor'>{proveedor.matricula}</p>
       </div>
-      
-      <div className='detalle-perfil'>
-      <span className='perfil-titulo'>servicio que brinda:  </span>
+      <div className='detalle-perfil-datos'>
+      <span className='perfil-titulo'>Servicio que brinda:  </span>
       <p className='perfil-valor'>{proveedor.servicio}</p>
-      </div>
+        </div>
       
-      <div className='detalle-perfil'>
-      <span className='perfil-titulo'>celular: </span>
+<br /><br /><br />
+
+         <h4>DATOS CONTACTO</h4>
+         <div className='detalle-perfil-datos'>
+      <span className='perfil-titulo'>Celular: </span>
       <p className='perfil-valor'>{proveedor.celular}</p>
       </div>
-
-     <div className='detalle-perfil'>
-      <span className='perfil-titulo'> email: </span>
+      <div className='detalle-perfil-datos'>
+      <span className='perfil-titulo'> Email: </span>
       <p className='perfil-valor'>{proveedor.email}</p>
-      </div> 
-      <div className='detalle-perfil'>
-      <span className='perfil-titulo'>username: </span>
-      <p className='perfil-valor'>{proveedor.username}</p>
+     </div>
+
+     <div className='detalle-perfil-botones-div' >
+      { currentUser.roles.includes('ADMIN')  && <button className='detalle-perfil-botones'> <Link to={`/trabajo/crear/${proveedor.id}`}> CONTRATAR </Link></button> }
       </div>
-
-      <div className='detalle-perfil'>
-      <span className='perfil-titulo'>costo por hora de su servicio: $</span>
-      <p  className='perfil-valor'>{proveedor.costoXHora}</p>
-      </div>      
-     
-      </div>
-
-      <div >
-      { currentUser.roles.includes('ADMIN') || currentUser.roles.includes('USER') && <button className='detalle-perfil-botones'> <Link to={`/trabajo/crear/${proveedor.id}`}> CONTRATAR </Link></button> }
-
-      </div>
-
+    
       <div className='detalle-perfil-calificaciones-comentarios'>
+        <h4>CALIFICACIONES Y COMENTARIOS</h4>
        {<ListaComentarioProveedor/>}
       </div>
+   
+   
+      </div>      
+     
+ </div>
+
     
     </div>
   )

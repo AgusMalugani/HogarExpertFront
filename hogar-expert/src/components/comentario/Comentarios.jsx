@@ -23,8 +23,8 @@ function goBack(){
 */}
 
 {comentarios.length > 0 && (
-  <div id="carouselExample" className="carousel slide" data-bs-ride="carousel">
-    <div className="carousel-inner">
+  <div id="carouselExample" className="carousel slide caja-comentario-flecha" data-bs-ride="carousel">
+    <div className="carousel-inner  ">
       {comentarios.map((comentario, index) => (
         <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
           <div className="card">
@@ -38,11 +38,11 @@ function goBack(){
       ))}
     </div>
     <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        <span className="carousel-control-prev-icon" aria-hidden="true">⬅</span>
+        <span className="carousel-control-prev-icon" aria-hidden="true">➖</span>
         <span className="visually-hidden">Anterior</span>
       </button>
       <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <span className="carousel-control-next-icon" aria-hidden="true">➡</span>
+        <span className="carousel-control-next-icon " aria-hidden="true">➖</span>
         <span className="visually-hidden">Siguiente</span>
       </button>
   </div>

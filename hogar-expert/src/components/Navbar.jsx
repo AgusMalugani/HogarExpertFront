@@ -67,11 +67,11 @@ const { user } = useUser();
              {user && user.roles.includes("ADMIN") && <li><p>ADMIN</p></li> }
              {user && user.roles.includes("USER") && <li><p>{user.username}</p></li> }
              {user && user.roles.includes("PROVEEDOR") && <li><p>{user.nombreEmpresa}</p></li> }
-              <li > <button onClick={handleSelectOption} value="perfil" > Mi Perfil </button> </li>
+              <li > <button onClick={handleSelectOption} value="perfil"  className='nav-MiPerfil'> Mi Perfil </button> </li>
               
-              <li><button onClick={handleSelectOption} value="trabajos">Lista de Trabajos</button></li>
+              <li><button onClick={handleSelectOption} value="trabajos" className='nav-MiPerfil'>Lista de Trabajos</button></li>
 
-              <li>  <button onClick={handleSelectOption} value="logout">Cerrar Sesion </button> </li>
+              <li>  <button onClick={handleSelectOption} value="logout" className='nav-MiPerfil'>Cerrar Sesion </button> </li>
               <li>
                 <hr className="dropdown-divider"/>
               </li>

@@ -65,9 +65,11 @@ if (id) {
 
   return (
     <div className='perfil-usuario-proveedor' >
+      
 {usuario && (
-    <>
-  <div className='detalle-img'>
+    <div>
+  <div className='detalle-cabecera'>
+  <h1>MI PERFIL</h1>
   <img src={imagen} alt= {usuario.username} />
   </div>
   
@@ -109,7 +111,8 @@ if (id) {
 
         <br />
     <button className='boton' onClick={goBack}>Volver</button>  
-   </>
+    <button className='boton' onClick={goBack}>Modificar Perfil</button>  
+   </div>
   )}
   </div>
 
