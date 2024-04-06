@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import GuardarComentario from '../comentario/GuardarComentario'
+import { useUser } from '../sesion/UserContext';
 
 export default function Trabajo({trabajo, eliminarTrabajo}) {
+  const{user}=useUser();
    const[comentario,setComentario]= useState(false);
  function estadoComentario(){
     setComentario(!comentario)
@@ -34,7 +36,7 @@ export default function Trabajo({trabajo, eliminarTrabajo}) {
                {/*{ trabajo.estado === "FINALIZADO" && <button type="button" className="btn btn-sm btn-outline-secondary"> <Link to={`/comentario/crear`} >AÑADIR COMENTARIO</Link></button> }
                 */}
                
-                { trabajo.estado === "FINALIZADO" && <span className="btn btn-sm btn-outline-secondary"> <GuardarComentario usuario ={trabajo.usuario} proveedor={trabajo.proveedor} /> </span> }
+                { user.roles.includes("USER") || user.roles.includes("ADMIN")   && trabajo.estado === "FINALIZADO" && <span className="btn btn-sm btn-outline-secondary"> <GuardarComentario usuario ={trabajo.usuario} proveedor={trabajo.proveedor} /> </span> }
               
               </div>
            </div>

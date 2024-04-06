@@ -16,6 +16,7 @@ export default function Login({setIsAuthenticated}) {
   const handleCloseModal=()=> setShowModal(false);
 
 
+  
   const[loginData,setLoginData]=useState({
     username : "",
     clave : ""
@@ -53,8 +54,7 @@ const sendDataToBackEnd = async() =>{
     setIsAuthenticated(true); // Establecer isAuthenticated en true 
     console.log(userData)
     navigate("/")
-    alert("Iniciaste session " + loginData.username)
-    
+   
   }catch (error) {
     setError('Credenciales inválidas. Inténtalo de nuevo.');
   }
@@ -94,16 +94,3 @@ return (
 );
 }
 
-  {/*  <div id='login'>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username</label>
-        <input type="text" name='username' onChange={handleChange} value={loginData.username} />
-
-        <label htmlFor="clave">clave</label>
-        <input type="password" name='clave' onChange={handleChange} value={loginData.clave}/>
-
-        <button>ingresar</button>
-      </form>
-
-    </div>
- */}

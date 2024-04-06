@@ -115,6 +115,20 @@ public class TrabajoControlador {
         
     }
     
+    @GetMapping("/listaTrabajosEsperando/{id}")
+    public ResponseEntity<List<Trabajo>>trabajosEsperandoProv(@PathVariable Long id){
+        try{
+        List listaTrabajos = trabajoServi.trabajosEsperandoProv(id);
+        return ResponseEntity.ok(listaTrabajos);
+        
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+             return ResponseEntity.badRequest().body(null);
+        }
+      
+       
+    }
+    
     
     
     

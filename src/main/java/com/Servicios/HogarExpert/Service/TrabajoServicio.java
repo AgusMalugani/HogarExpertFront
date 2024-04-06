@@ -183,4 +183,9 @@ public class TrabajoServicio implements ITrabajoServicio {
     //    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
    // }
 
+    @Override
+    public List<Trabajo> trabajosEsperandoProv(Long id) {
+        return trabajoRepo.listaTrabajosEsperandoProveedor(id);
+    }
+
 }

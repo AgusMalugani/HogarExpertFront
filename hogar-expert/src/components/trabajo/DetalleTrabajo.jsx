@@ -135,9 +135,9 @@ function modificarBackEnd(){
 
             
             
-        { trabajo.estado !== "FINALIZADO" && trabajo.estado === "ESPERANDO" && user && user.roles.includes('PROVEEDOR') &&  input ===false && <button onClick={presupuestar}>Modificar trabajo-pro</button>}
+        { trabajo.estado !== "FINALIZADO" &&  trabajo.estado !== "ACTIVO" && trabajo.estado === "ESPERANDO" && user && user.roles.includes('PROVEEDOR') &&  input ===false && <button onClick={presupuestar}>Modificar trabajo-pro</button>}
            
-           { trabajo.estado !== "FINALIZADO" && (user&& user.roles.includes('ADMIN') || user.roles.includes('USER') )&&  estado ===false && <button onClick={estadoTrabajo}>Modificar trabajo-user</button>}
+           { trabajo.estado !== "FINALIZADO" && (user&& user.roles.includes('ADMIN') || user.roles.includes('USER') )&&  estado ===false && trabajo.total >0 && <button onClick={estadoTrabajo}>Modificar trabajo-user</button>}
 
           { trabajo.estado === "ESPERANDO" && input ===true  &&  <button> modificar</button>}
           { estado === true &&  <button> modificar</button>}
