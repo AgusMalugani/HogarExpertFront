@@ -187,5 +187,9 @@ public class TrabajoServicio implements ITrabajoServicio {
     public List<Trabajo> trabajosEsperandoProv(Long id) {
         return trabajoRepo.listaTrabajosEsperandoProveedor(id);
     }
+     @Override
+    public List<Trabajo> trabajosEsperandoUsuario(Long id) {
+        return trabajoRepo.listaTrabajoEsperandoUsuario(id);
+    }
 
 }

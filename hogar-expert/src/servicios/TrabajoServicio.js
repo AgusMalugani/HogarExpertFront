@@ -52,5 +52,18 @@ return data;
 }
 
 
+export async function trabajosEsperandoProv(id){
+    const response = await fetch(`${API_URL}/listaTrabajosEsperando/${id}`)
+    const data = await response.json()
+    return data;
+}
+
+export async function trabajosEsperandoUsuario(id){
+    const response = await fetch(`${API_URL}/listaTrabajosEsperandoUsuario/${id}`)
+    const data = response.json();
+    return data;
+}
+
+
 
 

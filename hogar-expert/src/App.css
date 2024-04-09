@@ -409,52 +409,71 @@ color: inherit;
     }
   }
 
+
+  /*  FORMULARIO CREAR TRABAJO*/
+
+
   .formulario-registro{
     display: flex;
-    height: auto;
-    width: 26.5em;
     justify-content: center;
-    margin-top: 2em;
-    margin-bottom: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
     
-  }
-  .escritos-formulario-registro{
-    display: flex;
-
+    
   }
 
   .form-trabajo{
     display: flex;
     flex-direction: column;
-      
   border: 1px solid black;
-  background-color: rgb(212, 241, 217);
+  background-color: #013747;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 1em 3em 1em 3em;
+  max-width: 30em;
+  }
+  .form-trabajo h3{
+    color: #4CAF50;
+    display: flex;
+    justify-content: center;
+    background-color: #034c63;;
+    margin-bottom: 1em;
+    font-weight: 600;
+  }
+
+  .form-trabajo-datos{
+margin-bottom: 1em;
+  }
+
+  .form-trabajo label{
+font-size: 1.2em;
+border: 1px solid black;
+background-color: slategray;
+color: #e4e3e3;
+margin-right: 1em;
+display: flex;
+justify-content: center;
+  }
+  .form-trabajo select{
+   width: 20em;
+   display: flex;
+   justify-content: center;
+  }
+
+  .input-trabajo{
+width: 22em;
+height: 8em;
+max-width: 22.5em;
+max-height: 10em;
+
+  }
+
+  .form-trabajo button{
+    border-radius: 10%;
+    background-color: rgb(196, 223, 184);
+    color: inherit;
   
   }
-  .form-trabajo label{
-font-size: 20px;
-font-family: Arial, Helvetica, sans-serif;
-
-display: flex;
-margin-top: 20px;
-margin-bottom: 15px;
-margin-right: 20px;
-margin-left: 15px;
-
-  }
-  .input-trabajo{
-margin-left: 10px;
-width: 10em;
-
-  }
-  .form-trabajo button{
-    background-color: blue;
-    color: white;
-    width: 10em;
-    justify-content: center;
-    margin-left: 11em;
-
-  }
+/* FIN FORMULARIO TRABAJO */
 
   .lista-proveedores{
 background-color: rgb(207, 245, 245);

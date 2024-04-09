@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import logoHogar from '../img/logoHogar.png'
 import { useUser } from './sesion/UserContext';
 import Login from './sesion/Login';
+import TrabajosEsperandoProv from './trabajo/TrabajosEsperandoProv';
 
 
 
@@ -52,11 +53,26 @@ const { user } = useUser();
 
   <div>
     <ul className='nav-list' >
+ {isAuthenticated && user && ( <li className="nav-item dropdown"> <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+🔔
+</a>
+<ul className="dropdown-menu dropdown-menu-dark">
+<li className='nav-MiPerfil'><TrabajosEsperandoProv/></li>
+<li>
+  <hr className="dropdown-divider"/>
+</li>
+</ul>
+</li>
+)}
+
+
+
       <li><Link  className="nav-link" to='/'> Como funciona </Link></li>
      {/*!isAuthenticated && <li>  <Link className="nav-link" to='/login'> Acceder </Link></li>*/}
      {!isAuthenticated && <li> <Login  setIsAuthenticated={setIsAuthenticated} /> </li>}
      {!isAuthenticated && <li> <Link className="nav-link" to={`/usuario/crear`}>Registro  </Link>  </li>}
-     {isAuthenticated && <li> <Link className="nav-link" to={`/usuario/lista`}>lista usuarios  </Link>  </li>}
+     {isAuthenticated && user&& user.roles.includes("ADMIN") &&<li> <Link className="nav-link" to={`/usuario/lista`}>lista usuarios  </Link>  </li>}
+    
     
      {isAuthenticated && (
      <li className="nav-item dropdown">

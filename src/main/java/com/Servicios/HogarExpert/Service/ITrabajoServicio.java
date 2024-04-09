@@ -28,7 +28,7 @@ public interface ITrabajoServicio {
      public Trabajo crearTrabajoProv(Trabajo t) throws MiException;
      
      public List<Trabajo>trabajosEsperandoProv(Long id);
-    
+     public List<Trabajo>trabajosEsperandoUsuario(Long id);
     public void validar(Trabajo t) throws MiException;
     
 }

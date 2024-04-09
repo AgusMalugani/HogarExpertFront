@@ -67,6 +67,8 @@ function App() {
     <Route path='/trabajo/crear/:id' element ={<CrearTrabajo />}/>
     <Route path='/trabajo/lista' element={<Trabajos/>}/>
     <Route path='/trabajo/detalle/:id' element = { <DetalleTrabajo/>} />
+   
+
     
 
 

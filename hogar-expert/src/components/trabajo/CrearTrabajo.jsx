@@ -90,34 +90,40 @@ const[trabajoDatos,setTrabajoDatos]=useState({
 
 
 <form onSubmit={CargarTrabajo} >
-        <p className="title">Cargar nuevo trabajo </p>
+       
         
           <div className="form-trabajo"> 
+
+          <h3>Cargar nuevo Trabajo</h3>
+        <div className='form-trabajo-datos'>
           <label htmlFor="usuario"> Seleccione el usuario </label>
+
           <select  name="usuario" onChange={handleChange} value={trabajoDatos.usuario.username || ''}>
           <option value="">seleccione un usuario</option>
                <option value={usuario.username}>{usuario.username}</option>    
             </select>  
+        </div>
 
+<div className='form-trabajo-datos'>
             <label htmlFor="proveedor">Seleccione el proveedor</label>
+
             <select  name="proveedor" onChange={handleChange} value={trabajoDatos.proveedor.nombreEmpresa || ''}>
                 <option value="">seleccione un proveedor</option>
                <option value={proveedor.nombreEmpresa}>{proveedor.nombreEmpresa}</option>    
             </select>
-             -{/* <input className='input-trabajo'  placeholder={proveedor.nombreEmpresa}  type='text'/>
-            */}
-
-            <label>
-             Ingrese una nota del trabajo que debe realizar
-             
-           <input className='input-trabajo' type="text" name='notaTrabajo' value={trabajoDatos.notaTrabajo} onChange={handleChange} />
-           </label>
+</div>
+            
+  <div className='form-trabajo-datos'>
+            <label> Ingrese una nota del trabajo que debe realizar</label>  
+           <textarea placeholder='NOTA DE TRABAJO' className='input-trabajo' type="text" name='notaTrabajo' value={trabajoDatos.notaTrabajo} onChange={handleChange} />
+    </div>          
+           
         
 
              
 
               <button className="boton">Crear trabajo</button>
-        <br />
+        
         <button className="boton" onClick={goBack}>
           Volver
         </button>

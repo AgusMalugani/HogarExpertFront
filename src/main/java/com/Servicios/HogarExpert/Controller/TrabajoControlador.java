@@ -33,6 +33,8 @@ public class TrabajoControlador {
     @Autowired
     private ITrabajoServicio trabajoServi;
     
+  
+    
    //@PreAuthorize("hasAnyRole('ADMIN','USER')")
     @PostMapping("/crear") // lo va a crear el usuario.
     public ResponseEntity<Trabajo> crearTrabajo(@RequestBody Trabajo t) { // aca tengo que recibir, el trabajo con un usuario, proveedor y notaTrabajo
@@ -118,15 +120,27 @@ public class TrabajoControlador {
     @GetMapping("/listaTrabajosEsperando/{id}")
     public ResponseEntity<List<Trabajo>>trabajosEsperandoProv(@PathVariable Long id){
         try{
-        List listaTrabajos = trabajoServi.trabajosEsperandoProv(id);
+        List<Trabajo> listaTrabajos = trabajoServi.trabajosEsperandoProv(id);
         return ResponseEntity.ok(listaTrabajos);
         
         }catch(Exception e){
             System.out.println(e.getMessage());
              return ResponseEntity.badRequest().body(null);
+        }  
+    }
+    
+    @GetMapping("/listaTrabajosEsperandoUsuario/{id}")
+    public ResponseEntity<List<Trabajo>> trabajosEsperandoUsuario(@PathVariable Long id){
+        try{
+            
+           List<Trabajo> listaTrabajos = trabajoServi.trabajosEsperandoUsuario(id);
+           return ResponseEntity.ok(listaTrabajos);
+            
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().body(null);
         }
-      
-       
+        
     }
     
     
