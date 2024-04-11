@@ -101,7 +101,7 @@ public class UsuarioServicio implements IUsuarioServicio {
 
         @Transactional
         @Override
-        public void update(Long id, Usuario usuario) throws MiException {
+        public void update(Long id, Usuario usuario, MultipartFile archivo) throws MiException {
 
             Optional<Usuario> respuesta = usuarioRepo.findById(id);
             if (respuesta == null || respuesta.isEmpty()) {
@@ -112,7 +112,9 @@ public class UsuarioServicio implements IUsuarioServicio {
                 this.validar(usuario);
 
                 Usuario u = usuario;
-                u.setId(id);
+                   Imagen img = imgServ.guardarImagen(archivo);
+        
+        u.setImagen(img);
                 
                 
                 

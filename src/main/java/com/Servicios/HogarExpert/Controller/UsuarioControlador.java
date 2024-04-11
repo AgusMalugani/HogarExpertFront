@@ -117,9 +117,9 @@ public class UsuarioControlador {
     
     @PutMapping("/modificar/{id}")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
-    public void modificarUsuario(@PathVariable Long id, @RequestBody Usuario usuario) throws MiException{
+    public void modificarUsuario(@PathVariable Long id, @ModelAttribute Usuario usuario, @RequestParam("archivo") MultipartFile archivo  ) throws MiException{
         try{
-         usuarioServi.update(id, usuario);
+         usuarioServi.update(id, usuario,archivo);
          
             System.out.println( "exito usuario modificado");
         }catch(MiException ex){
