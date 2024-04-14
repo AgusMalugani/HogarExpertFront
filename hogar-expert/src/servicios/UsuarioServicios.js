@@ -43,13 +43,21 @@ export async function deleteUsuarios(id,token){
         }
 
         
-export async function updateUsuario(id,usuario){
+export async function updateUsuario(id,formData,token){
     const response = await fetch(`${API_URL}/modificar/${id}`,{
         method:"PUT",
-        headers:{
-            "Content-type" : "application/json"
-        },
-        body: JSON.stringify(usuario)
+        headers:{"Authorization" : token},
+        body: formData
 
     })
+    return response.json();
+}
+
+export async function updateUsuarioImg(id,formDataImg,token){
+const response = await fetch(`${API_URL}/modificarImg/${id}`,{
+    method:"PUT",
+    headers:{"Authorization":token},
+    body: formDataImg
+})
+return response.json();
 }

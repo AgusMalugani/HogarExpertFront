@@ -19,8 +19,11 @@ public interface IUsuarioServicio {
     public void delete(Long id) throws MiException;
     public List<Usuario>findAll() ;
     public Usuario findById(Long id) throws MiException;
-    public void update(Long id,Usuario usuario, MultipartFile archivo) throws MiException;
+    public Usuario update(Usuario usuario) throws MiException;
     
+    public Usuario updateImg(Long id, MultipartFile archivo);
+    
+    //, MultipartFile archivo
     public void validar(Usuario usuario) throws MiException;
     
 }

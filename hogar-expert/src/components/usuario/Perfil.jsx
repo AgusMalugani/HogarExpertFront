@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { perfilUsuario } from '../../servicios/UsuarioServicios'
 
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { traerImagenUsuario } from '../../servicios/ImagenServicio';
 import { useUser } from '../sesion/UserContext';
 
@@ -20,8 +20,7 @@ export default function Perfil() {
 const token = localStorage.getItem("token")
 useEffect(() => {
   
-  console.log('ID:', id);
-  console.log('CurrentUser:', currentUser);
+
 if (id) {
   // Si hay un ID en la URL, obtener el perfil del usuario correspondiente
   perfilUsuario(id,token).then(data => setUsuario(data));
@@ -44,7 +43,6 @@ if (id) {
     useEffect(() => {
       if (usuario && usuario.id) {
         
-    console.log('Usuario useEffectImg:', usuario);
            traerImagenUsuario(usuario.id)
               .then(data => {
                   const imagenUrl = URL.createObjectURL(data);
@@ -111,7 +109,7 @@ if (id) {
 
         <br />
     <button className='boton' onClick={goBack}>Volver</button>  
-    <button className='boton' onClick={goBack}>Modificar Perfil</button>  
+    <button type="button" className="btn btn-sm btn-outline-secondary" > <Link to={`/usuario/modificar/${usuario.id}`} >MODIFICAR</Link> </button>
    </div>
   )}
   </div>
@@ -120,37 +118,3 @@ if (id) {
 
   )
 }
-
-/*
-  <div className='perfil'>
-      {usuario && (
-        <>
-        
-      <h1>imagen</h1>
-      <img src={imagen} width="100px" alt="goku" />
-      <br />
-
-       
-        <h3  className='titulo'>id</h3> <p className='valor'>{usuario.id}</p>
-        <br />
-        <h3 className='titulo'>nombre</h3> <p className='valor'>{usuario.nombre}</p>
-        <br />
-        <h3 className='titulo'>apellido</h3> <p className='valor'>{usuario.apellido}</p>
-        <br />
-        <h3 className='titulo'>dni</h3> <p className='valor'> {usuario.dni}</p>
-        <br />
-        <h3 className='titulo'>domicilio</h3> <p className='valor'>{usuario.domicilio}</p>
-        <br />
-        <h3 className='titulo'>celular</h3> <p className='valor'> {usuario.celular}</p>
-        <br />
-        <h3 className='titulo'>email</h3> <p className='valor'> {usuario.email}</p>
-        <br />
-        <h3 className='titulo'>password</h3> <p className='valor'> {usuario.password}</p>
-        <br />
-        <button className='boton' onClick={goBack}>Volver</button>
-        </>
-      )}
-    </div>
-
-<div>
-*/

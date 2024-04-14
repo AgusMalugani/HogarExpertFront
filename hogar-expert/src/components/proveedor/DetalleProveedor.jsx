@@ -84,6 +84,7 @@ useEffect( ()=>{
 
      <div className='detalle-perfil-botones-div' >
       { currentUser.roles.includes('ADMIN')  && <button className='detalle-perfil-botones'> <Link to={`/trabajo/crear/${proveedor.id}`}> CONTRATAR </Link></button> }
+      { currentUser.id === proveedor.id && <button className='detalle-perfil-botones'> <Link to={`/proveedor/modificar/${proveedor.id}`}> MODIFICAR </Link></button> }
       </div>
     
       <div className='detalle-perfil-calificaciones-comentarios'>

@@ -79,16 +79,34 @@ public class ProveedorControlador {
 
     @PreAuthorize("hasAnyRole('PROVEEDOR','ADMIN')")
     @PutMapping("/modificar/{id}")
-    public void modificarProveedor(@PathVariable Long id, @RequestBody Proveedor prov) throws MiException{
+    public ResponseEntity<Proveedor> modificarProveedor( @ModelAttribute Proveedor prov) throws MiException{
         try{
-         provServ.update(id, prov);
+         Proveedor p = provServ.update(prov);
          
             System.out.println("exito, proveedor modificado");
+            return ResponseEntity.ok(p);
         }catch(MiException ex){
             
             System.out.println(ex.getMessage());
+            return ResponseEntity.badRequest().body(null);
         }
         
+    }
+    
+    
+    
+    @PreAuthorize("hasAnyRole('ROLE_PROVEEDOR','ROLE_ADMIN')")
+   @PutMapping("/modificarImg/{id}")
+    public ResponseEntity<Proveedor> modificarProveedorImg(@PathVariable Long id, @RequestParam("archivo") MultipartFile archivo){
+        try{
+            Proveedor p = provServ.updateImg(id, archivo);
+            System.out.println("Img modificada");
+            return ResponseEntity.ok(p);
+        }catch(Exception e){         
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().body(null);
+            
+        }
     }
     
     

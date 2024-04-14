@@ -36,14 +36,24 @@ export async function detalleProveedor(id,token){
     return data;
 }
 
-export async function updateProveedor(id,proveedor){
+export async function updateProveedor(id,formData,token){
     const response = await fetch(`${API_URL}/modificar/${id}`,{
         method : "PUT",
-        headers: {
-             "Content-type" : "application/json" },
-        body : JSON.stringify(proveedor)
-
+        headers: {"Authorization":token},
+        body : formData
     })
+    const data = await response.json();
+    return data;
+}
+
+export async function updateProveedorImg(id,formDataImg,token){
+const response = await fetch(`${API_URL}/modificarImg/${id}`,{
+    method: "PUT",
+    headers: {"Authorization":token},
+    body: formDataImg
+});
+const data = response.json();
+return data;
 }
 
 

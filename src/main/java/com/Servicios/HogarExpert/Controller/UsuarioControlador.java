@@ -50,7 +50,7 @@ public class UsuarioControlador {
   private static final org.slf4j.Logger logger = LoggerFactory.getLogger(DemoRest.class);
     
        @PostMapping("/crear")
-    public ResponseEntity<Usuario> crearUsuario(@ModelAttribute Usuario usuario, @RequestParam("archivo") MultipartFile archivo) {
+    public ResponseEntity<Usuario> crearUsuario(@ModelAttribute Usuario usuario, @RequestParam("archivo")  MultipartFile archivo) {
         try {
             Usuario u = Usuario.builder()
                     .id(usuario.getId())
@@ -117,17 +117,38 @@ public class UsuarioControlador {
     
     @PutMapping("/modificar/{id}")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
-    public void modificarUsuario(@PathVariable Long id, @ModelAttribute Usuario usuario, @RequestParam("archivo") MultipartFile archivo  ) throws MiException{
+    public ResponseEntity<Usuario> modificarUsuario( @ModelAttribute Usuario usuario ) throws MiException{
+     //, @RequestParam("archivo") MultipartFile archivo 
         try{
-         usuarioServi.update(id, usuario,archivo);
          
+       Usuario u =  usuarioServi.update( usuario);//,archivo
+      
             System.out.println( "exito usuario modificado");
+            return ResponseEntity.ok(u);
         }catch(MiException ex){
             
             System.out.println(ex.getMessage());
+            return ResponseEntity.badRequest().body(null);
         }
         
     }
+    
+    @PutMapping("/modificarImg/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
+    public ResponseEntity<Usuario>modificarUsuarioImg(@PathVariable Long id, @RequestParam("archivo") MultipartFile archivo){
+        try{
+        Usuario u = usuarioServi.updateImg(id, archivo);
+            System.out.println("img modificada");
+        return ResponseEntity.ok(u);
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        return ResponseEntity.badRequest().body(null);
+        }
+        
+    }
+    
+    
+    
     @DeleteMapping("/eliminar/{id}")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     public void eliminarUsuario(@PathVariable Long id){

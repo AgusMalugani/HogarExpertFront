@@ -21,7 +21,9 @@ public interface IProveedorServicio {
     public void delete(Long id) throws MiException;
     public List<Proveedor>findAll() ;
     public Proveedor findById(Long id) throws MiException;
-    public void update(Long id,Proveedor prov) throws MiException;
+    public Proveedor update(Proveedor prov) throws MiException;
+    
+    public Proveedor updateImg(Long id, MultipartFile archivo);
     
     public void validar(Proveedor prov) throws MiException;
     public List<Proveedor> findByServicio(Servicio servicio);
