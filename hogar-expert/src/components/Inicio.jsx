@@ -5,6 +5,7 @@ import SeguridadConfianza from './SeguridadConfianza'
 import CarruselComentarios from './CarruselComentarios'
 import GarantiaSatisfaccion from './GarantiaSatisfaccion'
 import Comentarios from './comentario/Comentarios'
+import PreguntasFrecuentes from './PreguntasFrecuentes'
 
 export default function Inicio() {
   return (
@@ -37,6 +38,9 @@ export default function Inicio() {
            <GarantiaSatisfaccion/>
           </article>
 
+          <article  id='Preguntas-frecuentes'>
+           <PreguntasFrecuentes/>
+          </article>
         </section>
 
       </main>

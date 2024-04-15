@@ -67,8 +67,6 @@ const { user } = useUser();
 
 
 
-      <li><Link  className="nav-link" to='/'> Como funciona </Link></li>
-     {/*!isAuthenticated && <li>  <Link className="nav-link" to='/login'> Acceder </Link></li>*/}
      {!isAuthenticated && <li> <Login  setIsAuthenticated={setIsAuthenticated} /> </li>}
      {!isAuthenticated && <li> <Link className="nav-link" to={`/usuario/crear`}>Registro  </Link>  </li>}
      {isAuthenticated && user&& user.roles.includes("ADMIN") &&<li> <Link className="nav-link" to={`/usuario/lista`}>lista usuarios  </Link>  </li>}

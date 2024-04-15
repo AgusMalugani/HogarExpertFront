@@ -23,10 +23,10 @@ public interface ITrabajoRepositorio extends JpaRepository<Trabajo, Long> {
        @Query("SELECT t FROM Trabajo t WHERE t.usuario.id = :id")
     public List<Trabajo>listaTrabajosPorUsuario(@Param("id") Long id);
     
-    @Query("SELECT t FROM Trabajo t WHERE t.estado = 'ESPERANDO' AND t.proveedor.id = :id")
+    @Query("SELECT t FROM Trabajo t WHERE t.estado = 'ESPERANDO' AND t.proveedor.id = :id AND t.precio = 0")
     public List<Trabajo>listaTrabajosEsperandoProveedor(@Param("id") Long id);
     
-    @Query("SELECT t FROM Trabajo t WHERE t.estado = 'ESPERANDO' AND t.usuario.id = :id")
+    @Query("SELECT t FROM Trabajo t WHERE t.estado = 'ESPERANDO' AND t.usuario.id = :id AND t.precio > 0")
     public List<Trabajo>listaTrabajoEsperandoUsuario(@Param("id") Long id);
     
     

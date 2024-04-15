@@ -1,18 +1,19 @@
 
-
+/*header*/
 header {
   width: 100%;
-  background-image: url(https://zolvers.com/img/home_new/home.webp);
-  background-size: 100% 100%; /* Ajusta según tus necesidades */
+  background-image: url(img/Decoracion-en-color-verde-la-nueva-tendencia-para-transformar-tu-hogar.jpg) ;
+   background-size: 100% 150%; /* Ajusta según tus necesidades https://zolvers.com/img/home_new/home.webp */
   background-repeat: no-repeat ;
   height: 17em;
 }
 header img{
-  width: 100px;
+  width: 5em;
+  
 }
 
 .escritoHeader {
-    font-size: 38px;
+    font-size: 1.2rem;
     font-family: Arial, Helvetica, sans-serif;
     color: aliceblue;
     display: flex;
@@ -28,7 +29,7 @@ header img{
   color:#4CAF50;
   text-decoration: none; /* Asegúrate de que los enlaces no tengan subrayado */
   cursor: pointer;
- font-size: 25px;
+ font-size: 1.5rem;
 }
 
 /* Estilos para el enlace dentro del botón */
@@ -47,6 +48,9 @@ header img{
 background-color:#4CAF50;
 color: aliceblue;
 }
+
+/*fin header/*
+
 
 /*NAVBAR */
 .navbar {
@@ -101,21 +105,18 @@ color: rgb(19, 19, 19);
   }
 /* FIN NAVBAR */
 
-
-
-#primer-article {
-    background-color: rgb(243, 241, 241);
-
-}
-
+/*servicio brindado*/
 #titulo-servicios {
     display: flex;
     justify-content: center;
     margin-top: 15px;
     margin-bottom: 1em;
-    font-weight: 400;
+    font-weight: 600;
+    font-size: 2rem;
     font-family: Arial, Helvetica, sans-serif;
-}
+    color: #034c63;
+    font-style: italic;
+  }
 
 #contenedor-servicios img {
     width: 8em;
@@ -192,20 +193,23 @@ background-color: #B2BAC8;
 }
 
 
+/*fin servicio*/
 
-
+/*inicio seguridad y confianza*/
 #contenedor-seguridad-confianza {
-    background-image: url(https://zolvers.com/img/home_new/seguridad-y-confianza.webp);
+  width: 100%;
+    background-image: url(img/seguridad-y-confianza.webp);/**/
+  background-repeat: no-repeat;
+  background-size:  100%;
     height: 35em;
-    width: 100%;
-
+    
 }
 
 #seguridad-confianza {
     display: flex;
     flex-direction: column;
     margin-top: 5em;
-    margin-left: 7em;
+    margin-left: 1em;
     font-family: Arial, Helvetica, sans-serif;
 
 }
@@ -221,7 +225,7 @@ background-color: #B2BAC8;
 }
 
 #seguridad-confianza button {
-    margin-top: 50px;
+    margin-top: 2rem;
     height: 3em;
     width: 20em;
     border-color: rgb(115, 241, 115);
@@ -240,7 +244,7 @@ color: inherit;
   }
 
 
-
+/*fin seguridad y confianza*/
 #carrusel-comentarios {
     display: flex;
     justify-content: center;

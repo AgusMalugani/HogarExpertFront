@@ -22,6 +22,7 @@ import ListaProveedoresPorServicios from './components/proveedor/ListaProveedore
 import Dashboard from './components/Dashboard';
 import Login from './components/sesion/Login';
 import { UserProvider } from './components/sesion/UserContext';
+import PreguntasFrecuentes from './components/PreguntasFrecuentes';
 
 
 function App() {
