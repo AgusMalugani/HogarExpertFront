@@ -67,7 +67,7 @@ public class ProveedorServicio implements IProveedorServicio {
         }
         Proveedor p = respuesta.get();
 
-        proveedorRepo.deleteById(p.getId());
+        proveedorRepo.delete(p);
 
     }
 
@@ -146,9 +146,6 @@ public class ProveedorServicio implements IProveedorServicio {
             throw new MiException("El numero de celular debe ser un numero valido.");
         }
 
-        if (prov.getCostoXHora() <= 0) {
-            throw new MiException("Debe ingresar el costo por hora");
-        }
 
         if (prov.getEmail() == null || prov.getEmail().isEmpty() || !prov.getEmail().contains("@")) {
             throw new MiException("Debe ingresar un email valido");
@@ -168,6 +165,12 @@ public class ProveedorServicio implements IProveedorServicio {
     @Override
     public List<Proveedor> findByServicio(Servicio servicio) {
         return proveedorRepo.buscarPorServicio(servicio);
+    }
+
+    @Override
+    public List<Proveedor> findByLocalidad(String localidad) {
+  return proveedorRepo.listaProveedorPorLocalidad(localidad);
+    
     }
 
 }

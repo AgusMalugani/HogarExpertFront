@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { traerImagenProveedor } from '../../servicios/ImagenServicio';
 import { useUser } from '../sesion/UserContext';
 
-export default function Proveedor({proveedor, eliminarProveedor}) {
+export default function Proveedor({proveedor, eliminarProveedor} ) {
   const{user}=useUser();
 
 const[imagen,setImagen]=useState();
@@ -26,9 +26,9 @@ useEffect( ()=>{
           <img src={imagen}  className="bd-placeholder-img card-img-top" width="100%" height="225" />
     
             <div className="card-body" >
-              <p className="card-text">{proveedor.nombreEmpresa}</p>
-              <p className="card-text" > {proveedor.id} </p>
+              <p className="card-text">{proveedor.nombreEmpresa}</p>            
               <p className="card-text" >{proveedor.servicio}</p>
+              <p className="card-text" >{proveedor.localidad}</p>
  
              <div className="d-flex justify-content-between align-items-center">
                 <div className="btn-group">       
@@ -52,23 +52,5 @@ useEffect( ()=>{
 
   )
 
-  {/*
   
-  <tr id='lista-filas'>
-  <td className='lista-fila-elemento' >{proveedor.id}</td>
-  <td className='lista-fila-elemento' >{proveedor.nombreEmpresa}</td>
-  <td className='lista-fila-elemento' >{proveedor.matricula}</td>
-        <td className='lista-fila-elemento' >{proveedor.servicio}</td>
-        <td className='lista-fila-elemento' >{proveedor.celular}</td>
-        <td className='lista-fila-elemento' >{proveedor.email}</td>
-        <td className='lista-fila-elemento' >{proveedor.costoXHora}</td>
-        
-        <div>
-        <td className='lista-fila-elemento' ><button onClick={()=> eliminarProveedor(proveedor)}>❌</button></td>
-        <td className='lista-fila-elemento' ><button> <Link to={`/proveedor/detalle/${proveedor.id}`} >DETALLE</Link></button></td>
-        <td className='lista-fila-elemento' > <button> <Link to={`/proveedor/modificar/${proveedor.id}`} >MODIFICAR</Link> </button> </td>
-        </div>
-        
-    </tr>
-  */}
 }

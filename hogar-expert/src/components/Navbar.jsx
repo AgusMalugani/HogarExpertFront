@@ -25,9 +25,9 @@ const { user } = useUser();
         navigate('/usuario/perfil');
       }
       
-        //  navigate('/usuario/perfil');
+  
     } else if (selectedOption === 'logout') {
-      // Ejecuta la función de logout
+   
       setIsAuthenticated(false);
       localStorage.removeItem('token');
       console.log("Token eliminado de localStorage");
@@ -36,6 +36,8 @@ const { user } = useUser();
     } else if (selectedOption === 'trabajos'){
       navigate(`/trabajo/lista`)
 
+    } else if(selectedOption ==="proveedoresPorLocalidad"){
+      navigate(`/proveedor/listaProv/${user.localidad}`);
     }
   };
 
@@ -64,13 +66,16 @@ const { user } = useUser();
 </ul>
 </li>
 )}
+<li ><Link className='nav-link' to={"/faqs"}>Preguntas Frecuentes</Link></li>
 
 
 
      {!isAuthenticated && <li> <Login  setIsAuthenticated={setIsAuthenticated} /> </li>}
      {!isAuthenticated && <li> <Link className="nav-link" to={`/usuario/crear`}>Registro  </Link>  </li>}
      {isAuthenticated && user&& user.roles.includes("ADMIN") &&<li> <Link className="nav-link" to={`/usuario/lista`}>lista usuarios  </Link>  </li>}
-    
+    {isAuthenticated&& user && user.roles.includes("USER")  && <li ><button  onClick={handleSelectOption} value="proveedoresPorLocalidad" className='nav-MiPerfil '>Proveedores por zona</button></li>}
+    {isAuthenticated && user&& user.roles.includes("ADMIN") &&<li> <Link className="nav-link" to={`/proveedor/lista`}>lista proveedores  </Link>  </li>}
+   
     
      {isAuthenticated && (
      <li className="nav-item dropdown">
@@ -83,6 +88,7 @@ const { user } = useUser();
              {user && user.roles.includes("PROVEEDOR") && <li><p>{user.nombreEmpresa}</p></li> }
               <li > <button onClick={handleSelectOption} value="perfil"  className='nav-MiPerfil'> Mi Perfil </button> </li>
               
+
               <li><button onClick={handleSelectOption} value="trabajos" className='nav-MiPerfil'>Lista de Trabajos</button></li>
 
               <li>  <button onClick={handleSelectOption} value="logout" className='nav-MiPerfil'>Cerrar Sesion </button> </li>

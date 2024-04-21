@@ -5,11 +5,15 @@
 package com.Servicios.HogarExpert.Entity;
 
 import com.Servicios.HogarExpert.Enum.Rol;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import java.util.Set;
 import lombok.Builder;
@@ -31,17 +35,17 @@ public class Usuario {
     private String username;
     private String email;
     private String password;
-    //@Enumerated
-    //private Rol rol;
-
-      private Set<String> roles;
+    
+ private Set<String> roles;
     @OneToOne
     private Imagen imagen;
+    
+    private String localidad;
 
     public Usuario() {
     }
 
-    public Usuario(Long id, String nombre, String apellido, Integer dni, String celular, String domicilio, String username, String email, String password, Set<String> roles, Imagen imagen) {
+    public Usuario(Long id, String nombre, String apellido, Integer dni, String celular, String domicilio, String username, String email, String password, Set<String> roles, Imagen imagen, String localidad) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -53,7 +57,10 @@ public class Usuario {
         this.password = password;
         this.roles = roles;
         this.imagen = imagen;
+        this.localidad = localidad;
     }
+
+  
 
    @Override
     public String toString() {

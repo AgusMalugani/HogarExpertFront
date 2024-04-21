@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useUser } from './sesion/UserContext'
 
-export default function SeguridadConfianza() {
+export default function SeguridadConfianza({isAuthenticated} ) {
+  const{user}=useUser();
   return (
     <div>
        <div id='contenedor-seguridad-confianza'>
@@ -18,6 +20,9 @@ export default function SeguridadConfianza() {
                 <button>
                   <Link to={`/proveedor/lista`} > Conoce los prestadores de servicios</Link>
                 </button>
+               { user && isAuthenticated &&<button>
+                <Link to={`/proveedor/listaProv/${user.localidad}`} > Conoce los prestadores de servicios de tu localidad</Link>
+                </button>}
       
 
               </div>

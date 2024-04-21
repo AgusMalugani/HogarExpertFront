@@ -36,7 +36,7 @@ public class UsuarioServicio implements IUsuarioServicio {
     @Override
     public Usuario save(Usuario usuario, MultipartFile archivo) throws MiException {
 
-        // this.validar(usuario);
+         this.validar(usuario);
         List<Usuario> listaUsuario = this.findAll();
         Usuario u = usuario;
 
@@ -49,11 +49,11 @@ public class UsuarioServicio implements IUsuarioServicio {
 
         u.setImagen(img);
 
-        // if(u.getRoles() == null || u.getRoles().isEmpty()){
+  
         Set<String> rol = new HashSet<>();
         rol.add("USER");
         u.setRoles(rol);
-        //}
+        
 
         usuarioRepo.save(u);
         return u;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Inicio from './components/Inicio';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -19,10 +19,16 @@ import Comentarios from './components/comentario/Comentarios';
 import GuardarComentario from './components/comentario/GuardarComentario';
 
 import ListaProveedoresPorServicios from './components/proveedor/ListaProveedoresPorServicios';
-import Dashboard from './components/Dashboard';
+
 import Login from './components/sesion/Login';
 import { UserProvider } from './components/sesion/UserContext';
 import PreguntasFrecuentes from './components/PreguntasFrecuentes';
+import ListaProveedoresPorLocalidad from './components/proveedor/ListaProveedoresPorLocalidad';
+
+import DatosContactoProveedor from './components/proveedor/DatosContactoProveedor';
+import SinAutorizacion from './components/SinAutorizacion';
+
+import ErrorPagina from './components/ErrorPagina';
 
 
 function App() {
@@ -46,10 +52,9 @@ function App() {
     <Route path='/login' element={<Login setIsAuthenticated={setIsAuthenticated} />} />
 
     
-    <Route path='/dashboard' element={<Dashboard  setIsAuthenticated={setIsAuthenticated} />} />
     
 
-    <Route path='/' element={<Inicio/>} />
+    <Route path='/' element={<Inicio isAuthenticated={isAuthenticated} />} />
     <Route path='/usuario/lista' element={<Usuarios/>} />
     <Route path='/usuario/perfil/:id' element ={<Perfil/>} />
     <Route path='/usuario/perfil' element={<Perfil />} />
@@ -57,17 +62,20 @@ function App() {
     <Route path='/usuario/modificar/:id' element = {<ModificarUsuario/>} />
 
 
-    <Route path='/proveedor/lista' element={<Proveedores/>} />
+    <Route path='/proveedor/lista' element={<Proveedores />} />
     <Route path='/proveedor/lista/:servicio' element={<ListaProveedoresPorServicios/>} />
+    <Route path='/proveedor/listaProv/:localidad' element={<ListaProveedoresPorLocalidad />}/>
     <Route path='/proveedor/crear' element = {<GuardarProveedor/>}/>
     <Route path='/proveedor/detalle/:id' element = {<DetalleProveedor />}/>
     <Route path='/proveedor/detalle' element = {<DetalleProveedor />}/>
     <Route path='/proveedor/modificar/:id' element = { <ModificarProveedor/>} />
 
 
+
     <Route path='/trabajo/crear/:id' element ={<CrearTrabajo />}/>
     <Route path='/trabajo/lista' element={<Trabajos/>}/>
     <Route path='/trabajo/detalle/:id' element = { <DetalleTrabajo/>} />
+    <Route path='/proveedor/detalleContactoProv/:id' element={<DatosContactoProveedor/>} />
    
 
     
@@ -75,6 +83,13 @@ function App() {
 
     <Route path='/comentario/lista' element={<Comentarios/>} />
     <Route path='/comentario/crear' element= {<GuardarComentario/>} />
+
+
+    <Route path='/faqs' element={<PreguntasFrecuentes/>}/>
+
+    <Route path='/SinAutorizacion' element={<SinAutorizacion/>}/>
+    <Route path="/404" element={<ErrorPagina />} />
+        <Route path="*" element={<Navigate to="/404" />} />
      </Routes>
 
      <Footer/>

@@ -16,6 +16,7 @@ export default function GuardarUsuario() {
     username:"",
     roles:null,
     archivo: null,
+    localidad:""
   });
 
   const handleChange = (e) => {
@@ -34,10 +35,7 @@ export default function GuardarUsuario() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userData);
-    // Aquí puedes realizar acciones adicionales antes de enviar el formulario al backend
-
-    // Enviar el formulario al backend
+ 
     sendDataToBackend();
   };
 
@@ -93,8 +91,9 @@ export default function GuardarUsuario() {
    name="nombre"
    value={userData.nombre}
    onChange={handleChange}
-   placeholder="NOMBRE"
+   
    className="input"
+   required title="Por favor, introduce tu nombre"
    />
    <span>nombre</span>
    </label>
@@ -105,8 +104,9 @@ export default function GuardarUsuario() {
    name="apellido"
    value={userData.apellido}
    onChange={handleChange}
-   placeholder="APELLIDO"
+  
    className="input"
+   required title="Por favor, introduce tu apellido"
    />
    <span>apellido</span>
    </label>
@@ -119,9 +119,12 @@ export default function GuardarUsuario() {
    name="celular"
    value={userData.celular}
    onChange={handleChange}
-   placeholder="CELULAR"
-            className="input"
+   className="input"
+  required title="Por favor, introduce tu celular"
+  maxlength="15"
+  minlength="10"
             />
+
             <span>celular</span>
             </label>
             
@@ -130,9 +133,11 @@ export default function GuardarUsuario() {
             type="number"
             name="dni"
             value={userData.dni}
-            onChange={handleChange}
-            placeholder="DNI"
+            onChange={handleChange}       
             className="input"
+            required title="Por favor, introduce tu DNI"
+            maxlength="10"
+            minlength="6"
             />
             <span>DNI</span>
             </label>
@@ -142,9 +147,9 @@ export default function GuardarUsuario() {
             type="email"
             name="email"
             value={userData.email}
-            onChange={handleChange}
-            placeholder="EMAIL"
+            onChange={handleChange}      
             className="input"
+            required title="Por favor, introduce tu Email"
             />
             <span>Email</span>
             </label>
@@ -155,8 +160,11 @@ export default function GuardarUsuario() {
             name="username"
             value={userData.username}
             onChange={handleChange}
-            placeholder="USERNAME"
+          
             className="input"
+            required title="Por favor, introduce tu Username"
+            maxlength="15"
+            minlength="6"
             />
             <span>username</span>
             </label>
@@ -167,8 +175,10 @@ export default function GuardarUsuario() {
             name="password"
             value={userData.password}
             onChange={handleChange}
-            placeholder="PASSWORD"
+     
             className="input"
+            required title="Por favor, introduce tu Password"
+            minlength="8"
             />
             <span>Password</span>
             </label>
@@ -179,10 +189,26 @@ export default function GuardarUsuario() {
             name="domicilio"
             value={userData.domicilio}
             onChange={handleChange}
-            placeholder="DOMICILIO"
+            
             className="input"
+            required title="Por favor, introduce tu domicilio"
+            maxlength="20"
+            mixlength="10"
             />
             <span>Domicilio </span>
+            </label>
+
+            <label>
+            <input
+            type="text"
+            name="localidad"
+            value={userData.localidad}
+            onChange={handleChange}
+          
+            className="input"
+            required title="Por favor, introduce tu Localidad"
+            />
+            <span>Localidad </span>
             </label>
             
             <label>
@@ -191,6 +217,7 @@ export default function GuardarUsuario() {
             name="archivo"
             onChange={handleChange}           
             className="input"
+            required title="Por favor, introduce tu foto de perfil"
             />
             </label>
             
@@ -199,9 +226,7 @@ export default function GuardarUsuario() {
             <button className="boton" onClick={goBack}>
             Volver
         </button>
-        <p className="signin">
-        Ya tienes una cuenta? <a href="#">inicia sesion</a>{" "}
-        </p>
+  
         </form>
         </div>
 
@@ -214,138 +239,3 @@ export default function GuardarUsuario() {
         
         
       }
-      {/*
-   <div className="formulario-registro">
-   
-   <form
-   className="form"
-   onSubmit={handleSubmit}
-   encType="multipart/form-data"
-   method="post"
-   >
-   <p className="title">Registro </p>
-   <p className="message">
-   Registrese ahora y obtenga acceso a nuestra app{" "}
-   </p>
-   
-   <div className="flex"> 
-   
-   
-   <label>
-   <input
-   type="text"
-   name="nombre"
-   value={userData.nombre}
-   onChange={handleChange}
-   placeholder="NOMBRE"
-   className="input"
-   />
-   <span>nombre</span>
-   </label>
-   
-   <label>
-   <input
-   type="text"
-   name="apellido"
-   value={userData.apellido}
-   onChange={handleChange}
-   placeholder="APELLIDO"
-   className="input"
-   />
-   <span>apellido</span>
-   </label>
-   
-   </div>
-   
-   <label>
-   <input
-   type="text"
-   name="celular"
-   value={userData.celular}
-   onChange={handleChange}
-   placeholder="CELULAR"
-            className="input"
-            />
-            <span>celular</span>
-            </label>
-            
-            <label>
-            <input
-            type="number"
-            name="dni"
-            value={userData.dni}
-            onChange={handleChange}
-            placeholder="DNI"
-            className="input"
-            />
-            <span>DNI</span>
-            </label>
-            
-            <label>
-            <input
-            type="email"
-            name="email"
-            value={userData.email}
-            onChange={handleChange}
-            placeholder="EMAIL"
-            className="input"
-            />
-            <span>Email</span>
-            </label>
-            
-            <label>
-          <input
-            type="text"
-            name="username"
-            value={userData.username}
-            onChange={handleChange}
-            placeholder="USERNAME"
-            className="input"
-            />
-            <span>username</span>
-            </label>
-            
-            <label>
-            <input
-            type="password"
-            name="password"
-            value={userData.password}
-            onChange={handleChange}
-            placeholder="PASSWORD"
-            className="input"
-            />
-            <span>Password</span>
-            </label>
-            
-            <label>
-            <input
-            type="text"
-            name="domicilio"
-            value={userData.domicilio}
-            onChange={handleChange}
-            placeholder="DOMICILIO"
-            className="input"
-            />
-            <span>Domicilio </span>
-            </label>
-            
-            <label>
-            <input
-            type="file"
-            name="archivo"
-            onChange={handleChange}           
-            className="input"
-            />
-            </label>
-            
-            <button className="submit">Submit</button>
-            <br />
-            <button className="boton" onClick={goBack}>
-            Volver
-        </button>
-        <p className="signin">
-        Ya tienes una cuenta? <a href="#">inicia sesion</a>{" "}
-        </p>
-        </form>
-        </div>
-      */}

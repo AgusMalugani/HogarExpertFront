@@ -8,7 +8,7 @@ import { useUser } from '../sesion/UserContext'
 import { Modal, Button, Form } from 'react-bootstrap';
 
 export default function GuardarComentario({proveedor,usuario}) {
-    const navigate = useNavigate();
+   
     
 
     const[showModal,setShowModal]=useState(false);
@@ -42,9 +42,7 @@ function handleChange(e){
 
 
 }
-console.log("usuario", usuario)
-console.log("proveedor", proveedor)
-console.log(comentario)
+
 
 function cargarComentario(e){
 e.preventDefault();
@@ -62,14 +60,9 @@ function enviarBackEnd(){
 }
 
 
-function goBack(){
-    window.history.back()
-}
+
 
 const[mensajeCom,setMensajeCom]= useState(false);
-function estadoComentario(){
-    setMensajeCom(!mensajeCom)
-}
 
 
   return (

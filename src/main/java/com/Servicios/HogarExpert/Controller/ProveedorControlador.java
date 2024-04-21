@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -95,7 +95,7 @@ public class ProveedorControlador {
     
     
     
-    @PreAuthorize("hasAnyRole('ROLE_PROVEEDOR','ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('PROVEEDOR','ADMIN')")
    @PutMapping("/modificarImg/{id}")
     public ResponseEntity<Proveedor> modificarProveedorImg(@PathVariable Long id, @RequestParam("archivo") MultipartFile archivo){
         try{
@@ -132,6 +132,12 @@ public class ProveedorControlador {
             System.out.println(ex.getMessage());
         return null;
         }
+    }
+    
+      @GetMapping("/listaProv/{localidad}")
+    public List<Proveedor>listaProveedores(@PathVariable String localidad){
+        
+        return provServ.findByLocalidad(localidad);
     }
     
     

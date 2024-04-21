@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { detalleProveedor, updateProveedor, updateProveedorImg } from '../../servicios/ProveedorServicios';
+import { updateProveedor, updateProveedorImg } from '../../servicios/ProveedorServicios';
 import { useUser } from '../sesion/UserContext';
 
 export default function ModificarProveedor() {
@@ -51,7 +51,7 @@ function handleChangeImg(e){
       }
 
       await updateProveedor(id,formData,token);
-      //navigate("/");
+      
       setUser(proveedor);
 
       if(imagen !== null){
@@ -64,6 +64,7 @@ function handleChangeImg(e){
        console.log(imagen);
 
       }
+      navigate("/");
     }
 
     function goBack(){
@@ -72,18 +73,22 @@ function handleChangeImg(e){
 
   return (
     <div>
-        <h1>MODIFICAR PROVEEDOR</h1>
-        <br />
-       <form onSubmit={handleSubmit}>
-       <label>nombre de la empresa: </label> 
+ <h1 className='modificar-h1'>MODIFICAR PROVEEDOR</h1>
+    <div className='contenedor-modificar-usuario-proveedor'>
+       
+       
+       <form onSubmit={handleSubmit} className='modificar-usuario-proveedor'>
+       <label>NOMBRE DE LA EMPRESA </label> 
        <input value={proveedor.nombreEmpresa} onChange={ handleChange} type="text" name= 'nombreEmpresa' placeholder={proveedor.nombreEmpresa} />
-       <br />
+     
        
-       <label>matricula: </label> 
+       <label>MATRICULA </label> 
        <input value={proveedor.matricula} onChange={handleChange} type="text" name='matricula' placeholder={proveedor.matricula} />
-       <br />
+      
+       <label>DESCRIPCION PERSONAL </label> 
+       <textarea  value={proveedor.descripcion} onChange={handleChange} type="text" name='descripcion' placeholder={proveedor.descripcion} />
        
-       <label>servicio que brindara: </label> 
+       <label>SERVICIO QUE BRINDA </label> 
        <select name="servicio" value={proveedor.servicio} onChange={handleChange}>
        <option value="3">INGRESE EL SERVICIO</option>
         <option value="PLOMERO">PLOMERO</option>
@@ -97,29 +102,29 @@ function handleChangeImg(e){
         <option value="CARPINTERO">CARPINTERO</option>
         <option value="JARDINERO">JARDINERO</option>
        </select>
-       <br />
+     
        
-       <label>celular: </label> 
+       <label>CELULAR </label> 
        <input value={proveedor.celular} onChange={handleChange} type="text" name='celular' placeholder={proveedor.celular} />
-       <br />
-       <label>email: </label> 
+    
+       <label>LOCALIDAD </label> 
+       <input value={proveedor.localidad} onChange={handleChange} type="text" name='localidad' placeholder={proveedor.localidad} />
+       
+       <label>EMAIL </label> 
        <input  value={proveedor.email} onChange={handleChange} type="email" name='email' placeholder={proveedor.email} />
-       <br />
-       <label>costo por hora de su servicio:</label> 
-       <input value={proveedor.costoXHora} onChange={ handleChange}  type="number" name='costoXHora' placeholder='costo por hora' />
-       <br />
-       <label>foto de perfil</label>
+    
+       <label>FOTO DE PERFIL</label>
        <input type="file" name='archivo' onChange={handleChangeImg} />
-       <br />
+       
 
     <button>MODIFICAR</button>
 
-
-
-    <br />
       <button className='boton' onClick={goBack}>Volver</button>
 
     </form>
     </div>
+    
+</div>    
+
   )
 }

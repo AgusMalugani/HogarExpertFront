@@ -15,6 +15,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,20 +36,20 @@ public class Trabajo {
     @ManyToOne
     private Usuario usuario;
     @ManyToOne
-    private Proveedor proveedor; 
-    
+    private Proveedor proveedor;     
     private Integer horasTrabajo;
-    private double total; 
-    
-    private String notaTrabajo;
-    
+    private double total;    
+    private String notaTrabajo;   
     @Enumerated(EnumType.STRING)
     private EstadoTrabajo estado;
+    
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
 
     public Trabajo() {
     }
 
-    public Trabajo(Long id, Usuario usuario, Proveedor proveedor, Integer horasTrabajo, double total, String notaTrabajo, EstadoTrabajo estado) {
+    public Trabajo(Long id, Usuario usuario, Proveedor proveedor, Integer horasTrabajo, double total, String notaTrabajo, EstadoTrabajo estado, LocalDate fechaInicio, LocalDate fechaFin) {
         this.id = id;
         this.usuario = usuario;
         this.proveedor = proveedor;
@@ -56,8 +57,11 @@ public class Trabajo {
         this.total = total;
         this.notaTrabajo = notaTrabajo;
         this.estado = estado;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
     }
 
+  
 
   
 

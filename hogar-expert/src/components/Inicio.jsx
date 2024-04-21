@@ -2,12 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import ServiciosBrindados from './ServiciosBrindados'
 import SeguridadConfianza from './SeguridadConfianza'
-import CarruselComentarios from './CarruselComentarios'
+
 import GarantiaSatisfaccion from './GarantiaSatisfaccion'
 import Comentarios from './comentario/Comentarios'
-import PreguntasFrecuentes from './PreguntasFrecuentes'
 
-export default function Inicio() {
+
+export default function Inicio({isAuthenticated}) {
   return (
     <>
      
@@ -27,7 +27,7 @@ export default function Inicio() {
           </article>
 
           <article>
-           <SeguridadConfianza/>
+           <SeguridadConfianza isAuthenticated={isAuthenticated} />
           </article>
 
           <article>
@@ -38,9 +38,7 @@ export default function Inicio() {
            <GarantiaSatisfaccion/>
           </article>
 
-          <article  id='Preguntas-frecuentes'>
-           <PreguntasFrecuentes/>
-          </article>
+      
         </section>
 
       </main>

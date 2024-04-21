@@ -8,15 +8,9 @@ import { useUser } from '../sesion/UserContext';
 export default function Perfil() {
    const {id}=useParams();
    const { user: currentUser } = useUser();
-    // Convierte el id a tipo Long (número entero)
-    //const idLong = id ? Number(id) : null; // si id es numero, es verdadero, si no, es falso y es null
     const [usuario, setUsuario] = useState({});
     const[imagen,setImagen]= useState();
-/*
-    useEffect(() => {
-        perfilUsuario(idLong).then(data => {setUsuario(data);});
-    }, [idLong]);
-*/
+
 const token = localStorage.getItem("token")
 useEffect(() => {
   
@@ -30,16 +24,7 @@ if (id) {
 }
 }, [id, currentUser]);
 
- /*
 
-    useEffect(()=>{
-        traerImagenUsuario(usuario.id).then(data=> { const imagenUrl = URL.createObjectURL(data) 
-
-        setImagen(imagenUrl);
-      })
-       
-    },[usuario])
-   */
     useEffect(() => {
       if (usuario && usuario.id) {
         
@@ -106,12 +91,19 @@ if (id) {
   <span className='perfil-titulo'>DOMICILIO: </span>
   <p  className='perfil-valor'>{usuario.domicilio}</p>
   </div> 
-
-        <br />
-    <button className='boton' onClick={goBack}>Volver</button>  
+  <div className='detalle-perfil'>
+  <span className='perfil-titulo'>LOCALIDAD: </span>
+  <p  className='perfil-valor'>{usuario.localidad}</p>
+  </div>
+  <div className='perfil-usuario-proveedor-botones-perfil' >
+  <button  className="btn btn-sm btn-outline-secondary"  onClick={goBack}>Volver</button>  
     <button type="button" className="btn btn-sm btn-outline-secondary" > <Link to={`/usuario/modificar/${usuario.id}`} >MODIFICAR</Link> </button>
-   </div>
+  </div>
+  
+      
+    </div>
   )}
+  
   </div>
 
 

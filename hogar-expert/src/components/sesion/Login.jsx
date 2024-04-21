@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import { LoginBack, UsuarioLog } from '../../servicios/LoginServicio';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from './UserContext';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 export default function Login({setIsAuthenticated}) {
   const navigate = useNavigate();
   const{setUser}=useUser();
-  const { user } = useUser();
+  
 
-  const[error,setError]=useState("");
+  const[error,setError]=useState(false);
 
   const[showModal,setShowModal]=useState(false);
   const handleShowModal=()=>setShowModal(true);
@@ -48,15 +48,17 @@ const sendDataToBackEnd = async() =>{
 
     await LoginBack(loginData);
     const token = localStorage.getItem("token")
-    console.log("token ",token)
+    
     const userData = await UsuarioLog(token); // Obtener datos del usuario
     setUser(userData); 
     setIsAuthenticated(true); // Establecer isAuthenticated en true 
-    console.log(userData)
+    alert("Bienvenido " + userData.username)
+
     navigate("/")
    
   }catch (error) {
-    setError('Credenciales inválidas. Inténtalo de nuevo.');
+    setError(true);
+  
   }
 }
 
@@ -71,6 +73,8 @@ return (
     <Modal  show={showModal} onHide={handleCloseModal}>
       <Modal.Header closeButton className="modal-login">
         <Modal.Title>Iniciar Sesión</Modal.Title>
+        {error && <p  className="error-message">Error al iniciar sesión. Por favor, verifica tus credenciales e intenta nuevamente.</p>}
+
       </Modal.Header>
       <Modal.Body className="modal-login-body" >
         <form onSubmit={handleSubmit} className='login'>

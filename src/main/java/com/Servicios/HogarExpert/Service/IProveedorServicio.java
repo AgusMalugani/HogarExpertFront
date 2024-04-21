@@ -27,6 +27,7 @@ public interface IProveedorServicio {
     
     public void validar(Proveedor prov) throws MiException;
     public List<Proveedor> findByServicio(Servicio servicio);
+    public List<Proveedor> findByLocalidad(String localidad);
     
     
 }

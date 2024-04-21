@@ -35,7 +35,7 @@ public class ComentarioServicio implements IComentarioServicio {
     @Transactional
     @Override
     public Comentario save(Comentario com) throws MiException {
-       // this.validar(com);
+        this.validar(com);
 
          return comRepo.save(com);
 
@@ -106,32 +106,11 @@ public class ComentarioServicio implements IComentarioServicio {
         if (com.getMensaje().isEmpty() || com.getMensaje() == null) {
             throw new MiException("Debe ingresar un mensaje");
         }
-        if (com.getProveedor().getId() == null) {
-            throw new MiException("Debe ingresar el id del proveedor");
-        }
-     //   if (com.getTrabajo().getNum_trabajo() == null) {
-       //     throw new MiException("Debe ingresar el numero de trabajo");
-       // }
-        if (com.getUsuario().getId() == null) {
-            throw new MiException("Debe ingresar el id del usuario");
-        }
-
+ 
         if (com.getCalificacion() < 0 || com.getCalificacion() > 5) {
             throw new MiException("Debe ingrear un calificacion entre 0 y 5");
         }
 
-        Optional<Proveedor> respuestaProveedor = provRepo.findById(com.getProveedor().getId());
-        if (respuestaProveedor.isEmpty()) {
-            throw new MiException("No hay proveedores con esa id");
-        }
-        Optional<Usuario> respuestaUsuario = usuarioRepo.findById(com.getUsuario().getId());
-        if (respuestaUsuario.isEmpty()) {
-            throw new MiException("No hay usuarios con esa id");
-        }
-//        Optional<Trabajo> respuestaTrabajo = trabRepo.findById(com.getTrabajo().getNum_trabajo());
-  //      if (respuestaTrabajo.isEmpty()) {
-    //        throw new MiException("No hay trabajos con ese numero");
-     //   }
 
     }
 

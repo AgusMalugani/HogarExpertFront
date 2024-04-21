@@ -35,7 +35,7 @@ public class TrabajoControlador {
     
   
     
-   //@PreAuthorize("hasAnyRole('ADMIN','USER')")
+   @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @PostMapping("/crear") // lo va a crear el usuario.
     public ResponseEntity<Trabajo> crearTrabajo(@RequestBody Trabajo t) { // aca tengo que recibir, el trabajo con un usuario, proveedor y notaTrabajo
    
@@ -55,13 +55,14 @@ public class TrabajoControlador {
     }
     
     
+ @PreAuthorize("hasAnyRole('ADMIN','USER','PROVEEDOR')")
     @GetMapping("/listaPorProveedor/{id}")
     public List<Trabajo>listaTrabajos(@PathVariable Long id){ // envio el id del prov
         
         return trabajoServi.findAllProv(id); // retorno la lista de trabajos de ese prov.
     }
     
-    
+ @PreAuthorize("hasAnyRole('ADMIN','USER','PROVEEDOR')")
     @GetMapping("/detalle/{id}") // este es el que vera el prov. y Aca lo va a modificar.
     public Trabajo verTrabajo(@PathVariable Long id){
         try {
@@ -77,20 +78,20 @@ public class TrabajoControlador {
      
         }
     
+  @PreAuthorize("hasAnyRole('ADMIN','USER','PROVEEDOR')")
       @GetMapping("/listaPorUsuario/{id}")
-    public List<Trabajo>listaTrabajosPorUsuario(@PathVariable Long id){ // envio el id del prov
+    public List<Trabajo>listaTrabajosPorUsuario(@PathVariable Long id){ // envio el id del USER
         
         return trabajoServi.findAllUsuario(id); // retorno la lista de trabajos de ese prov.
     }
     
     
+    @PreAuthorize("hasAnyRole('ADMIN','USER','PROVEEDOR')")
       @PutMapping("/crearTrabajoProveedor")//mando el id del trabajo para poder modificar ese trabajo
     public ResponseEntity<Trabajo> crearTrabajoProv(@RequestBody Trabajo t) throws MiException{
-        //tengo que usar el trabajo q tenia, y modifico, el tema de los costos.
-        
+        //tengo que usar el trabajo q tenia, y modifico, el tema de los costos.      
         try{
-        Trabajo trabajo = trabajoServi.crearTrabajoProv(t);
-         
+        Trabajo trabajo = trabajoServi.crearTrabajoProv(t);       
             System.out.println("exito trabajo modificado");
             return ResponseEntity.ok(trabajo);
         }catch(MiException ex){
@@ -101,7 +102,7 @@ public class TrabajoControlador {
         
     }
     
-    
+    @PreAuthorize("hasAnyRole('ADMIN','USER','PROVEEDOR')")
        @PutMapping("/modificar/{id}")
     public ResponseEntity<Trabajo> modificarTrabajo(@PathVariable Long id, @RequestBody Trabajo t) throws MiException{
         try{
@@ -117,6 +118,7 @@ public class TrabajoControlador {
         
     }
     
+  @PreAuthorize("hasAnyRole('ADMIN','USER','PROVEEDOR')")
     @GetMapping("/listaTrabajosEsperando/{id}")
     public ResponseEntity<List<Trabajo>>trabajosEsperandoProv(@PathVariable Long id){
         try{
@@ -129,6 +131,7 @@ public class TrabajoControlador {
         }  
     }
     
+    @PreAuthorize("hasAnyRole('ADMIN','USER','PROVEEDOR')")
     @GetMapping("/listaTrabajosEsperandoUsuario/{id}")
     public ResponseEntity<List<Trabajo>> trabajosEsperandoUsuario(@PathVariable Long id){
         try{
@@ -149,10 +152,10 @@ public class TrabajoControlador {
 
  
     
-    @DeleteMapping("/eliminar/{num_trabajo}")
-    public void eliminarTrabajo(@PathVariable Long num_trabajo){
+    @DeleteMapping("/eliminar/{id}")
+    public void eliminarTrabajo(@PathVariable Long id){
         try {
-            trabajoServi.delete(num_trabajo);
+            trabajoServi.delete(id);
             System.out.println( " trabajo eliminado");
         } catch (MiException ex) {
             System.out.println(ex.getMessage());

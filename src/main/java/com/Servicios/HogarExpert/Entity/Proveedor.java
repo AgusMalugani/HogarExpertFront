@@ -33,26 +33,25 @@ public class Proveedor {
     private String matricula;
     private String email;
     private String password;
-    private String celular;
-    
+    private String celular;   
     private String username;
-    
-      private Set<String> roles;
+    private Set<String> roles;
     
     @Enumerated(EnumType.STRING)
     private Servicio servicio;
-    
-    private double costoXHora;
-    
+
     @OneToOne
     private Imagen imagen;
+    
+    private String localidad;
+    private String descripcion;
     
   
 
     public Proveedor() {
     }
 
-    public Proveedor(Long id, String nombreEmpresa, String matricula, String email, String password, String celular, String username, Set<String> roles, Servicio servicio, double costoXHora, Imagen imagen) {
+    public Proveedor(Long id, String nombreEmpresa, String matricula, String email, String password, String celular, String username, Set<String> roles, Servicio servicio, Imagen imagen, String localidad, String descripcion) {
         this.id = id;
         this.nombreEmpresa = nombreEmpresa;
         this.matricula = matricula;
@@ -62,14 +61,14 @@ public class Proveedor {
         this.username = username;
         this.roles = roles;
         this.servicio = servicio;
-        this.costoXHora = costoXHora;
         this.imagen = imagen;
+        this.localidad = localidad;
+        this.descripcion = descripcion;
     }
 
-    @Override
-    public String toString() {
-        return "Proveedor{" + "id=" + id + ", nombreEmpresa=" + nombreEmpresa + ", matricula=" + matricula + ", email=" + email + ", password=" + password + ", celular=" + celular + ", username=" + username + ", roles=" + roles + ", servicio=" + servicio + ", costoXHora=" + costoXHora + ", imagen=" + imagen + '}';
-    }
+ 
+
+ 
 
    
 

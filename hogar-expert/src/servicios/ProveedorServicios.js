@@ -6,6 +6,10 @@ export async function listaProveedores(token){
     const response = await fetch(`${API_URL}/lista`,{
         headers: {"Authorization" : token}
     });
+    if(response.status === 403){
+        window.location.href = "/SinAutorizacion";
+        return;
+      }
     const data = await response.json()
     return data;
 }
@@ -21,10 +25,11 @@ export async function saveProveedor(formData){
     return data;
 }
 
-export async function deleteProveedor(id){
+export async function deleteProveedor(id,token){
 const response = await fetch(`${API_URL}/eliminar/${id}`,
 {
-    method : "DELETE"
+    method : "DELETE",
+    headers:{"Authorization":token}
 })
 }
 
@@ -32,6 +37,10 @@ export async function detalleProveedor(id,token){
     const response = await fetch(`${API_URL}/detalle/${id}`,{
         headers: {"Authorization" : token}
     });
+    if(response.status === 403){
+        window.location.href = "/SinAutorizacion";
+        return;
+      }
     const data = await response.json()
     return data;
 }
@@ -42,6 +51,10 @@ export async function updateProveedor(id,formData,token){
         headers: {"Authorization":token},
         body : formData
     })
+    if(response.status === 403){
+        window.location.href = "/SinAutorizacion";
+        return;
+      }
     const data = await response.json();
     return data;
 }
@@ -52,6 +65,10 @@ const response = await fetch(`${API_URL}/modificarImg/${id}`,{
     headers: {"Authorization":token},
     body: formDataImg
 });
+if(response.status === 403){
+    window.location.href = "/SinAutorizacion";
+    return;
+  }
 const data = response.json();
 return data;
 }
@@ -61,4 +78,16 @@ export async function listaProveedoresPorServicio(servicio){
     const response = await fetch(`${API_URL}/lista/${servicio}`);
     const data = await response.json()
     return data;
+}
+
+export async function listaProveedoresPorLocalidad(localidad,token){
+const response = await fetch(`${API_URL}/listaProv/${localidad}`,{
+    headers:{"Authorization":token},
+});
+if(response.status === 403){
+    window.location.href = "/SinAutorizacion";
+    return;
+  }
+const data = response.json();
+return data;
 }

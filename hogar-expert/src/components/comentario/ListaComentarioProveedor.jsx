@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { listaComentariosPorProveedor } from '../../servicios/ComentarioServicio';
+import { useUser } from '../sesion/UserContext';
 
 export default function ListaComentarioProveedor() {
 const{id}=useParams();//ID proveedor por path
 const[comentarios,setComentarios]=useState();
-useEffect(()=>{
-    listaComentariosPorProveedor(id).then(data=> setComentarios(data));
-},[id])
+const{user}=useUser();
+
+
+useEffect(() => {
+  if(id){
+    listaComentariosPorProveedor(id).then(data=> setComentarios(data))
+  } else if(user){
+    listaComentariosPorProveedor(user.id).then(data=> setComentarios(data))
+  }
+}
+  , [id,user])
 
 
 // Función para generar las estrellas según la calificación

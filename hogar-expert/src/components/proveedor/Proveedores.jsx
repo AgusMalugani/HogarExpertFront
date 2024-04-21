@@ -10,15 +10,15 @@ export default function Proveedores() {
        listaProveedores().then(data => {setProveedores(data)});
     },[] )
 
+    const token = localStorage.getItem("token");
+
 async function eliminarProveedor(proveedor){
-await deleteProveedor(proveedor.id)
+await deleteProveedor(proveedor.id,token)
 const newProveedores = proveedores.filter(pr=> pr.id !== proveedor.id)
 setProveedores(newProveedores);
 }
 
-function goBack() {
-  window.history.back();
-}
+
 
   return (
     <div className='tbody-usuario-proveedor' >
@@ -30,27 +30,5 @@ function goBack() {
   
    )
   
-   {/* 
-   <table className='lista-proveedores'>
-   <thead >
-   <tr id='lista-columnas' > 
-   <th>ID</th>
-   <th>NOMRE EMPRESA</th>
-   <th>MATRICULA</th>
-   <th>SERVICIO</th>
-   <th>CELULAR</th>
-   <th>EMAIL</th>
-   <th>COSTO POR HORA</th>
-   <th>ACCIONES</th>
-   </tr>
-   </thead>
-   <tbody >
-   {proveedores.length > 0 && proveedores.map(elemento => <Proveedor proveedor = {elemento} eliminarProveedor={eliminarProveedor} />)}
-   
-   </tbody>
-   <br />
-   <button className='boton' onClick={goBack}>Volver</button>
-   
-   </table>
-  */}
+  
   }

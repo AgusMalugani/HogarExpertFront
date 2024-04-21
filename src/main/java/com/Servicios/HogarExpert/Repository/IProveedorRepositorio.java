@@ -24,5 +24,8 @@ public interface IProveedorRepositorio extends JpaRepository<Proveedor,Long> {
     
     public Proveedor findByUsername(String username);
     
+      @Query("SELECT p FROM Proveedor p WHERE p.localidad = :localidad ")
+    public List<Proveedor>listaProveedorPorLocalidad(@Param("localidad") String localidad);
+    
     
 }

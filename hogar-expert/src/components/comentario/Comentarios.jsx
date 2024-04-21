@@ -10,17 +10,14 @@ useEffect( ()=>{
  listaComentarios().then( data => {setComentarios(data)} )
 },[] )
 
-function goBack(){
-  window.history.back()
-}
+
 
   return (
     <div id='carrusel-comentarios' >
       <img src="https://zolvers.com/img/home_new/icon-comillas.webp" alt="img-comillas" />
 
 <h3>LO QUE DICEN NUESTROS CLIENTES</h3>
-      {/*{ comentarios.length > 0 &&  comentarios.map( elemento => <Comentario key={elemento.id}  comentario = {elemento} /> ) }
-*/}
+    
 
 {comentarios.length > 0 && (
   <div id="carouselExample" className="carousel slide caja-comentario-flecha" data-bs-ride="carousel">

@@ -5,6 +5,7 @@
 package com.Servicios.HogarExpert.Entity;
 
 import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +30,7 @@ public class Imagen {
     
     @Lob
     @Basic(fetch = FetchType.LAZY)
+    @Column(columnDefinition = "longblob") 
     private byte[] contenido;
 
     public Imagen() {

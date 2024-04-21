@@ -7,16 +7,13 @@ package com.Servicios.HogarExpert.Controller;
 import com.Servicios.HogarExpert.Exception.MiException;
 import com.Servicios.HogarExpert.Entity.Usuario;
 import com.Servicios.HogarExpert.Service.IUsuarioServicio;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,7 +26,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -63,6 +59,7 @@ public class UsuarioControlador {
                     .email(usuario.getEmail())
                     .password( new BCryptPasswordEncoder().encode(usuario.getPassword()) )
                     .roles(usuario.getRoles())
+                    .localidad(usuario.getLocalidad().toUpperCase())
                     
                     .build();         
                 usuarioServi.save(u,archivo);

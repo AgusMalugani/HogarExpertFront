@@ -6,25 +6,42 @@ import { Link } from 'react-router-dom';
 export default function TrabajosEsperandoProv() {
  const{user}=useUser();
     const[trabajos,setTrabajos]=useState();
-
-    if(user.roles.includes("PROVEEDOR")){
-        useEffect(()=>{
-            trabajosEsperandoProv(user.id).then(data=>{setTrabajos(data)});
-        },[user.id]);
-        console.log(trabajos);
-    } 
+const token = localStorage.getItem("token")
     
-    else if(user.roles.includes("ADMIN") || user.roles.includes("USER")){
         useEffect(()=>{
-            trabajosEsperandoUsuario(user.id).then(data=>{setTrabajos(data)});
-            console.log(trabajos);
-        },[user.id]);
-    }
+            if(user.roles.includes("PROVEEDOR")){
+            trabajosEsperandoProv(user.id,token).then(data=>
+                { if (JSON.stringify(data) !== JSON.stringify(trabajos)) {
+                    setTrabajos(data);
+                 
+                }
+            });             
+              
+        }
+    },[trabajos,user.id]);
+       
+   
+    
+    
+        useEffect(()=>{
+            if(user.roles.includes("ADMIN") || user.roles.includes("USER")){
+            trabajosEsperandoUsuario(user.id,token).then(data=>{
+                if(JSON.stringify(data)!== JSON.stringify(trabajos)){
+                    setTrabajos(data)
+                    
+                }
+                
+            });
+            }
+           
+        },[trabajos,user.id]);
+    
    
 
   return (
     <div>
-        { trabajos && trabajos.length>0 && <Link to="/trabajo/lista">tienes {trabajos.length} Trabajos pendientes</Link>}
+        { trabajos && trabajos.length>0 && (user.roles.includes("ADMIN") || user.roles.includes("USER")) && <Link to="/trabajo/lista">tienes {trabajos.length} Trabajos pendientes ya cotizados</Link>}
+        { trabajos && trabajos.length>0 && user.roles.includes("PROVEEDOR") && <Link to="/trabajo/lista">tienes {trabajos.length} Trabajos pendientes para cotizar</Link>}
         { trabajos && trabajos.length===0 && <p>No tienes trabajos pendientes</p>}
       
     </div>

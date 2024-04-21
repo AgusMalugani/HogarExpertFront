@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import {  useParams } from 'react-router-dom'
 import { detalleProveedor } from '../../servicios/ProveedorServicios';
-import { traerImagenProveedor } from '../../servicios/ImagenServicio';
+
 import { useUser } from '../sesion/UserContext';
-import ListaComentarioProveedor from '../comentario/ListaComentarioProveedor';
+
 
 export default function DetalleProveedor() {
   const { id } = useParams();
-
+ 
   
   const { user: currentUser } = useUser();
   const [proveedor, setProveedor] = useState({});
@@ -23,34 +23,13 @@ export default function DetalleProveedor() {
     , [id,currentUser])
 
 
-    const[imagen,setImagen]=useState();
-useEffect( ()=>{
-  if(proveedor && proveedor.id){
-
-    traerImagenProveedor(proveedor.id)
-    .then(data=> {const imagenUrl = URL.createObjectURL(data)
-      
-      setImagen(imagenUrl);
-    })
-  }
-  },[proveedor] );
-
-
-
-   
+ 
 
   return (
     <div>
 
 
     <div className='perfil-usuario-proveedor' >
-     
-      <div className='detalle-cabecera'>
-
-      <h4 >{proveedor.nombreEmpresa}</h4>
-      <br />
-      <img src={imagen} alt= {proveedor.username} />
-            </div>
 
             <div className='detalle-perfil-titulo'>
         <h4>DATOS PROVEEDOR</h4>
@@ -66,9 +45,7 @@ useEffect( ()=>{
       </div>
       <div className='detalle-perfil-datos'>
       <span className='perfil-titulo'>Matricula: </span>
-      { currentUser.roles.includes("USER") && <p className='perfil-valor'>**********</p> }
-    
-    { (currentUser.roles.includes("PROVEEDOR") || currentUser.roles.includes("ADMIN")) && currentUser.id === proveedor.id &&  <p className='perfil-valor'>{proveedor.matricula}</p> }
+      <p className='perfil-valor'>{proveedor.matricula}</p>
       </div>
       <div className='detalle-perfil-datos'>
       <span className='perfil-titulo'>Servicio que brinda:  </span>
@@ -96,39 +73,58 @@ useEffect( ()=>{
 </div>
          <div className='detalle-perfil-datos'>
       <span className='perfil-titulo'>Celular: </span>
-      { currentUser.roles.includes("USER") && <p className='perfil-valor'>**********</p> }
-    
-    { (currentUser.roles.includes("PROVEEDOR") || currentUser.roles.includes("ADMIN")) && currentUser.id === proveedor.id &&  <p className='perfil-valor'>{proveedor.celular}</p> }
+      <p className='perfil-valor'>{proveedor.celular}</p>
       </div>
       <div className='detalle-perfil-datos'>
       <span className='perfil-titulo'> Email: </span>
-      { currentUser.roles.includes("USER") && <p className='perfil-valor'>**********</p> }   
-    { (currentUser.roles.includes("PROVEEDOR") || currentUser.roles.includes("ADMIN")) && currentUser.id === proveedor.id &&  <p className='perfil-valor'>{proveedor.email}</p> }
+      <p className='perfil-valor'>{proveedor.email}</p>
      </div>
      <div className='detalle-perfil-datos'>
       <span className='perfil-titulo'> Localidad: </span>
       <p className='perfil-valor'>{proveedor.localidad}</p>
      </div>
 
-     <div className='detalle-perfil-botones-div' >
-      { currentUser.roles.includes('ADMIN') || currentUser.roles.includes("USER")  && <button className='detalle-perfil-botones'> <Link to={`/trabajo/crear/${proveedor.id}`}> CONTRATAR </Link></button> }
-      { currentUser.id === proveedor.id && <button className='detalle-perfil-botones'> <Link to={`/proveedor/modificar/${proveedor.id}`}> MODIFICAR </Link></button> }
-      </div>
-    
-      <div className='detalle-perfil-calificaciones-comentarios'>
-        <div className='detalle-perfil-titulo'>
-        <h4>CALIFICACIONES Y COMENTARIOS</h4>
-        </div>
-       { <ListaComentarioProveedor/>}
-      </div>
 
       </div>
    
    
-          
+         
      
  </div>
 
+<div className='trabajo-aceptado-datos-prov'>
+
+    <div>
+<h1>IMPORTANTE</h1>
+    </div>
+    <div>
+        <p>
+            
+    ¡Felicidades por encontrar un proveedor!
+    </p>
+    <p>
+    Es genial saber que has logrado encontrar un proveedor que se adapta a tus necesidades. 
+    </p>
+    <p>
+    Este es un paso importante hacia adelante en tu proyecto o empresa. 
+    </p>
+    <p>
+    Te felicito por tu dedicación y perseverancia para encontrar la mejor opción.
+    </p>
+    <p>
+    Ahora que has identificado un proveedor, te animo a que te pongas en contacto con ellos lo antes posible.
+    </p>
+    <p>
+    Esta es una oportunidad perfecta para iniciar una conversación y establecer una relación sólida. 
+    </p>
+    <p>
+    No dudes en expresar tus necesidades y expectativas, así como en hacer cualquier pregunta que puedas tener. 
+    </p>
+    <p>
+    La comunicación abierta desde el principio es clave para una colaboración exitosa.
+        </p>
+    </div>
+</div>
     
     </div>
   )

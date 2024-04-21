@@ -7,7 +7,10 @@ export async function obtenerUsuarios(token){
         const response = await fetch(API_URL + "/lista" ,{
             headers: {"Authorization" : token}
         });
-      
+      if(response.status === 403){
+        window.location.href = "/SinAutorizacion";
+        return;
+      }
         const data = await response.json();
         return data;
    
@@ -19,6 +22,7 @@ export async function saveUsuario(formData){
         method:"POST",
         body: formData
     })
+    
     return response.json();
 }
 
@@ -38,6 +42,11 @@ export async function deleteUsuarios(id,token){
         const response = await fetch(`${API_URL}/perfil/${id}`,{
             headers: {"Authorization" : token}
         });
+        if(response.status === 403){
+            window.location.href = "/SinAutorizacion";
+            return;
+          }
+        
         const data = await response.json()
         return data;
         }
@@ -50,6 +59,10 @@ export async function updateUsuario(id,formData,token){
         body: formData
 
     })
+    if(response.status === 403){
+        window.location.href = "/SinAutorizacion";
+        return;
+      }
     return response.json();
 }
 
@@ -59,5 +72,9 @@ const response = await fetch(`${API_URL}/modificarImg/${id}`,{
     headers:{"Authorization":token},
     body: formDataImg
 })
+if(response.status === 403){
+    window.location.href = "/SinAutorizacion";
+    return;
+  }
 return response.json();
 }
