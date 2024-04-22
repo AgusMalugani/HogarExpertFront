@@ -14,4 +14,5 @@ import org.springframework.web.multipart.MultipartFile;
 public interface IImagenServicio {
     public Imagen guardarImagen(MultipartFile archivo);  
     
+    
 }
