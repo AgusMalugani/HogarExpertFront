@@ -2,11 +2,11 @@
   "name": "hogar-expert",
   "private": true,
   "version": "0.0.0",
-  "homepage": "http://AgusMalugani.github.io/HogarExpertFront",
+  "homepage": "https://AgusMalugani.github.io/HogarExpertFront",
   "type": "module",
   "scripts": {
-    "predeploy":"npm run build",
-    "deploy":"gh-pages -d dist",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
-    "gh-pages": "^6.1.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",
     "react-dom": "^18.2.0",
@@ -28,6 +27,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "gh-pages": "^6.1.1",
     "vite": "^5.0.8"
   }
 }
