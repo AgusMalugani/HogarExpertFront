@@ -2,8 +2,11 @@
   "name": "hogar-expert",
   "private": true,
   "version": "0.0.0",
+  "homepage": "http://AgusMalugani.github.io/HogarExpertFront",
   "type": "module",
   "scripts": {
+    "predeploy":"npm run build",
+    "deploy":"gh-pages -d build",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
@@ -11,6 +14,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
+    "gh-pages": "^6.1.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",
     "react-dom": "^18.2.0",

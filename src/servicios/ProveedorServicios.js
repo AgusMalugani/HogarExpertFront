@@ -1,6 +1,7 @@
 import { json } from "react-router-dom";
 
-    const API_URL = "http://localhost:8080/proveedor";
+   // const API_URL = "http://localhost:8080/proveedor";
+    const API_URL = "https://hogarexpertback.onrender.com/proveedor";
 
 export async function listaProveedores(token){
     const response = await fetch(`${API_URL}/lista`,{

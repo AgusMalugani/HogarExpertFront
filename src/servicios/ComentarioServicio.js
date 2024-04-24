@@ -1,5 +1,6 @@
 
-const API_URL = "http://localhost:8080/comentario";
+//const API_URL = "http://localhost:8080/comentario";
+const API_URL = "https://hogarexpertback.onrender.com/comentario";
 
 export async function listaComentarios(){
     const response = await fetch(`${API_URL}/lista`)

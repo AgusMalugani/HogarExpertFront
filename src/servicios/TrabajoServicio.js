@@ -1,4 +1,5 @@
-const API_URL="http://localhost:8080/trabajo";
+//const API_URL="http://localhost:8080/trabajo";
+const API_URL = "https://hogarexpertback.onrender.com/trabajo";
 
  export async function saveTrabajo(trabajoDatos,token){
     const response = await fetch( `${API_URL}/crear`,
